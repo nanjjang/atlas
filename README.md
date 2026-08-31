@@ -33,24 +33,14 @@ Most codebase diagrams are snapshots: generate one, look at it once, then watch 
 
 ## Quick start
 
-### Install from the packaged extension
-
-This repository includes a preview VSIX. Install it from a terminal:
-
-```bash
-code --install-extension ./project-atlas-diagrams-0.1.0.vsix
-```
-
-You can also run **Extensions: Install from VSIX...** from the Command Palette and select the file.
-
-### Open your first map
+Once Project Atlas is installed, open your first map:
 
 1. Open a project folder or multi-root workspace in VS Code.
 2. Select the **Project Atlas** icon in the Activity Bar.
 3. Use the sidebar overview immediately, or select **Open diagram** for the full canvas.
 4. Open a source file. Atlas will center the relevant module and mark the active file.
 
-There is no required setup. You can also open the canvas with **Project Atlas: Open Workspace Diagram** from the Command Palette.
+There is no project setup or configuration required. You can also open the canvas with **Project Atlas: Open Workspace Diagram** from the Command Palette.
 
 ## Two views, one analysis
 
@@ -276,32 +266,6 @@ Static analysis can be useful without pretending to know more than the source re
 - **Comments and strings can resemble declarations.** Pattern matching may occasionally produce false positives.
 - **Excluded, oversized, or over-limit files do not appear in results.** Review the analysis diagnostics before assuming the map is complete.
 
-## Development
-
-### Prerequisites
-
-- Node.js 22 or later is recommended for the current toolchain.
-- VS Code 1.100 or later is required for extension-host testing.
-
-### Build and test
-
-```bash
-npm ci
-npm run check
-```
-
-Useful commands:
-
-| Command | Purpose |
-| --- | --- |
-| `npm run compile` | Type-check and build the extension and Webview bundles. |
-| `npm test` | Compile and run the analyzer and layout test suite. |
-| `npm run check` | Run type checks, lint, tests, and a production build. |
-| `npm run check:full` | Run `check` plus a real VS Code Extension Host integration test. |
-| `npm run vsix` | Build and package an installable VSIX. |
-
-Press `F5` in VS Code to launch an Extension Development Host for interactive testing.
-
 ## Contributing and feedback
 
 Project Atlas is a preview, and concrete parser failures are especially valuable. If a module, relationship, endpoint, or entity is missing or incorrect, [open an issue](https://github.com/nanjjang/atlas/issues) and include:
@@ -311,7 +275,7 @@ Project Atlas is a preview, and concrete parser failures are especially valuable
 - what Atlas displayed;
 - what you expected it to display.
 
-Before submitting a pull request, run `npm run check`. Changes that affect extension activation, commands, or Webview messaging should also pass `npm run check:full`.
+For development and verification details, see the [development notes](docs/development.md).
 
 For security-sensitive reports, do not include credentials, private source code, or production data in a public issue.
 
