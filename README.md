@@ -78,6 +78,34 @@ Both views share one analysis snapshot, so the workspace is scanned only once.
 
 Click once to select and inspect a result. Double-click a source-backed item to open the relevant file and line.
 
+### Files — find where to start reading
+
+Use the codebase overview to identify entry points, heavily depended-on files, large source files, apparently unreferenced files, test-name gaps, language mix, and detected technologies.
+
+![Project Atlas Files view showing codebase statistics and file-level reading guides](media/screenshots/project-atlas-files.png)
+
+### Flows — follow source-backed execution paths
+
+Trace routes, calls, and branches from a project or service down to an individual file. Direct evidence uses solid lines; inferred relationships remain visually distinct and the analysis notes explain what static inspection cannot prove.
+
+![Project Atlas Flow view showing a file conversion path with calls and branches](media/screenshots/project-atlas-flow.png)
+
+### Data model — explore one subject area at a time
+
+Inspect tables, fields, keys, and cross-area relationships without connecting to a live database. Selecting an area or entity reveals the declarations and unresolved targets behind it.
+
+![Project Atlas Data model view showing tables and relationships within a subject area](media/screenshots/project-atlas-data-model.png)
+
+### Interfaces — see how the outside world gets in
+
+Review protocols, endpoints, handlers, and port declarations together. Atlas distinguishes ports bound by code, exposed by images, published by Compose, and supplied by settings.
+
+![Project Atlas Interfaces view showing Spring MVC endpoints and a Docker-exposed port](media/screenshots/project-atlas-interfaces-spring.png)
+
+The same view keeps multiple protocols together when a workspace exposes more than HTTP.
+
+![Project Atlas Interfaces view showing HTTP, WebSocket, and container port declarations](media/screenshots/project-atlas-interfaces-polyglot.png)
+
 ## Follow the active editor
 
 With `projectAtlas.followActiveEditor` enabled, changing files updates both views:
