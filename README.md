@@ -1,321 +1,232 @@
-# Project Atlas
+<p align="center">
+  <img src="media/icon.png" width="112" alt="Project Atlas logo">
+</p>
 
-열려 있는 워크스페이스를 정적으로 읽어서 **모듈이 어떻게 얽혀 있는지, 파일이 어떻게 놓여 있는지, 코드가 어떤 순서로 호출·분기되는지, 데이터베이스 엔터티가 어떤 관계인지**를 VS Code 안에서 보여 줍니다.
+<h1 align="center">Project Atlas</h1>
 
-에디터 옆에 띄워 두고 쓰도록 만들었습니다. 지금 편집 중인 파일을 따라오기 때문에, 한 번 보고 닫는 그림이 아니라 코드를 읽는 동안 계속 옆에 두는 지도에 가깝습니다.
+<p align="center">
+  Understand an unfamiliar codebase without leaving VS Code.
+</p>
 
-> **베타(Preview)입니다.** 정적 분석 기반이라 놓치는 관계가 있고, 표시가 틀릴 수도 있습니다. [한계](#이-확장이-하지-않는-일)를 먼저 읽어 보시길 권합니다.
+<p align="center">
+  <img src="https://img.shields.io/badge/status-preview-F59E0B" alt="Preview status">
+  <img src="https://img.shields.io/badge/VS%20Code-1.100%2B-007ACC" alt="VS Code 1.100 or later">
+  <img src="https://img.shields.io/badge/license-MIT-2EA44F" alt="MIT license">
+</p>
 
-## 설치하고 나면
+Project Atlas reads the workspace you already have open and turns its static structure into practical maps: how modules depend on one another, where to start reading, how calls and branches flow, which interfaces the project exposes, and how its relational or document data models fit together.
 
-활동 표시줄의 **Project Atlas** 아이콘을 누르면 사이드바에 개요가 바로 뜹니다. 명령을 실행할 필요도, 설정할 것도 없습니다.
+It is designed to stay beside your editor. As you move through the code, Atlas follows the active file and keeps the relevant module and its immediate neighborhood in view.
 
-## 두 가지 보기
+> [!IMPORTANT]
+> Project Atlas is in preview. Its results come from static heuristics, not a compiler, a runtime trace, or a live database. Treat every diagram as a navigational aid and review inferred or unresolved relationships before relying on them.
 
-**사이드바 개요** — 좁은 칸이라 전체 지도를 그리지 않고, **한 노드와 그 이웃만** 봅니다. 맨 위 카드가 지금 편집 중인 파일이 속한 모듈이고, 그 아래 작은 지도가 그 모듈을 가운데 두고 직접 연결된 것들을 둘러 세웁니다. 맨 아래 카드에는 그 모듈이 **무엇에 쓰이고(←) 무엇을 쓰는지(→)** 개수로 적히고, 소스로 가거나 전체 다이어그램으로 넘어가는 버튼이 붙습니다. **Code / Data**로 모듈 그래프와 스키마를 오갑니다.
+## Why Project Atlas?
 
+Most codebase diagrams are snapshots: generate one, look at it once, then watch it drift out of date. Project Atlas instead works as a live reading companion inside VS Code.
+
+- **Start with the part that matters.** Atlas highlights entry points, dependency hotspots, large source files, apparently unreferenced files, and files without a correspondingly named test.
+- **Move from context to detail.** Begin with a repository or subject-area map, then drill down to modules, services, files, tables, or collections.
+- **Keep the evidence close.** Select a node to inspect why it exists; open the source directly from the diagram when you need to verify it.
+- **Read polyglot workspaces as one system.** Application code, API declarations, infrastructure ports, relational schemas, and document models can appear in the same analysis.
+- **Keep source code local.** Atlas reads files inside VS Code. It does not upload source, execute project code, run ORM CLIs, or connect to a database.
+
+## Quick start
+
+### Install from the packaged extension
+
+This repository includes a preview VSIX. Install it from a terminal:
+
+```bash
+code --install-extension ./project-atlas-diagrams-0.1.0.vsix
 ```
-orgdocs                    Open diagram ↻
-5 modules · 7 links · 5 entities
-  Connections   |       Review ②
-┌ WORKING CONTEXT ─────────────────────┐
-│ apps/web/src/app            Centered │
-│ apps/web/src/app/page.tsx            │
-└──────────────────────────────────────┘
- [ Code | Data ]         Follows editor
-[ Find a module                       ]
 
-   Used by       Selected         Uses
+You can also run **Extensions: Install from VSIX...** from the Command Palette and select the file.
 
-   apps/web/src/…          apps/api/src
-                 ╲        ╱
-               apps/web/src/app
-                 ╱        ╲
-   packages/blocks…            react
+### Open your first map
 
-┌──────────────────────────────────────┐
-│ apps/web/src/app                     │
-│ 91 files          ← 2 used by  → 2   │
-│ [ Open source ]  [ Open diagram ]    │
-└──────────────────────────────────────┘
-```
+1. Open a project folder or multi-root workspace in VS Code.
+2. Select the **Project Atlas** icon in the Activity Bar.
+3. Use the sidebar overview immediately, or select **Open diagram** for the full canvas.
+4. Open a source file. Atlas will center the relevant module and mark the active file.
 
-**Review** 탭은 오류 목록이 아니라 **정적 분석 결과에서 한 번 눈으로 확인할 거리**입니다. 해석하지 못한 구문, 대상을 찾지 못했거나 추론으로 이어 둔 관계, 아무와도 이어지지 않은 노드를 모읍니다. 각 항목에는 왜 목록에 들어왔는지를 평이한 문장으로 표시하며, 소스가 있으면 바로 열 수 있습니다.
+There is no required setup. You can also open the canvas with **Project Atlas: Open Workspace Diagram** from the Command Palette.
 
-**다이어그램 패널** — 에디터 영역에 열리는 캔버스입니다. 확대·이동하고 노드를 눌러 근거가 된 선언을 확인할 때 씁니다. 사이드바 머리나 포커스 카드의 **Open diagram**, 또는 Command Palette의 `Project Atlas: Open Workspace Diagram`으로 엽니다.
+## Two views, one analysis
 
-두 보기는 같은 분석 결과를 공유합니다. 워크스페이스는 한 번만 읽습니다.
+### Sidebar overview
 
-## 편집 중인 파일을 따라갑니다
+The sidebar is for orientation while you read code. It shows the module containing the active file, the modules that use it, the modules it uses, and a compact summary of the current selection. Search narrows the map without replacing VS Code's Explorer.
 
-파일을 열면 두 보기가 함께 움직입니다.
+The **Review** tab collects results that deserve a human check, including unresolved syntax, inferred or unresolved relationships, and isolated nodes. Each item explains why it was flagged and opens its source when a location is available.
 
-- 개요의 **Working context** 카드가 그 파일과 그것이 속한 모듈로 바뀌고, 작은 지도가 그 모듈을 가운데로 다시 그립니다.
-- 다이어그램은 해당 모듈을 표시하고, **Nearby**가 켜져 있으면 그 모듈과 **직접 연결된 이웃만** 남기고 나머지를 뒤로 물립니다. 화면도 그 이웃 범위에 맞춰집니다.
-- 다이어그램의 Files 탭에서는 그 파일이 속한 모듈 카드에 표식이 붙습니다. 전체 파일 목록은 VS Code Explorer가 맡고, 이 탭은 프로젝트 구조와 hotspot을 요약합니다.
-- 같은 모듈 안에서 파일을 옮겨 다닐 때는 화면이 다시 잡히지 않습니다. 모듈이 바뀔 때만 움직입니다.
-- 다이어그램을 열어도 커서는 에디터에 남습니다.
+### Diagram panel
 
-`Nearby` 버튼을 누르면 현재 범위 전체를 보는 **Whole scope** 상태로 바뀝니다. Architecture에서는 편집 중인 모듈(없으면 선택한 모듈), Data model에서는 선택한 테이블을 기준으로 직접 이웃을 강조하고 그 범위에 화면을 맞춥니다. 따라가기는 `projectAtlas.followActiveEditor` 설정으로 끕니다.
+The editor panel is the complete, zoomable workspace canvas. Use it to change perspectives, move between scope levels, inspect declarations, and open the source behind a node. Opening the panel does not steal focus from the editor.
 
-## 네 가지 관점
+Both views share one analysis snapshot, so the workspace is scanned only once.
 
-| 탭 | 보여 주는 것 |
-| --- | --- |
-| **Architecture** | 소스의 `import`와 의존 관계로 구성한 모듈 간 연결. 큰 프로젝트는 저장소 영역 지도 → 한 영역의 모듈 → 전체 모듈 순서로 범위를 바꿔 읽고, 외부 패키지는 옆 레인으로 따로 모입니다. |
-| **Files** | 이 프로젝트가 **어떤 구조인지**를 한 화면에 요약한 카드 대시보드. 폴더 트리는 그 안에 접힌 패널로 들어 있습니다. |
-| **Flows** | 전체 프로젝트의 서비스/모듈 전달 흐름, 서비스 내부 흐름, 개별 파일의 라우트·호출·분기. 툴바의 **Scope**에서 단위를 바꿉니다. |
-| **Data model** | 소스와 스키마 파일에서 찾은 엔터티, 테이블, 필드, 관계. 스키마가 한 장에 담기지 않을 만큼 크면 **주제 영역** 단위로 나눠서 읽습니다. |
+## Five perspectives
 
-관계를 확정하기 어려운 경우에는 추론으로 표시하고, 판단 근거를 진단으로 함께 남깁니다. 데이터베이스 선언을 찾지 못하면 빈 상태를 보여 줄 뿐 테이블을 지어내지 않습니다.
-
-### Files는 트리가 아니라 요약입니다
-
-이 탭을 여는 이유는 대개 "이게 무슨 프로젝트인가"이고, 폴더 목록은 그 질문에 느리게 답합니다. 파일 몇
-천 개를 스크롤해서 알아내야 하는 것을, 카드 몇 장이 한 화면에 말해 줍니다.
-
-- 맨 위 한 줄에 **파일 수·소스 수·모듈 수·의존 수·흐름 수·엔터티 수·관계 수**와 감지된 기술 스택
-- **패키지(모듈 그룹)마다 카드 한 장.** 모노레포라면 `apps/web`, `packages/ui` 같은 단위이고, 카드 안에
-  그 그룹의 모듈이 파일 수와 언어 색점을 달고 나열됩니다. 행을 누르면 선택되고, 두 번 누르면 소스로
-  갑니다.
-- **External dependencies** — 많이 쓰인 순서
-- **Dependency hotspots** — 모듈별 유입·유출 import 수. 결함 판정이 아니라 결합도가 높은 검토 지점입니다.
-- **Data** — 엔터티·관계 수와 테이블 이름
-- **Flows** — 분석된 프로젝트 흐름을 세로 한 줄로 요약합니다. 흐름이 잡히지 않으면 다른 데서 많이 의존하는
-  모듈 그룹 순서로 대신합니다.
-
-전체 폴더·파일 트리는 이미 VS Code Explorer에 있으므로 이 화면에서 되풀이하지 않습니다. 검색을 치면
-모듈·의존성 카드가 걸러지고, 실제 파일 이름이 일치한 경우에만 **Matching source files** 카드가 나타납니다.
-그 행을 두 번 누르면 바로 소스로 이동합니다.
-
-### Architecture는 저장소 지도에서 모듈로 내려갑니다
-
-모듈이 24개를 넘는 큰 프로젝트를 한 장에 모두 펼치면, 패키지 경계보다 선의 양이 먼저 보입니다. 그래서
-툴바의 **Level**에 세 단계가 있습니다.
-
-| 범위 | 그리는 것 |
-| --- | --- |
-| **Repository map** | `apps/web`, `packages/api`, `src/features`처럼 소스 경로가 선언한 영역 하나당 카드 하나. 영역 사이의 반복 import는 선 하나와 개수로 합칩니다. |
-| 각 저장소 영역 | 그 영역의 모듈과 내부 의존은 전부 그립니다. 밖으로 나가는 관계는 이웃 영역 카드로 접고, 외부 패키지는 개별 카드로 남깁니다. |
-| **All modules** | 모든 모듈을 한 캔버스에 그리는 완전한 보기입니다. 검색·전체 모양 확인용으로 남겨 둡니다. |
-
-영역 카드를 두 번 누르면 내려가고, 오른쪽 세부 정보에서는 영역에 속한 **모듈 전체 목록**과 맞닿은 영역을
-읽고 이동할 수 있습니다. 그래프 모양을 맞추기 위해 임의 커뮤니티를 영역으로 부르지 않고, 실제 경로만
-경계로 씁니다.
-
-### Flow는 범위를 바꿔 가며 읽습니다
-
-Flows 탭의 **Scope**에는 세 단계가 있습니다.
-
-| 범위 | 그리는 근거 |
-| --- | --- |
-| **Project / service map** | 이미 해석된 모듈 `import`를 서비스 간 전달 방향으로 표시합니다. |
-| **Services and modules** | 한 모듈 안의 라우트, 함수·메서드, 명시적 분기, 내부 호출과 주요 I/O 호출을 합칩니다. |
-| **Files** | 한 파일만 떼어 같은 근거를 자세히 보여 줍니다. |
-
-**모든 단계는 제목 바가 달린 카드 한 장입니다.** 라우트든, 함수든, 밖으로 나가는 I/O 호출이든 같은 모양을
-씁니다 — 전부 같은 것, 곧 흐름의 한 단계이기 때문입니다. 카드 안에 적을 것이 있으면(그 안에서 읽어낸
-조건과 호출) 제목 바 아래에 줄로 서고, 없으면 카드는 제목 바에서 끝납니다. 노드를 두 번 누르거나 세부
-정보의 **Open source**를 누르면 근거가 된 줄로 이동합니다.
-
-둥근 알약으로 그리는 것은 **`Start here`와 `End` 둘뿐**입니다. 이 둘은 소스에 있는 것이 아니라 어디서부터
-읽으라고 다이어그램이 붙인 표시라서, 소스에 실제로 선언된 라우트와 구별되어야 합니다.
-
-**선 위에 글자가 붙는 것은 갈림길뿐입니다.** `Yes`와 `No`는 분기 그 자체이지만, "호출한다"나 "넘긴다"는
-화살표가 이미 하고 있는 말입니다. 모든 선에 그것을 적으면 화면 글자의 대부분이 아무것도 말하지 않는
-글자가 됩니다. 그 라벨들은 사라지지 않고 세부 정보 패널에 근거로 남습니다.
-
-**다이아몬드는 흐름이 실제로 갈라지는 자리에만 그립니다.** 소스에 보이는 `if`를 전부 다이아몬드로 세우면
-어느 쪽으로도 선이 나가지 않는 마름모가 벽처럼 서고, 진짜 분기는 그 안에 묻힙니다(어떤 파일에서는
-다이아몬드 20개 중 19개가 그랬습니다). 조건은 **한쪽 가지에서 무언가에 도달하는 것이 확인된 순간에만**
-다이아몬드가 되고, 갈라진 두 선에는 각각 `Yes`와 `No`가 붙습니다.
-
-갈라지지 않은 조건은 사라지지 않고, **그 조건을 검사하는 카드 안에 줄로 적힙니다.** 상자를 따로 줄 수
-없었던 호출도 같이 적힙니다. 이름만 적힌 상자는 결국 파일을 열어 봐야 알 수 있으니, 카드가 자기 안에서
-읽어낸 것을 그대로 들고 있게 한 것입니다.
-
-`Start here`와 `End`는 흐름에 시작이 없을 때 그것을 만들어 주기 위한 것이므로, 매달릴 갈래가 여덟 개를
-넘어가면 그리지 않습니다. 라우트가 서른여섯 개인 서비스에서 그 노드는 화면에서 가장 바쁜 물건이 되면서
-"이것들이 라우트다"라는, 라우트 표시가 이미 하고 있는 말만 합니다. 아무것도 부르지 않고 아무도 부르지
-않는 함수는 경로 위에 없으므로 양쪽 어디에도 잇지 않습니다.
-
-이 그림은 실행 추적이 아닙니다. 동적 디스패치, 의존성 주입, 리플렉션, 생성 코드의 실제 순서를 확인하기 위해 프로젝트를 실행하지 않으며, 분기 안에서 가까이 발견된 호출 연결은 `inferred`로 구분합니다. 흐름 범위가 너무 많으면 연결 신호가 높은 파일 180개까지 싣고 진단에 생략 수를 남깁니다.
-
-### 스키마는 한 번에 한 주제 영역씩 읽습니다
-
-테이블 백 몇십 개를 한 장에 그린 ERD는 벽에 붙여 두고 감탄할 그림이지 읽는 그림이 아닙니다. 그 그림이
-알려 주는 것은 "이 데이터베이스는 크다"뿐이고, 정작 사람들이 스키마에 들고 오는 질문 — 정산은 어떤
-테이블들로 되어 있나, 그게 재고 쪽으로 무엇을 넘기나 — 은 그리기 전과 똑같이 어렵습니다.
-
-그래서 Data model 탭에는 툴바에 **Area**가 있습니다.
-
-| 범위 | 그리는 것 |
-| --- | --- |
-| **All areas — map** | 영역 하나당 카드 하나. 카드에는 테이블 수, 영역 안에서 끝나는 관계 수, 밖으로 나가는 관계 수가 적힙니다. 두 영역 사이를 지나는 관계는 **선 하나로 합쳐지고 개수가 붙습니다.** 스키마의 이음매가 어디인지를 한 화면에서 보는 그림입니다. |
-| **Whole schema** | 예전처럼 모든 테이블을 한 번에. 목록에 남겨 두었지만, 30개가 넘어가면 이것은 스키마의 **크기**를 보는 그림이지 스키마를 읽는 그림이 아닙니다. |
-| 각 영역 | 그 영역의 테이블과 그 안에서 끝나는 관계만 그대로 그립니다. 밖으로 나가는 관계는 **이웃 영역 카드 하나로 접혀서**, 어느 테이블이 몇 개의 관계로 어디를 향하는지만 남습니다. 그 카드를 두 번 누르면 그쪽 영역으로 넘어갑니다. |
-
-스키마가 한 장에 담기는 크기(30개 이하)면 예전처럼 통째로 열립니다. 영역은 그때도 목록에 있습니다.
-
-**영역은 그래프에서 추측하지 않고 이미 선언된 경계를 씁니다.** 테이블이 적힌 스키마 파일, `CREATE TABLE
-billing.invoices`처럼 이름에 붙은 스키마, JPA 패키지, Django 앱 라벨 같은 것들입니다. 테두리에 붙은
-이름을 소스에서 찾아 확인할 수 있어야 그 테두리가 의미를 갖기 때문입니다.
-
-- 혼자 두기에는 너무 작은 영역(마이그레이션 파일 하나에 테이블 한두 개)은 **상위 디렉터리로 접힙니다.**
-- 반대로 혼자서도 벽보만 한 영역은, 그 안의 테이블들이 **직접 달고 있는 네임스페이스**가 있을 때만 더
-  나눕니다. 전부가 네임스페이스를 갖고 있고 서로 다를 때만입니다. 없으면 나누지 않고, 대신 "이 영역은
-  30개가 넘습니다"라고 적어 둡니다. 그림이 맞아떨어지게 하려고 없는 경계를 그리지는 않습니다.
-- 이름이 겹치면(`migration.sql`이 스무 개) 각 영역은 **자기 경로에서 겹치지 않는 가장 짧은 이름**을
-  가져갑니다.
-
-영역을 고르면 오른쪽 세부 정보에 **그 영역이 무엇인지가 글로도** 남습니다. 어느 파일에서 읽었는지, 테이블
-수와 관계 수, 맞닿은 영역들, 그리고 **그 영역의 테이블 전체 목록**입니다. 목록의 이름을 누르면 그
-테이블로 이동합니다. 그림은 모양을 보여 줄 뿐이고, 두 번 읽게 되는 것은 대개 이 목록 쪽입니다.
-
-### 스키마를 문서로 내보냅니다
-
-큰 ERD가 결국 벽에 붙는 이유는 그 지식이 있을 데가 거기밖에 없기 때문입니다. 벽은 잘못된 그릇입니다.
-아무도 벽을 읽지 않고, 검색할 수도 없고, 그게 지금 데이터베이스와 맞는지 확인할 방법도 없습니다. 실제로
-쓰이는 것은 코드 옆에 열어 두고 컬럼 이름으로 검색하고 스키마가 바뀔 때 diff로 확인할 수 있는 문서입니다.
-
-Data model 탭의 **Export** 버튼(또는 `Project Atlas: Export Schema Documentation`)은 그림 파일이 아니라
-**Markdown 문서 한 벌**을 씁니다. 저장 위치는 저장 대화상자로 직접 고릅니다 — 이 확장이 파일을 쓰는 곳은
-여기 한 군데뿐입니다.
-
-문서에 들어가는 것:
-
-- 무엇을 보고 쓴 것인지(정적 분석이고 DB에 접속하지 않았다는 사실)를 먼저 밝히는 머리말
-- **주제 영역 목차** — 영역별 테이블 수 · 내부 관계 · 나가는 관계 · 읽어 온 경계, 그리고 영역이 서로
-  맞닿는 지점의 관계 수
-- 영역마다: 30개 이하면 **Mermaid 다이어그램 하나**(GitHub·에디터 미리보기에서 그대로 렌더링됩니다),
-  넘으면 다이어그램 없이 이유를 적습니다
-- 영역마다: 테이블 전체와 **컬럼 표**(컬럼 · 타입 · PK/UNIQUE/NULL 같은 표시), 그리고 각 테이블의 관계
-- 관계가 가리키는데 선언을 찾지 못한 이름들, 그리고 분석 노트
-
-다이어그램은 ERD 문법이 아니라 flowchart입니다. Mermaid의 `erDiagram`은 선마다 카디널리티를 반드시
-적어야 하는데, 정적 분석이 늘 알 수 있는 값이 아니기 때문입니다 — SQL 외래 키는 어느 컬럼이 어디를
-가리키는지만 말합니다. 대신 **소스가 실제로 선언한 관계**를 화살표에 적습니다.
-
-### 배치는 다이어그램마다 정해져 있습니다
-
-배치는 취향이 아니라 그 다이어그램의 성질입니다. 그래서 고르는 버튼이 없고, 탭마다 고정입니다.
-
-| 탭 | 배치 | 왜 |
+| View | Question it answers | What it shows |
 | --- | --- | --- |
-| **Flows** | **Columns** — 열로 세우고 화살표가 한 방향을 향합니다. | 순서도는 방향이 전부입니다. 이웃 옆에 붙여 놓은 단계는 그냥 상자이고, 따라갈 선이 없으면 순서도가 아닙니다. |
-| **Architecture** · **Data model** | **Spread** — 같은 곳에서 온 것끼리 **테두리로 묶고**, 묶음끼리 늘어놓습니다. | 읽는 순서가 없습니다. 거의 모든 테이블이 같은 두세 테이블을 참조하므로, 열로 세우면 그 몇 개가 한 열에 서고 나머지 백몇십 개가 옆 열에 서서 선 수백 개가 한 점으로 모입니다. |
+| **Architecture** | How is this codebase divided and connected? | Module dependencies derived from imports, grouped first by repository area in larger workspaces. External packages are kept in a separate lane. |
+| **Files** | Where should I start reading? | Entry points, highly depended-on files, large files, apparently unreferenced files, test-name gaps, language mix, technologies, package groups, external dependencies, and hotspots. |
+| **Flows** | In what order can requests and calls move? | Project and service handoffs, routes, calls, explicit branches, and major I/O operations at project, service/module, or file scope. |
+| **Data model** | What data shape does the code declare? | Relational entities, tables, document collections, embedded documents, fields, keys, and relationships, grouped into source-declared subject areas. |
+| **Interfaces** | How can the outside world reach this project? | Protocols, ports, endpoints, handlers, topics, queues, socket events, and the declarations from which they were inferred. |
 
-예전에는 툴바에서 `Auto` / `Columns` / `Spread`를 고를 수 있었습니다. 위 조합 말고는 어느 쪽도 그 다이어그램을 더 읽기 어렵게만 만들었기 때문에, 고를 것이 없어진 선택지를 없앴습니다.
+Click once to select and inspect a result. Double-click a source-backed item to open the relevant file and line.
 
-**묶음 안은 그 묶음의 이름이 된 카드를 가운데 두고 배치합니다.** 구역 대부분은 순서가 아니라 모양이
-비슷합니다 — 테이블 하나와 거기에 키를 걸고 있는 테이블들, 모듈 하나와 그것을 import 하는 모듈들. 이것을
-열로 세우면 허브가 혼자 한 열에 서고 나머지가 옆 열에 쌓여서, 구역 안의 모든 관계가 높이만 다른 같은
-가로선이 되고 이름이 된 카드가 나머지와 구별되지 않습니다. 가운데 두고 이웃을 좌우로 나눠 세우면 같은
-관계들이 양쪽에서 안쪽을 향하는 짧은 선이 되고, **구역의 모양이 라벨을 읽기 전에 무엇에 관한 구역인지를
-말합니다.** 가운데라 할 만한 것이 없는 구역은 그대로 열로 세웁니다.
+## Follow the active editor
 
-**Spread의 묶음은 그래프에서 추측하지 않고, 이미 선언된 것을 씁니다.** 테이블은 스키마 파일에 적혀 있고
-모듈은 디렉터리에 들어 있습니다. `billing.sql`, `auth.sql` 같은 이름이 테두리에 붙는 이유이고, 외래 키는
-대개 같은 파일 안을 가리키므로 **선의 대부분이 테두리 안에서 끝납니다** — 밖으로 나가는 몇 개가 실제로 볼
-가치가 있는 선입니다. 선언된 묶음이 없을 때만 관계에서 이웃을 찾습니다.
+With `projectAtlas.followActiveEditor` enabled, changing files updates both views:
 
-**여러 구역에 걸치는 것들은 가운데로 모읍니다.** 스키마는 대개 몇 개의 구역과, 그 구역들을 이어 붙이는
-소수의 공유 테이블로 되어 있습니다. 그 테이블들을 선언된 자리에 그대로 두면 경계를 넘는 모든 선의 끝이
-거기에 몰려서, 정작 제일 볼 만한 선 — 구역 밖으로 나가는 선 — 이 가장 길고 엉킨 선이 됩니다. 그래서
-**둘 이상의 다른 구역에 관계를 걸고 있는 것들**을 `Integration Core`라는 테두리로 따로 묶어 가운데
-두고, 구역들을 그 둘레에 배치합니다. 경계를 넘는 관계 하나하나가 구역에서 가운데로 향하는 선 하나가
-됩니다.
+- the sidebar's working context moves to the file and its module;
+- **Nearby** keeps the current module or entity and its direct neighbors in focus;
+- the Files view marks the card containing the active file;
+- the canvas reframes only when the module changes, not on every file change;
+- **Whole scope** restores the complete current map.
 
-가운데를 만들 만한 근거가 없으면 만들지 않습니다. 구역이 **선언되어 있어야** 하고(관계에서 추측한
-묶음으로 가운데를 뽑는 것은 추측 위의 추측입니다), 구역이 셋 이상, 그런 공유 항목이 둘 이상 있어야
-합니다. 가운데는 테두리 한 장 분량으로만 채우고, 어떤 구역을 비워 버리게 되면 그만둡니다. 구역끼리
-서로를 참조하지 않는 스키마(예: Prisma 파일 하나와 별개 마이그레이션들)에서는 아무 일도 일어나지
-않습니다.
+This behavior can be disabled without turning off analysis.
 
-**Spread에서는** 같은 두 구역 사이를 지나는 선들이 같은 통로로 휘어 하나의 리본처럼 보입니다. 또 그래프 대부분이 참조하는 노드(예: 모든 테이블의 `tenant_id`)는 그 관계가 어느 한 테이블에 대해 알려 주는 것이 없으므로 선을 옅게 깔고 **개수를 노드 위에 `↦ 120`처럼** 적습니다. 지워지는 것은 없습니다. 노드에 포인터를 올리거나 선택하면 그 선들이 다시 제 굵기로 돌아오고, 오른쪽 세부 정보 패널에는 언제나 전부 나열됩니다.
+## Read large systems progressively
 
-카드가 싣는 컬럼은 **지금 그려진 그림**의 크기에 따라 세 단계입니다. 스키마 전체로는 백 몇십 개라도 영역
-하나가 마흔 개 이하면 그 영역에서는 컬럼이 전부 나옵니다.
+Atlas avoids placing every node on one canvas when a declared boundary can provide a more useful first step.
 
-| 그려진 엔터티 수 | 카드가 보여 주는 것 |
+### Architecture scopes
+
+| Scope | Contents |
 | --- | --- |
-| 40개 이하 | 컬럼 전부 |
-| 220개 이하 | **기본 키와 외래 키만.** 관계를 따라갈 때 눈이 실제로 찾는 것이고, 도착한 선이 가리키는 것도 그 컬럼입니다. 열다섯 줄 대신 서너 줄로 끝납니다. |
-| 그 이상 | 이름만 |
+| **Repository map** | One card for each source-declared area, such as `apps/web`, `packages/api`, or `src/features`. Repeated imports between two areas are aggregated. |
+| **Repository area** | Every module and internal dependency in the selected area. Outgoing connections are folded into neighboring area cards. |
+| **All modules** | The complete module graph for search and whole-system inspection. |
 
-전체 컬럼 목록은 언제나 카드를 선택하면 세부 정보 패널에 나옵니다.
+Repository areas come from real paths. Atlas does not invent architectural boundaries merely to make the graph look balanced.
 
-## 읽을 수 있는 것
+### Flow scopes
 
-완전한 컴파일러 수준의 의미 분석이 아니라, 파일에 드러난 정적 패턴을 봅니다.
-
-| 언어 / 형식 | 인식 대상 |
+| Scope | Evidence |
 | --- | --- |
-| TypeScript / JavaScript | `import`, `export ... from`, 정적으로 표현된 `require` |
-| Python | `import`, `from ... import ...` |
-| Java | `package`, `import`(와일드카드 `import a.b.*` 포함) |
-| Kotlin | `package`, `import`, 일반적인 타입 선언 |
-| C# | `namespace`(블록·파일 범위), `using` |
-| Rust | `mod`, `use crate::` / `self::` / `super::` |
-| PHP | `namespace`, `use`, 상대 경로 `require`/`include` |
-| Ruby | `require_relative`, `lib/` 기준 `require` |
-| Go | `import`(블록 포함). 임포트 경로는 **패키지 = 디렉터리**로 해석해 그 안의 모든 파일에 연결합니다. 저장소에 `go.mod`가 여러 개면 각 모듈 경로로 나눠서 해석합니다. |
-| Swift | `import`(`@testable` 포함). `Sources/<타깃>/` 아래 파일이 그 타깃 모듈입니다. |
-| C / C++ | `#include`. 따옴표는 파일이 있는 디렉터리부터, 꺾쇠는 `include` 트리부터 찾습니다. |
-| Dart / Flutter | `import` · `export` · `part`. `package:<이름>/…`은 `pubspec.yaml`이 선언한 이름을 통해 해당 패키지의 `lib/` 아래로, 점 없이 쓴 `foo.dart`는 같은 디렉터리로 해석합니다. `dart:` SDK는 제외합니다. |
-| Prisma | `model`, 필드, 관계 선언 |
-| SQL | `CREATE TABLE`, 기본 키 및 외래 키 |
-| TypeORM | 엔터티·컬럼·관계 데코레이터 |
-| JPA | `@Entity`, `@Table`, 식별자 및 관계 애너테이션 |
-| Django ORM | `models.Model`, 필드 및 일반적인 관계 필드 |
-| GORM (Go) | `gorm`을 임포트한 파일의 구조체. `gorm:"…"` 태그, `gorm.Model` 임베딩, `TableName()` 재정의, 구조체 타입 필드로 표현된 관계 |
-| Drift (Flutter) | `Table`을 상속한 클래스. 컬럼 빌더 체인(`integer().autoIncrement()`, `nullable()`, `named()`, `references()`), `tableName` · `primaryKey` 재정의 |
+| **Project / service map** | Resolved module imports summarized as service-to-service handoffs. |
+| **Services and modules** | Routes, functions, methods, explicit branches, internal calls, and major I/O calls within a module. |
+| **Files** | The same evidence narrowed to one file. |
 
-한 워크스페이스에 여러 언어와 스키마가 섞여 있어도 결과를 함께 볼 수 있습니다.
+Flow diagrams reserve diamonds for conditions that actually lead to distinct reachable branches. Non-branching conditions and calls remain inside the step that contains them. Only branch edges receive labels (`Yes` and `No`), because direction already communicates ordinary calls and handoffs.
 
-**외부 의존성은 언어마다 다른 규칙으로 읽습니다.** 임포트 한 줄이 배포 가능한 패키지를 가리킬 때만 의존성으로 세고, 언어에 딸려 오는 표준 라이브러리는 제외합니다 — `net/http`, `os`, `java.util`, `System.Text`, `std::collections`는 의존성이 아닙니다. 이름도 그 생태계가 부르는 단위로 답니다: Go는 모듈 경로 전체(`github.com/gin-gonic/gin`), JVM은 타입 이름을 뗀 라이브러리 패키지(`org.springframework.boot`), PHP는 벤더 네임스페이스(`Symfony\Component`)입니다.
+Flows are not runtime traces. Dynamic dispatch, dependency injection, reflection, generated code, and computed imports may be missing or marked as inferred.
 
-> 목록에 없는 표준 라이브러리 모듈은 의존성처럼 보일 수 있습니다. 규칙을 넓게 잡아 실제 의존성이 조용히 사라지는 쪽보다, 읽는 사람이 알아보고 넘길 수 있는 항목이 하나 더 보이는 쪽을 택했습니다.
+### Data-model scopes
 
-## 모듈 경계는 프로젝트가 시작되는 곳부터 셉니다
+Schemas with more than 30 entities open as a subject-area map. Each area card reports its entity count, internal relationships, and outbound relationships. Opening an area expands its own entities and folds cross-area references into neighboring area cards.
 
-한 저장소 안에 Go 서버와 Flutter 클라이언트가 같이 있으면 그것은 프로젝트 **두 개**이고, 그릴 가치가 있는
-모듈은 그 둘이 들어 있는 디렉터리 두 개가 아니라 각 프로젝트 **안쪽**에 있습니다. 그래서 경계는
-`go.mod` · `package.json` · `pubspec.yaml` · `Cargo.toml` · `pom.xml` · `Package.swift` 같은
-매니페스트가 있는 곳부터 셉니다 — 각 언어의 도구가 실제로 찾는 표시이기 때문입니다.
+Areas are derived from declarations such as schema files, qualified table names, JPA packages, and Django app labels. Small source areas may be folded into a parent directory; a large area is divided further only when its entities declare usable namespaces.
 
-```
-backend/go.mod            →  backend/cmd/api, backend/internal/model
-client/pubspec.yaml       →  client/lib, client/lib/data
-```
+For dense diagrams, cards adapt to the current scope:
 
-매니페스트가 저장소 루트에만 있으면 예전과 같습니다: `src/domain`, `apps/web`.
+| Visible entities | Fields shown on each card |
+| --- | --- |
+| 40 or fewer | All fields |
+| 41–220 | Primary and foreign keys |
+| More than 220 | Entity name only |
 
-## 소스 코드는 어디에도 보내지 않습니다
+The complete field list is always available in the details panel.
 
-- 분석은 전부 VS Code 안에서 로컬로 수행됩니다.
-- 원격 API를 호출하지 않고, 소스를 외부로 업로드하지 않습니다.
-- 프로젝트의 코드나 ORM CLI를 **실행하지 않습니다.** 파일을 정적으로 읽기만 합니다.
-- 실제 데이터베이스에 접속하지 않습니다.
+## Export schema documentation
 
-## 갱신
+From the Data model view, select **Export**, or run **Project Atlas: Export Schema Documentation**. Atlas writes a searchable Markdown documentation set to a location you choose.
 
-- `projectAtlas.autoRefresh`가 켜져 있으면 관련 파일이 바뀐 뒤 자동으로 다시 분석합니다.
-- 자동 갱신은 `projectAtlas.exclude` 패턴을 그대로 따릅니다. `dist`, `build`, `out`, `target` 같은 빌드 산출물에 쓰기가 발생해도 다시 분석하지 않습니다.
-- 직접 갱신하려면 사이드바의 ↻ 버튼이나 `Project Atlas: Refresh Workspace Diagram`을 씁니다.
-- 창을 다시 열면 열려 있던 다이어그램이 보기·선택·확대 상태까지 복원됩니다.
+The export includes:
 
-## 설정
+- a provenance notice explaining that the result came from static analysis and no database connection was made;
+- a subject-area index with internal and cross-area relationship counts;
+- one Mermaid diagram per area when it contains 30 or fewer entities;
+- tables of entities, fields, types, keys, constraints, and relationships;
+- unresolved targets and analysis notes.
 
-| 설정 | 기본값 | 설명 |
+This explicit export is the only operation that writes a project document. The exported document has the same limitations as the interactive analysis and should be reviewed against the real database.
+
+## Supported source patterns
+
+Atlas performs pattern-based static analysis. It does not claim compiler-level semantic coverage.
+
+### Module dependencies
+
+| Language | Recognized forms |
+| --- | --- |
+| TypeScript / JavaScript | `import`, `export ... from`, and statically expressed `require` calls |
+| Python | `import` and `from ... import ...` |
+| Java / Kotlin | packages, imports, wildcard imports, and common type declarations |
+| C# | block-scoped and file-scoped namespaces, plus `using` |
+| Rust | `mod`, `use crate::`, `self::`, and `super::` |
+| PHP | namespaces, `use`, and relative `require` / `include` |
+| Ruby | `require_relative` and conventional `lib/`-based `require` |
+| Go | import blocks and module paths from one or more `go.mod` files |
+| Swift | imports, including `@testable`, and Swift Package target structure |
+| C / C++ | quoted and angle-bracket `#include` directives |
+| Dart / Flutter | `import`, `export`, `part`, package imports, and `pubspec.yaml` package names |
+
+Project roots are detected from manifests such as `package.json`, `go.mod`, `pubspec.yaml`, `Cargo.toml`, `pom.xml`, and `Package.swift`. This prevents a repository containing, for example, a Go backend and Flutter client from being treated as only two shallow top-level folders.
+
+### Relational and document data models
+
+| Source | Recognized declarations |
+| --- | --- |
+| Prisma | models, fields, and relations |
+| SQL | `CREATE TABLE`, primary keys, and foreign keys |
+| TypeORM | entity, column, and relationship decorators |
+| JPA | entities, tables, identifiers, and relationship annotations |
+| Django ORM | `models.Model`, fields, and common relationship fields |
+| GORM | structs in GORM-using files, tags, embedded `gorm.Model`, relationships, and `TableName()` overrides |
+| Drift | `Table` subclasses, column builder chains, references, table names, and primary-key overrides |
+| Mongoose / Dynamoose | schemas, models, field options, references, nested objects, and subdocuments |
+| Typegoose | `@prop` classes, collection options, references, and embedded document types |
+| MongoEngine | documents, embedded documents, fields, references, and collection metadata |
+| Beanie | document annotations, links, back-links, indexes, and collection settings |
+| Spring Data MongoDB | document classes, convention-mapped fields, IDs, field names, indexes, and DB references |
+
+Document databases require special care: Atlas shows the shape declared by application code, not a schema enforced by the database. Collections may contain older or different shapes, and references may point to deleted documents. Embedded documents are rendered differently from collections, and inferred physical names are identified as such.
+
+### External interfaces
+
+| Protocol or surface | Examples of recognized evidence |
+| --- | --- |
+| HTTP | Express-style routers; NestJS; Spring MVC; JAX-RS; ASP.NET; Flask; FastAPI; Django; Rails; Symfony; Go routers; axum; actix; rocket; Next.js routes; OpenAPI paths |
+| GraphQL | `.graphql` / `.gql` schemas and root `Query`, `Mutation`, or `Subscription` fields |
+| gRPC | Protobuf services and RPCs, including request, response, and streaming direction |
+| WebSocket / SSE | socket.io, `ws`, NestJS gateways, Spring messaging, FastAPI WebSockets, event-stream responses, and common SSE helpers |
+| Brokers | Kafka, AMQP, MQTT, and Redis topics, queues, or channels when the imported client provides enough context |
+| Ports | code-level listeners, Docker `EXPOSE`, Compose mappings, Kubernetes ports, and common server settings |
+
+Atlas labels the provenance of port declarations as `binds`, `exposes`, `publishes`, or `setting`. A protocol is attached only when the same source provides evidence or a well-known port permits an explicitly marked inference; otherwise it remains `TCP / other`.
+
+## Privacy and trust boundaries
+
+- Analysis runs locally inside the VS Code extension host.
+- Source code is not uploaded to an external service.
+- No remote analysis API is called.
+- Project code and ORM command-line tools are not executed.
+- Atlas does not connect to a development or production database.
+- Files such as `.env` are not read for interface discovery.
+- Untrusted and virtual workspaces are supported because analysis uses the VS Code workspace file-system API.
+
+Atlas is an exploration tool, not a security audit, migration validator, coverage report, or substitute for production architecture review.
+
+## Refresh and configuration
+
+When `projectAtlas.autoRefresh` is enabled, relevant workspace changes trigger a new analysis. Changes inside the configured exclusion pattern—including common build and dependency directories—are ignored. Use the sidebar refresh button or **Project Atlas: Refresh Workspace Diagram** to refresh manually.
+
+Open diagrams restore their view, selection, and zoom state when the window is reopened.
+
+| Setting | Default | Description |
 | --- | --- | --- |
-| `projectAtlas.maxFiles` | `2500` | 한 번의 스캔에서 분석할 최대 파일 수 (100–20,000). |
-| `projectAtlas.maxFileSizeKb` | `1024` | 분석할 개별 파일의 최대 크기 (16–10,240 KiB). |
-| `projectAtlas.exclude` | 빌드·의존성·도구 캐시 제외 glob | 분석에서 제외할 경로 패턴. 기본값은 `node_modules`, `dist`, `target` 같은 산출물에 더해 `.turbo`, `.gradle`, `.pnpm-store` 같은 캐시 디렉터리까지 건너뜁니다. 프로젝트 자기 파일보다 많아 Files 보기를 통째로 덮기 때문입니다. |
-| `projectAtlas.autoRefresh` | `true` | 관련 파일 변경 후 자동으로 다시 분석할지. |
-| `projectAtlas.followActiveEditor` | `true` | 편집 중인 파일의 모듈과 파일 행을 표시할지. |
+| `projectAtlas.maxFiles` | `2500` | Maximum files analyzed in one scan. Allowed range: 100–20,000. |
+| `projectAtlas.maxFileSizeKb` | `1024` | Maximum size of an analyzed text file in KiB. Allowed range: 16–10,240. |
+| `projectAtlas.exclude` | Dependency, build, and tool-cache glob | Paths excluded from analysis. |
+| `projectAtlas.autoRefresh` | `true` | Reanalyze after relevant file changes. |
+| `projectAtlas.followActiveEditor` | `true` | Follow and mark the active file and module. |
 
-큰 저장소에서 느리다면 `maxFiles`를 낮추거나 `exclude`에 무거운 디렉터리를 추가하십시오.
+For a large workspace, lower the file limit or exclude generated and vendor-heavy directories:
 
 ```json
 {
@@ -324,33 +235,58 @@ client/pubspec.yaml       →  client/lib, client/lib/data
 }
 ```
 
-## 이 확장이 하지 않는 일
+## Known limitations
 
-이 부분을 알고 쓰는 것이 중요합니다.
+Static analysis can be useful without pretending to know more than the source reveals. Keep these boundaries in mind:
 
-- **내보낸 문서도 같은 한계를 그대로 갖습니다.** 정적 분석 결과를 옮겨 적은 것이므로, 실제 데이터베이스와
-  맞는지는 보증하지 않습니다. 문서 머리말에 그 사실이 함께 적힙니다.
-- **운영 데이터베이스를 보여 주지 않습니다.** DB에 접속하지 않으며, 실제 테이블·데이터·인덱스·마이그레이션 상태와는 무관합니다. 코드에 쓰인 선언만 읽습니다.
-- **정적 휴리스틱입니다.** 컴파일러나 언어 서버 수준의 정확도를 보장하지 않습니다.
-- **Flow는 런타임 트레이스가 아닙니다.** 선언 순서 자체를 실행 순서로 단정하지 않고, 소스에 명시된 라우트·호출·분기만 연결하지만 동적 콜백과 컨테이너가 주입하는 호출은 놓칠 수 있습니다.
-- 계산된 경로를 쓰는 dynamic import, 동적 `require`, Python `importlib` 같은 런타임 모듈 로딩은 놓칩니다.
-- 리플렉션, 의존성 주입 컨테이너, 애너테이션 프로세서, 코드 생성 결과처럼 런타임·빌드 시점에 만들어지는 관계는 불완전합니다.
-- 커스텀 테이블·컬럼 네이밍, 사용자 정의 데코레이터, ORM 플러그인, 상속 매핑, 복합 키, 암시적 조인 테이블은 정확히 해석되지 않을 수 있습니다.
-- 경로 별칭, 모노레포 패키지 해석, 심볼릭 링크, 조건부 export는 일부가 미해결로 남습니다.
-- C#·Rust·PHP·Ruby는 선언된 네임스페이스와 관용적인 디렉터리 배치를 전제합니다. PSR-4 커스텀 매핑, Rust `path` 속성, Ruby `$LOAD_PATH` 조작은 해석하지 못합니다.
-- 주석이나 문자열 안의 코드가 실제 선언처럼 보이면 오탐이 생깁니다.
-- 제외된 파일, 크기 제한을 넘는 파일, 최대 파일 수 이후의 파일은 결과에 없습니다.
+- **Apparently unreferenced is not dead code.** Entry points, convention-loaded files, dependency injection, plugins, and dynamic imports may have no visible static importer.
+- **A matching test name is not coverage.** Atlas checks naming correspondence, not whether a test executes or asserts behavior.
+- **An empty Interfaces view does not prove that no interface exists.** Runtime registration, environment-only ports, computed topics, and framework plugins may be invisible.
+- **Document-model diagrams are not database-enforced schemas.** They describe application declarations only.
+- **Inferred ports and relationships require review.** Atlas marks inference when the source does not provide a direct declaration.
+- **Custom language conventions can escape the resolver.** Path aliases, conditional exports, symbolic links, custom ORM decorators, table naming, inheritance mapping, composite keys, implicit join tables, PSR-4 overrides, Rust `path` attributes, and Ruby load-path changes may be incomplete.
+- **Comments and strings can resemble declarations.** Pattern matching may occasionally produce false positives.
+- **Excluded, oversized, or over-limit files do not appear in results.** Review the analysis diagnostics before assuming the map is complete.
 
-**보안 감사, 마이그레이션 검증, 운영 설계의 단독 근거로 쓰지 마십시오.** 코드를 이해하기 위한 탐색 자료입니다.
+## Development
 
-## 문제가 있다면
+### Prerequisites
 
-베타라 다듬을 곳이 많습니다. 잘못 그려진 관계나 빠진 모듈을 발견하면 [이슈](https://github.com/nanjjang/atlas/issues)로 알려 주시면 도움이 됩니다. 어떤 언어의 어떤 구문이었는지 함께 적어 주시면 특히 좋습니다.
+- Node.js 22 or later is recommended for the current toolchain.
+- VS Code 1.100 or later is required for extension-host testing.
 
-## 요구 사항
+### Build and test
 
-VS Code 1.100.0 이상.
+```bash
+npm ci
+npm run check
+```
 
-## 라이선스
+Useful commands:
 
-[MIT](LICENSE)
+| Command | Purpose |
+| --- | --- |
+| `npm run compile` | Type-check and build the extension and Webview bundles. |
+| `npm test` | Compile and run the analyzer and layout test suite. |
+| `npm run check` | Run type checks, lint, tests, and a production build. |
+| `npm run check:full` | Run `check` plus a real VS Code Extension Host integration test. |
+| `npm run vsix` | Build and package an installable VSIX. |
+
+Press `F5` in VS Code to launch an Extension Development Host for interactive testing.
+
+## Contributing and feedback
+
+Project Atlas is a preview, and concrete parser failures are especially valuable. If a module, relationship, endpoint, or entity is missing or incorrect, [open an issue](https://github.com/nanjjang/atlas/issues) and include:
+
+- the language or framework;
+- a minimal source example, with private information removed;
+- what Atlas displayed;
+- what you expected it to display.
+
+Before submitting a pull request, run `npm run check`. Changes that affect extension activation, commands, or Webview messaging should also pass `npm run check:full`.
+
+For security-sensitive reports, do not include credentials, private source code, or production data in a public issue.
+
+## License
+
+Project Atlas is available under the [MIT License](LICENSE).
