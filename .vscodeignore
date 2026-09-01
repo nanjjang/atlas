@@ -1,0 +1,26 @@
+.vscode/**
+.github/**
+.gitignore
+node_modules/**
+src/**
+webview-src/**
+tests/**
+docs/**
+cardnews/**
+media/cardnews/**
+scripts/**
+dist-test/**
+tsconfig*.json
+esbuild.mjs
+eslint.config.mjs
+*.vsix
+*.log
+.DS_Store
+# The browser scaffolds `.gitignore` already keeps out of the repository. They
+# are untracked, so `vsce` was picking them up off the working tree and shipping
+# them inside the extension.
+.*-preview.html
+# The same scaffolds written beside the bundles they load. `dist/` ships, so
+# these rode along with it — 142 KB of preview harness in a 127 KB extension.
+# Nothing in the extension references them; only the browser preview does.
+dist/harness/**

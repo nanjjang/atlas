@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="media/icon.png" width="112" alt="Project Atlas logo">
+  <img src="media/icon.png" width="112" alt="Codraw logo">
 </p>
 
-<h1 align="center">Project Atlas</h1>
+<h1 align="center">Codraw</h1>
 
 <p align="center">
   Understand an unfamiliar codebase without leaving VS Code.
@@ -14,33 +14,33 @@
   <img src="https://img.shields.io/badge/license-MIT-2EA44F" alt="MIT license">
 </p>
 
-Project Atlas reads the workspace you already have open and turns its static structure into practical maps: how modules depend on one another, where to start reading, how calls and branches flow, which interfaces the project exposes, and how its relational or document data models fit together.
+Codraw reads the workspace you already have open and turns its static structure into practical maps: how modules depend on one another, where to start reading, how calls and branches flow, which interfaces the project exposes, and how its relational or document data models fit together.
 
-It is designed to stay beside your editor. As you move through the code, Atlas follows the active file and keeps the relevant module and its immediate neighborhood in view.
+It is designed to stay beside your editor. As you move through the code, Codraw follows the active file and keeps the relevant module and its immediate neighborhood in view.
 
 > [!IMPORTANT]
-> Project Atlas is in preview. Its results come from static heuristics, not a compiler, a runtime trace, or a live database. Treat every diagram as a navigational aid and review inferred or unresolved relationships before relying on them.
+> Codraw is in preview. Its results come from static heuristics, not a compiler, a runtime trace, or a live database. Treat every diagram as a navigational aid and review inferred or unresolved relationships before relying on them.
 
-## Why Project Atlas?
+## Why Codraw?
 
-Most codebase diagrams are snapshots: generate one, look at it once, then watch it drift out of date. Project Atlas instead works as a live reading companion inside VS Code.
+Most codebase diagrams are snapshots: generate one, look at it once, then watch it drift out of date. Codraw instead works as a live reading companion inside VS Code.
 
-- **Start with the part that matters.** Atlas highlights entry points, dependency hotspots, large source files, apparently unreferenced files, and files without a correspondingly named test.
+- **Start with the part that matters.** Codraw highlights entry points, dependency hotspots, large source files, apparently unreferenced files, and files without a correspondingly named test.
 - **Move from context to detail.** Begin with a repository or subject-area map, then drill down to modules, services, files, tables, or collections.
 - **Keep the evidence close.** Select a node to inspect why it exists; open the source directly from the diagram when you need to verify it.
 - **Read polyglot workspaces as one system.** Application code, API declarations, infrastructure ports, relational schemas, and document models can appear in the same analysis.
-- **Keep source code local.** Atlas reads files inside VS Code. It does not upload source, execute project code, run ORM CLIs, or connect to a database.
+- **Keep source code local.** Codraw reads files inside VS Code. It does not upload source, execute project code, run ORM CLIs, or connect to a database.
 
 ## Quick start
 
-Once Project Atlas is installed, open your first map:
+Once Codraw is installed, open your first map:
 
 1. Open a project folder or multi-root workspace in VS Code.
-2. Select the **Project Atlas** icon in the Activity Bar.
+2. Select the **Codraw** icon in the Activity Bar.
 3. Use the sidebar overview immediately, or select **Open diagram** for the full canvas.
-4. Open a source file. Atlas will center the relevant module and mark the active file.
+4. Open a source file. Codraw will center the relevant module and mark the active file.
 
-There is no project setup or configuration required. You can also open the canvas with **Project Atlas: Open Workspace Diagram** from the Command Palette.
+There is no project setup or configuration required. You can also open the canvas with **Codraw: Open Workspace Diagram** from the Command Palette.
 
 ## Two views, one analysis
 
@@ -72,33 +72,33 @@ Click once to select and inspect a result. Double-click a source-backed item to 
 
 Use the codebase overview to identify entry points, heavily depended-on files, large source files, apparently unreferenced files, test-name gaps, language mix, and detected technologies.
 
-![Project Atlas Files view showing codebase statistics and file-level reading guides](https://raw.githubusercontent.com/nanjjang/codraw/6052f61/media/screenshots/project-atlas-files.png)
+![Codraw Files view showing codebase statistics and file-level reading guides](https://raw.githubusercontent.com/nanjjang/codraw/14aba1b/media/screenshots/codraw-files.png)
 
 ### Flows — follow source-backed execution paths
 
 Trace routes, calls, and branches from a project or service down to an individual file. Direct evidence uses solid lines; inferred relationships remain visually distinct and the analysis notes explain what static inspection cannot prove.
 
-![Project Atlas Flow view showing a file conversion path with calls and branches](https://raw.githubusercontent.com/nanjjang/codraw/6052f61/media/screenshots/project-atlas-flow.png)
+![Codraw Flow view showing a file conversion path with calls and branches](https://raw.githubusercontent.com/nanjjang/codraw/14aba1b/media/screenshots/codraw-flow.png)
 
 ### Data model — explore one subject area at a time
 
 Inspect tables, fields, keys, and cross-area relationships without connecting to a live database. Selecting an area or entity reveals the declarations and unresolved targets behind it.
 
-![Project Atlas Data model view showing tables and relationships within a subject area](https://raw.githubusercontent.com/nanjjang/codraw/6052f61/media/screenshots/project-atlas-data-model.png)
+![Codraw Data model view showing tables and relationships within a subject area](https://raw.githubusercontent.com/nanjjang/codraw/14aba1b/media/screenshots/codraw-data-model.png)
 
 ### Interfaces — see how the outside world gets in
 
-Review protocols, endpoints, handlers, and port declarations together. Atlas distinguishes ports bound by code, exposed by images, published by Compose, and supplied by settings.
+Review protocols, endpoints, handlers, and port declarations together. Codraw distinguishes ports bound by code, exposed by images, published by Compose, and supplied by settings.
 
-![Project Atlas Interfaces view showing Spring MVC endpoints and a Docker-exposed port](https://raw.githubusercontent.com/nanjjang/codraw/6052f61/media/screenshots/project-atlas-interfaces-spring.png)
+![Codraw Interfaces view showing Spring MVC endpoints and a Docker-exposed port](https://raw.githubusercontent.com/nanjjang/codraw/14aba1b/media/screenshots/codraw-interfaces-spring.png)
 
 The same view keeps multiple protocols together when a workspace exposes more than HTTP.
 
-![Project Atlas Interfaces view showing HTTP, WebSocket, and container port declarations](https://raw.githubusercontent.com/nanjjang/codraw/6052f61/media/screenshots/project-atlas-interfaces-polyglot.png)
+![Codraw Interfaces view showing HTTP, WebSocket, and container port declarations](https://raw.githubusercontent.com/nanjjang/codraw/14aba1b/media/screenshots/codraw-interfaces-polyglot.png)
 
 ## Follow the active editor
 
-With `projectAtlas.followActiveEditor` enabled, changing files updates both views:
+With `codraw.followActiveEditor` enabled, changing files updates both views:
 
 - the sidebar's working context moves to the file and its module;
 - **Nearby** keeps the current module or entity and its direct neighbors in focus;
@@ -110,7 +110,7 @@ This behavior can be disabled without turning off analysis.
 
 ## Read large systems progressively
 
-Atlas avoids placing every node on one canvas when a declared boundary can provide a more useful first step.
+Codraw avoids placing every node on one canvas when a declared boundary can provide a more useful first step.
 
 ### Architecture scopes
 
@@ -120,7 +120,7 @@ Atlas avoids placing every node on one canvas when a declared boundary can provi
 | **Repository area** | Every module and internal dependency in the selected area. Outgoing connections are folded into neighboring area cards. |
 | **All modules** | The complete module graph for search and whole-system inspection. |
 
-Repository areas come from real paths. Atlas does not invent architectural boundaries merely to make the graph look balanced.
+Repository areas come from real paths. Codraw does not invent architectural boundaries merely to make the graph look balanced.
 
 ### Flow scopes
 
@@ -152,7 +152,7 @@ The complete field list is always available in the details panel.
 
 ## Export schema documentation
 
-From the Data model view, select **Export**, or run **Project Atlas: Export Schema Documentation**. Atlas writes a searchable Markdown documentation set to a location you choose.
+From the Data model view, select **Export**, or run **Codraw: Export Schema Documentation**. Codraw writes a searchable Markdown documentation set to a location you choose.
 
 The export includes:
 
@@ -166,7 +166,7 @@ This explicit export is the only operation that writes a project document. The e
 
 ## Supported source patterns
 
-Atlas performs pattern-based static analysis. It does not claim compiler-level semantic coverage.
+Codraw performs pattern-based static analysis. It does not claim compiler-level semantic coverage.
 
 ### Module dependencies
 
@@ -203,7 +203,7 @@ Project roots are detected from manifests such as `package.json`, `go.mod`, `pub
 | Beanie | document annotations, links, back-links, indexes, and collection settings |
 | Spring Data MongoDB | document classes, convention-mapped fields, IDs, field names, indexes, and DB references |
 
-Document databases require special care: Atlas shows the shape declared by application code, not a schema enforced by the database. Collections may contain older or different shapes, and references may point to deleted documents. Embedded documents are rendered differently from collections, and inferred physical names are identified as such.
+Document databases require special care: Codraw shows the shape declared by application code, not a schema enforced by the database. Collections may contain older or different shapes, and references may point to deleted documents. Embedded documents are rendered differently from collections, and inferred physical names are identified as such.
 
 ### External interfaces
 
@@ -216,7 +216,7 @@ Document databases require special care: Atlas shows the shape declared by appli
 | Brokers | Kafka, AMQP, MQTT, and Redis topics, queues, or channels when the imported client provides enough context |
 | Ports | code-level listeners, Docker `EXPOSE`, Compose mappings, Kubernetes ports, and common server settings |
 
-Atlas labels the provenance of port declarations as `binds`, `exposes`, `publishes`, or `setting`. A protocol is attached only when the same source provides evidence or a well-known port permits an explicitly marked inference; otherwise it remains `TCP / other`.
+Codraw labels the provenance of port declarations as `binds`, `exposes`, `publishes`, or `setting`. A protocol is attached only when the same source provides evidence or a well-known port permits an explicitly marked inference; otherwise it remains `TCP / other`.
 
 ## Privacy and trust boundaries
 
@@ -224,32 +224,32 @@ Atlas labels the provenance of port declarations as `binds`, `exposes`, `publish
 - Source code is not uploaded to an external service.
 - No remote analysis API is called.
 - Project code and ORM command-line tools are not executed.
-- Atlas does not connect to a development or production database.
+- Codraw does not connect to a development or production database.
 - Files such as `.env` are not read for interface discovery.
 - Untrusted and virtual workspaces are supported because analysis uses the VS Code workspace file-system API.
 
-Atlas is an exploration tool, not a security audit, migration validator, coverage report, or substitute for production architecture review.
+Codraw is an exploration tool, not a security audit, migration validator, coverage report, or substitute for production architecture review.
 
 ## Refresh and configuration
 
-When `projectAtlas.autoRefresh` is enabled, relevant workspace changes trigger a new analysis. Changes inside the configured exclusion pattern—including common build and dependency directories—are ignored. Use the sidebar refresh button or **Project Atlas: Refresh Workspace Diagram** to refresh manually.
+When `codraw.autoRefresh` is enabled, relevant workspace changes trigger a new analysis. Changes inside the configured exclusion pattern—including common build and dependency directories—are ignored. Use the sidebar refresh button or **Codraw: Refresh Workspace Diagram** to refresh manually.
 
 Open diagrams restore their view, selection, and zoom state when the window is reopened.
 
 | Setting | Default | Description |
 | --- | --- | --- |
-| `projectAtlas.maxFiles` | `2500` | Maximum files analyzed in one scan. Allowed range: 100–20,000. |
-| `projectAtlas.maxFileSizeKb` | `1024` | Maximum size of an analyzed text file in KiB. Allowed range: 16–10,240. |
-| `projectAtlas.exclude` | Dependency, build, and tool-cache glob | Paths excluded from analysis. |
-| `projectAtlas.autoRefresh` | `true` | Reanalyze after relevant file changes. |
-| `projectAtlas.followActiveEditor` | `true` | Follow and mark the active file and module. |
+| `codraw.maxFiles` | `2500` | Maximum files analyzed in one scan. Allowed range: 100–20,000. |
+| `codraw.maxFileSizeKb` | `1024` | Maximum size of an analyzed text file in KiB. Allowed range: 16–10,240. |
+| `codraw.exclude` | Dependency, build, and tool-cache glob | Paths excluded from analysis. |
+| `codraw.autoRefresh` | `true` | Reanalyze after relevant file changes. |
+| `codraw.followActiveEditor` | `true` | Follow and mark the active file and module. |
 
 For a large workspace, lower the file limit or exclude generated and vendor-heavy directories:
 
 ```json
 {
-  "projectAtlas.maxFiles": 5000,
-  "projectAtlas.exclude": "**/{node_modules,.git,dist,build,target,vendor,.venv,generated}/**"
+  "codraw.maxFiles": 5000,
+  "codraw.exclude": "**/{node_modules,.git,dist,build,target,vendor,.venv,generated}/**"
 }
 ```
 
@@ -258,21 +258,21 @@ For a large workspace, lower the file limit or exclude generated and vendor-heav
 Static analysis can be useful without pretending to know more than the source reveals. Keep these boundaries in mind:
 
 - **Apparently unreferenced is not dead code.** Entry points, convention-loaded files, dependency injection, plugins, and dynamic imports may have no visible static importer.
-- **A matching test name is not coverage.** Atlas checks naming correspondence, not whether a test executes or asserts behavior.
+- **A matching test name is not coverage.** Codraw checks naming correspondence, not whether a test executes or asserts behavior.
 - **An empty Interfaces view does not prove that no interface exists.** Runtime registration, environment-only ports, computed topics, and framework plugins may be invisible.
 - **Document-model diagrams are not database-enforced schemas.** They describe application declarations only.
-- **Inferred ports and relationships require review.** Atlas marks inference when the source does not provide a direct declaration.
+- **Inferred ports and relationships require review.** Codraw marks inference when the source does not provide a direct declaration.
 - **Custom language conventions can escape the resolver.** Path aliases, conditional exports, symbolic links, custom ORM decorators, table naming, inheritance mapping, composite keys, implicit join tables, PSR-4 overrides, Rust `path` attributes, and Ruby load-path changes may be incomplete.
 - **Comments and strings can resemble declarations.** Pattern matching may occasionally produce false positives.
 - **Excluded, oversized, or over-limit files do not appear in results.** Review the analysis diagnostics before assuming the map is complete.
 
 ## Contributing and feedback
 
-Project Atlas is a preview, and concrete parser failures are especially valuable. If a module, relationship, endpoint, or entity is missing or incorrect, [open an issue](https://github.com/nanjjang/atlas/issues) and include:
+Codraw is a preview, and concrete parser failures are especially valuable. If a module, relationship, endpoint, or entity is missing or incorrect, [open an issue](https://github.com/nanjjang/codraw/issues) and include:
 
 - the language or framework;
 - a minimal source example, with private information removed;
-- what Atlas displayed;
+- what Codraw displayed;
 - what you expected it to display.
 
 For development and verification details, see the [development notes](docs/development.md).
@@ -281,4 +281,4 @@ For security-sensitive reports, do not include credentials, private source code,
 
 ## License
 
-Project Atlas is available under the [MIT License](LICENSE).
+Codraw is available under the [MIT License](LICENSE).
