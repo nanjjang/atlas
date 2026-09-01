@@ -1,0 +1,9 @@
+{
+  "name": "codraw-demo",
+  "private": true,
+  "dependencies": {
+    "react": "^19.0.0",
+    "typeorm": "^0.3.0",
+    "mongoose": "^8.0.0"
+  }
+}

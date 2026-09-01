@@ -1,0 +1,12 @@
+node_modules/
+dist/
+dist-test/
+.vscode-test/
+*.vsix
+*.log
+.DS_Store
+
+# Local scaffolds for rendering the webview bundles in a browser during review.
+.sidebar-preview.html
+.flow-preview.html
+.diagram-preview.html

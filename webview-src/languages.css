@@ -1,0 +1,54 @@
+/*
+ * The language palette, shared by both webviews.
+ *
+ * Hues at one saturation and a lightness that clears both a dark editor and a
+ * light one, because these are drawn as icons and as text rather than as blocks
+ * of fill. They only have to be told apart from each other, so they are spaced
+ * around the wheel rather than chosen individually.
+ *
+ * A `lang-` class sets one property and says nothing about what to do with it.
+ * The diagram panel tints a file's icon; the sidebar tints its own; the status
+ * bar fills a swatch — and none of them needs its own copy of the palette.
+ */
+
+:root {
+  --codraw-lang-ts: hsl(211 72% 55%);
+  --codraw-lang-js: hsl(48 74% 50%);
+  --codraw-lang-py: hsl(190 62% 48%);
+  --codraw-lang-jvm: hsl(18 72% 55%);
+  --codraw-lang-go: hsl(196 70% 55%);
+  --codraw-lang-rust: hsl(24 62% 52%);
+  --codraw-lang-ruby: hsl(354 66% 56%);
+  --codraw-lang-php: hsl(258 48% 62%);
+  --codraw-lang-dotnet: hsl(280 55% 58%);
+  --codraw-lang-native: hsl(228 48% 62%);
+  --codraw-lang-dart: hsl(172 55% 45%);
+  --codraw-lang-schema: hsl(150 52% 44%);
+  --codraw-lang-config: hsl(88 42% 46%);
+  --codraw-lang-docs: hsl(0 0% 60%);
+  --codraw-lang-style: hsl(320 55% 60%);
+  --codraw-lang-markup: hsl(14 62% 55%);
+  --codraw-lang-asset: hsl(268 34% 58%);
+  --codraw-lang-shell: hsl(120 30% 48%);
+  --codraw-lang-other: hsl(0 0% 55%);
+}
+
+.lang-ts { --codraw-lang: var(--codraw-lang-ts); }
+.lang-js { --codraw-lang: var(--codraw-lang-js); }
+.lang-py { --codraw-lang: var(--codraw-lang-py); }
+.lang-jvm { --codraw-lang: var(--codraw-lang-jvm); }
+.lang-go { --codraw-lang: var(--codraw-lang-go); }
+.lang-rust { --codraw-lang: var(--codraw-lang-rust); }
+.lang-ruby { --codraw-lang: var(--codraw-lang-ruby); }
+.lang-php { --codraw-lang: var(--codraw-lang-php); }
+.lang-dotnet { --codraw-lang: var(--codraw-lang-dotnet); }
+.lang-native { --codraw-lang: var(--codraw-lang-native); }
+.lang-dart { --codraw-lang: var(--codraw-lang-dart); }
+.lang-schema { --codraw-lang: var(--codraw-lang-schema); }
+.lang-config { --codraw-lang: var(--codraw-lang-config); }
+.lang-docs { --codraw-lang: var(--codraw-lang-docs); }
+.lang-style { --codraw-lang: var(--codraw-lang-style); }
+.lang-markup { --codraw-lang: var(--codraw-lang-markup); }
+.lang-asset { --codraw-lang: var(--codraw-lang-asset); }
+.lang-shell { --codraw-lang: var(--codraw-lang-shell); }
+.lang-other { --codraw-lang: var(--codraw-lang-other); }

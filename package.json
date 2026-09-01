@@ -1,0 +1,172 @@
+{
+  "name": "codraw",
+  "displayName": "Codraw",
+  "description": "Visualize workspace architecture, reading paths, flows, interfaces, and data models without leaving VS Code.",
+  "version": "0.1.0",
+  "publisher": "dbswnstj",
+  "preview": true,
+  "pricing": "Free",
+  "license": "MIT",
+  "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#0E639C",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nanjjang/codraw.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nanjjang/codraw/issues"
+  },
+  "homepage": "https://github.com/nanjjang/codraw#readme",
+  "engines": {
+    "vscode": "^1.100.0"
+  },
+  "categories": [
+    "Visualization",
+    "Other"
+  ],
+  "keywords": [
+    "architecture",
+    "diagram",
+    "dependency graph",
+    "database",
+    "erd",
+    "mongodb",
+    "nosql",
+    "mongoose",
+    "visualization"
+  ],
+  "main": "./dist/extension.js",
+  "browser": "./dist/extension.js",
+  "extensionKind": [
+    "workspace"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": {
+      "supported": true
+    }
+  },
+  "activationEvents": [
+    "onView:codraw.overview",
+    "onWebviewPanel:codraw.diagram"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "codraw",
+          "title": "Codraw",
+          "icon": "media/codraw.svg"
+        }
+      ]
+    },
+    "views": {
+      "codraw": [
+        {
+          "id": "codraw.overview",
+          "name": "Overview",
+          "type": "webview",
+          "contextualTitle": "Codraw"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "codraw.open",
+          "when": "view == codraw.overview",
+          "group": "navigation"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "codraw.open",
+        "title": "Codraw: Open Workspace Diagram",
+        "category": "Codraw",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "codraw.refresh",
+        "title": "Codraw: Refresh Workspace Diagram",
+        "category": "Codraw",
+        "enablement": "codraw.panelOpen"
+      },
+      {
+        "command": "codraw.exportSchemaDocs",
+        "title": "Codraw: Export Schema Documentation",
+        "category": "Codraw",
+        "icon": "$(export)"
+      }
+    ],
+    "configuration": {
+      "title": "Codraw",
+      "properties": {
+        "codraw.maxFiles": {
+          "type": "number",
+          "default": 2500,
+          "minimum": 100,
+          "maximum": 20000,
+          "description": "Maximum number of workspace files analyzed in one scan."
+        },
+        "codraw.maxFileSizeKb": {
+          "type": "number",
+          "default": 1024,
+          "minimum": 16,
+          "maximum": 10240,
+          "description": "Maximum size of an individual text file analyzed, in KiB."
+        },
+        "codraw.exclude": {
+          "type": "string",
+          "default": "**/{node_modules,.git,.hg,.svn,dist,build,out,coverage,.next,.nuxt,.svelte-kit,target,vendor,.venv,venv,__pycache__,.turbo,.nx,.cache,.parcel-cache,.gradle,.pnpm-store,.yarn,.vercel,.output,.angular,.dart_tool,bin,obj}/**",
+          "description": "Glob pattern excluded from workspace analysis. The default skips dependency, build and tool-cache directories, which otherwise outnumber a project's own files and dominate the structure view."
+        },
+        "codraw.autoRefresh": {
+          "type": "boolean",
+          "default": true,
+          "description": "Refresh an open diagram after relevant workspace files change."
+        },
+        "codraw.followActiveEditor": {
+          "type": "boolean",
+          "default": true,
+          "description": "Mark the module and file of the active editor in the overview and the diagram, so a diagram kept open beside the code follows what you are editing."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "lint": "eslint .",
+    "compile": "npm run check-types && node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "test": "tsc -p tsconfig.test.json && node --test dist-test/tests/*.test.js",
+    "test:extension-host": "npm run compile && tsc -p tsconfig.test.json && node tests/run-extension-test.mjs",
+    "check": "npm run check-types && npm run lint && npm test && node esbuild.mjs --production",
+    "check:full": "npm run check && npm run test:extension-host",
+    "package": "npm run check-types && node esbuild.mjs --production",
+    "vscode:prepublish": "npm run package",
+    "vsix": "npm run package && vsce package",
+    "publish:marketplace": "npm run check && vsce publish"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@types/node": "^22.20.1",
+    "@types/vscode": "~1.100.0",
+    "@vscode/test-electron": "^3.1.0",
+    "@vscode/vsce": "^3.9.2",
+    "esbuild": "^0.28.2",
+    "eslint": "^9.39.5",
+    "sharp": "^0.35.4",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.68.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "@vscode/vsce-sign@2.1.0": true
+  }
+}

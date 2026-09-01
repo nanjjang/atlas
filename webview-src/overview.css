@@ -1,0 +1,768 @@
+/* Codraw sidebar: a focused relationship tool, not a second Explorer. */
+
+:root {
+  --ov-gap: 8px;
+  --ov-radius: 6px;
+  --ov-border: var(--vscode-sideBarSectionHeader-border, var(--vscode-widget-border, rgba(128, 128, 128, 0.32)));
+  --ov-surface: var(--vscode-editorWidget-background, rgba(128, 128, 128, 0.08));
+  --ov-hover: var(--vscode-list-hoverBackground, rgba(128, 128, 128, 0.14));
+  --ov-blue: var(--vscode-charts-blue, var(--vscode-textLink-foreground, #3794ff));
+  --ov-green: var(--vscode-charts-green, #73c991);
+  --ov-yellow: var(--vscode-charts-yellow, var(--vscode-editorWarning-foreground, #cca700));
+  --ov-red: var(--vscode-charts-red, var(--vscode-editorError-foreground, #f14c4c));
+  --ov-muted: var(--vscode-descriptionForeground);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: var(--vscode-sideBar-foreground, var(--vscode-foreground));
+  background: transparent;
+  font-family: var(--vscode-font-family);
+  font-size: var(--vscode-font-size, 13px);
+  line-height: 1.35;
+}
+
+button,
+input {
+  color: inherit;
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+.ov-map-node:focus-visible rect {
+  outline: 1px solid var(--vscode-focusBorder);
+  outline-offset: -1px;
+}
+
+.codraw-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.overview {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  height: 100vh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.ov-header {
+  padding: var(--ov-gap) var(--ov-gap) 5px;
+}
+
+.ov-title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ov-project {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ov-summary {
+  overflow: hidden;
+  color: var(--ov-muted);
+  font-size: 0.86em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ov-icon {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.ov-header-action {
+  flex: 0 0 auto;
+  padding: 3px 7px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--vscode-textLink-foreground, var(--ov-blue));
+  font-size: 0.78em;
+  cursor: pointer;
+}
+
+.ov-icon:hover:not(:disabled),
+.ov-header-action:hover:not(:disabled),
+.ov-text-action:hover:not(:disabled),
+.ov-follow:hover:not(:disabled) {
+  background: var(--vscode-toolbar-hoverBackground, var(--ov-hover));
+}
+
+.ov-icon:disabled,
+.ov-header-action:disabled,
+.ov-text-action:disabled,
+.ov-follow:disabled,
+.ov-action:disabled,
+.ov-check:disabled {
+  cursor: default;
+  opacity: 0.48;
+}
+
+.ov-icon.needs-attention {
+  color: var(--ov-yellow);
+}
+
+.ov-tabs {
+  display: flex;
+  padding: 0 var(--ov-gap);
+  border-bottom: 1px solid var(--ov-border);
+}
+
+.ov-tab {
+  position: relative;
+  flex: 1 1 0;
+  padding: 6px 4px 7px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--ov-muted);
+  cursor: pointer;
+}
+
+.ov-tab:hover,
+.ov-tab[aria-selected="true"] {
+  color: var(--vscode-foreground);
+}
+
+.ov-tab[aria-selected="true"] {
+  border-bottom-color: var(--vscode-focusBorder, var(--ov-blue));
+}
+
+.ov-tab-count {
+  display: inline-grid;
+  min-width: 16px;
+  height: 16px;
+  margin-left: 3px;
+  padding: 0 4px;
+  place-items: center;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--ov-yellow) 24%, transparent);
+  color: var(--vscode-foreground);
+  font-size: 0.78em;
+  font-variant-numeric: tabular-nums;
+}
+
+.ov-tab-count[hidden] {
+  display: none;
+}
+
+.ov-content {
+  position: relative;
+  min-height: 0;
+  overflow: hidden auto;
+  scrollbar-color: var(--vscode-scrollbarSlider-background) transparent;
+}
+
+.ov-view {
+  min-width: 0;
+  padding: var(--ov-gap);
+}
+
+.ov-view[hidden] {
+  display: none;
+}
+
+.ov-current {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1px 8px;
+  padding: 9px 10px;
+  border: 1px solid var(--ov-border);
+  border-left: 3px solid var(--ov-blue);
+  border-radius: var(--ov-radius);
+  background: var(--ov-surface);
+}
+
+.ov-eyebrow {
+  grid-column: 1 / -1;
+  color: var(--ov-muted);
+  font-size: 0.72em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ov-current-title,
+.ov-current-path {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ov-current-title {
+  font-weight: 600;
+}
+
+.ov-current-path {
+  color: var(--ov-muted);
+  font-family: var(--vscode-editor-font-family, monospace);
+  font-size: 0.82em;
+}
+
+.ov-text-action {
+  grid-column: 2;
+  grid-row: 2 / 4;
+  align-self: center;
+  padding: 3px 6px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--vscode-textLink-foreground, var(--ov-blue));
+  font-size: 0.82em;
+  cursor: pointer;
+}
+
+.ov-map-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.ov-segment {
+  display: inline-flex;
+  padding: 2px;
+  border: 1px solid var(--ov-border);
+  border-radius: 5px;
+  background: var(--vscode-input-background);
+}
+
+.ov-segment button,
+.ov-follow {
+  padding: 3px 8px;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.ov-segment button[aria-pressed="true"] {
+  background: var(--vscode-button-secondaryBackground, var(--ov-hover));
+  color: var(--vscode-button-secondaryForeground, var(--vscode-foreground));
+}
+
+.ov-follow {
+  color: var(--ov-muted);
+  font-size: 0.82em;
+}
+
+.ov-follow[aria-pressed="false"] {
+  color: var(--ov-yellow);
+}
+
+.ov-picker {
+  position: relative;
+  margin-top: 8px;
+}
+
+.ov-picker label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.ov-picker input {
+  width: 100%;
+  padding: 5px 7px;
+  border: 1px solid var(--vscode-input-border, transparent);
+  border-radius: 3px;
+  background: var(--vscode-input-background);
+  color: var(--vscode-input-foreground);
+}
+
+.ov-picker input::placeholder {
+  color: var(--vscode-input-placeholderForeground);
+}
+
+.ov-suggestions {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 2px);
+  left: 0;
+  right: 0;
+  max-height: 230px;
+  overflow-y: auto;
+  padding: 3px;
+  border: 1px solid var(--vscode-widget-border, var(--ov-border));
+  border-radius: 4px;
+  background: var(--vscode-editorWidget-background, var(--vscode-sideBar-background));
+  box-shadow: 0 4px 14px var(--vscode-widget-shadow, rgba(0, 0, 0, 0.35));
+}
+
+.ov-suggestions[hidden] {
+  display: none;
+}
+
+.ov-suggestion {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  align-items: baseline;
+  gap: 6px;
+  padding: 5px 6px;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ov-suggestion:hover,
+.ov-suggestion:focus-visible {
+  background: var(--vscode-list-hoverBackground, var(--ov-hover));
+}
+
+.ov-suggestion strong,
+.ov-suggestion span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ov-suggestion span {
+  color: var(--ov-muted);
+  font-size: 0.82em;
+}
+
+.ov-map {
+  min-height: 190px;
+  margin-top: 8px;
+  overflow: hidden;
+  border: 1px solid var(--ov-border);
+  border-radius: var(--ov-radius);
+  background-color: color-mix(in srgb, var(--vscode-editor-background) 88%, transparent);
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--vscode-editorWhitespace-foreground) 45%, transparent) 0 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+.ov-map-directions {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 9px 4px -5px;
+  color: var(--ov-muted);
+  font-size: 0.7em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.ov-map-directions span:first-child {
+  text-align: left;
+}
+
+.ov-map-directions span:last-child {
+  text-align: right;
+}
+
+.ov-graph {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 190px;
+  overflow: visible;
+}
+
+.ov-edge {
+  fill: none;
+  stroke: var(--vscode-editorLineNumber-foreground, #858585);
+  stroke-width: 1.25;
+  vector-effect: non-scaling-stroke;
+}
+
+.ov-edge.is-inferred {
+  stroke: var(--ov-yellow);
+  stroke-dasharray: 4 3;
+}
+
+.ov-edge.is-unresolved {
+  stroke: var(--ov-red);
+  stroke-dasharray: 2 3;
+}
+
+#ov-arrow path {
+  fill: var(--vscode-editorLineNumber-foreground, #858585);
+}
+
+.ov-map-node {
+  cursor: pointer;
+}
+
+.ov-map-node rect {
+  fill: var(--vscode-editorWidget-background, var(--vscode-sideBar-background));
+  stroke: var(--vscode-widget-border, var(--ov-border));
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.ov-map-node:hover rect,
+.ov-map-node:focus rect {
+  stroke: var(--vscode-focusBorder, var(--ov-blue));
+  stroke-width: 1.5;
+}
+
+.ov-map-node.is-focus rect {
+  fill: color-mix(in srgb, var(--ov-blue) 18%, var(--vscode-editorWidget-background, var(--vscode-sideBar-background)));
+  stroke: var(--ov-blue);
+  stroke-width: 1.5;
+}
+
+.ov-map-node.is-external rect {
+  stroke-dasharray: 3 2;
+}
+
+.ov-node-label,
+.ov-node-kind,
+.ov-empty-label,
+.ov-more-label {
+  pointer-events: none;
+  font-family: var(--vscode-font-family);
+  text-anchor: middle;
+}
+
+.ov-node-label {
+  fill: var(--vscode-foreground);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.ov-node-kind {
+  fill: var(--ov-muted);
+  font-size: 7.5px;
+}
+
+.ov-empty-label,
+.ov-more-label {
+  fill: var(--ov-muted);
+  font-size: 8px;
+}
+
+.ov-more-label {
+  fill: var(--vscode-textLink-foreground, var(--ov-blue));
+}
+
+.ov-empty {
+  display: grid;
+  min-height: 190px;
+  padding: 16px;
+  place-items: center;
+  color: var(--ov-muted);
+  text-align: center;
+}
+
+.ov-focus-card {
+  margin-top: 8px;
+  padding: 9px;
+  border: 1px solid var(--ov-border);
+  border-radius: var(--ov-radius);
+  background: var(--ov-surface);
+}
+
+.ov-focus-card:empty {
+  display: none;
+}
+
+.ov-focus-heading {
+  display: flex;
+  min-width: 0;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.ov-focus-heading > div:first-child {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.ov-focus-title,
+.ov-focus-subtitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ov-focus-subtitle {
+  color: var(--ov-muted);
+  font-size: 0.82em;
+}
+
+.ov-metrics {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 4px;
+}
+
+.ov-metric {
+  display: flex;
+  min-width: 38px;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px 4px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ov-blue) 12%, transparent);
+  font-variant-numeric: tabular-nums;
+}
+
+.ov-metric small {
+  color: var(--ov-muted);
+  font-size: 0.66em;
+}
+
+.ov-metadata {
+  display: grid;
+  grid-template-columns: minmax(66px, auto) minmax(0, 1fr);
+  gap: 3px 7px;
+  margin: 8px 0 0;
+  font-size: 0.8em;
+}
+
+.ov-metadata dt {
+  color: var(--ov-muted);
+}
+
+.ov-metadata dd {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ov-actions {
+  display: flex;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.ov-action {
+  flex: 1 1 0;
+  padding: 4px 6px;
+  border: 1px solid var(--vscode-button-border, transparent);
+  border-radius: 3px;
+  background: var(--vscode-button-secondaryBackground, var(--ov-hover));
+  color: var(--vscode-button-secondaryForeground, var(--vscode-foreground));
+  cursor: pointer;
+}
+
+.ov-action:hover:not(:disabled) {
+  background: var(--vscode-button-secondaryHoverBackground, var(--vscode-list-hoverBackground));
+}
+
+.ov-health-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.ov-review-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 10px;
+  padding: 9px 10px;
+  border: 1px solid color-mix(in srgb, var(--ov-blue) 50%, var(--ov-border));
+  border-radius: var(--ov-radius);
+  background: color-mix(in srgb, var(--ov-blue) 8%, var(--ov-surface));
+}
+
+.ov-review-intro strong {
+  font-size: 0.88em;
+}
+
+.ov-review-intro span {
+  color: var(--ov-muted);
+  font-size: 0.76em;
+  line-height: 1.4;
+}
+
+.ov-health-tile {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 7px;
+  border: 1px solid var(--ov-border);
+  border-top: 2px solid var(--ov-blue);
+  border-radius: 4px;
+  background: var(--ov-surface);
+}
+
+.ov-health-tile.is-warning {
+  border-top-color: var(--ov-red);
+}
+
+.ov-health-tile.is-note {
+  border-top-color: var(--ov-yellow);
+}
+
+.ov-health-tile.is-clear {
+  border-top-color: var(--ov-green);
+}
+
+.ov-health-tile strong {
+  font-size: 1.15em;
+  font-variant-numeric: tabular-nums;
+}
+
+.ov-health-tile span {
+  overflow: hidden;
+  color: var(--ov-muted);
+  font-size: 0.72em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ov-check-section {
+  margin-top: 14px;
+}
+
+.ov-check-section h2 {
+  margin: 0;
+  font-size: 0.93em;
+  font-weight: 600;
+}
+
+.ov-check-section > p {
+  margin: 2px 0 7px;
+  color: var(--ov-muted);
+  font-size: 0.78em;
+}
+
+.ov-check {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 7px minmax(0, 1fr);
+  gap: 7px;
+  align-items: start;
+  padding: 6px 5px;
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--ov-border) 65%, transparent);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ov-check:hover:not(:disabled) {
+  background: var(--vscode-list-hoverBackground, var(--ov-hover));
+}
+
+.ov-check-dot {
+  width: 7px;
+  height: 7px;
+  margin-top: 4px;
+  border-radius: 50%;
+  background: var(--ov-blue);
+}
+
+.ov-check.is-warning .ov-check-dot,
+.ov-check.is-unresolved .ov-check-dot {
+  background: var(--ov-red);
+}
+
+.ov-check.is-inferred .ov-check-dot {
+  background: var(--ov-yellow);
+}
+
+.ov-check-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.ov-check-copy strong {
+  overflow: hidden;
+  font-size: 0.86em;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ov-check-copy small {
+  overflow: hidden;
+  color: var(--ov-muted);
+  font-size: 0.75em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ov-check-empty,
+.ov-check-rest,
+.ov-all-clear,
+.ov-state {
+  padding: 7px;
+  color: var(--ov-muted);
+  font-size: 0.82em;
+}
+
+.ov-all-clear {
+  margin-top: 12px;
+  border: 1px solid color-mix(in srgb, var(--ov-green) 55%, var(--ov-border));
+  border-radius: var(--ov-radius);
+  color: var(--ov-green);
+}
+
+.ov-state {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  background: var(--vscode-sideBar-background);
+  text-align: center;
+}
+
+.ov-state[hidden] {
+  display: none;
+}
+
+@media (max-width: 245px) {
+  .ov-health-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .ov-current {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ov-text-action {
+    display: none;
+  }
+
+  .ov-metadata {
+    grid-template-columns: 1fr;
+  }
+
+  .ov-metadata dd {
+    margin-bottom: 3px;
+  }
+}
