@@ -1,5 +1,5 @@
 {
-  "name": "codraw-vscode",
+  "name": "codraw",
   "displayName": "Codraw",
   "description": "Visualize workspace architecture, reading paths, flows, interfaces, and data models without leaving VS Code.",
   "version": "0.1.0",
