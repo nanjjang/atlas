@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="media/codraw-green.svg" width="112" alt="Project Atlas logo">
+  <img src="media/icon.png" width="112" alt="Project Atlas logo">
 </p>
 
 <h1 align="center">Project Atlas</h1>
