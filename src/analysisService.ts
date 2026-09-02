@@ -91,7 +91,7 @@ export class AnalysisService implements vscode.Disposable {
       // synchronous half, so leaving it outside hid the indicator exactly when
       // the extension host was busiest.
       const result = await vscode.window.withProgress(
-        { location: vscode.ProgressLocation.Window, title: 'Codraw: analyzing workspace' },
+        { location: vscode.ProgressLocation.Window, title: 'Repogram: analyzing workspace' },
         async (progress) => {
           progress.report({ message: 'scanning files' });
           const scan = await scanWorkspace();
@@ -124,18 +124,18 @@ export class AnalysisService implements vscode.Disposable {
       }
       const message = error instanceof Error ? error.message : String(error);
       this.emitter.fire({ type: 'error', message });
-      void vscode.window.showErrorMessage(`Codraw: ${message}`);
+      void vscode.window.showErrorMessage(`Repogram: ${message}`);
       return undefined;
     }
   }
 
   /**
-   * A file system watcher cannot take an exclude pattern, so `codraw.exclude`
+   * A file system watcher cannot take an exclude pattern, so `repogram.exclude`
    * has to be applied here. Without it, writes into `dist/`, `out/`, `target/` and
    * friends re-analyze the whole workspace even though those files are never scanned.
    */
   private affectsAnalysis(uri: vscode.Uri): boolean {
-    const configuration = vscode.workspace.getConfiguration('codraw');
+    const configuration = vscode.workspace.getConfiguration('repogram');
     if (!configuration.get<boolean>('autoRefresh', true)) {
       return false;
     }
@@ -153,12 +153,12 @@ export class AnalysisService implements vscode.Disposable {
   async openSource(nodeId: string): Promise<void> {
     const source = this.latest ? findSource(this.latest, nodeId) : undefined;
     if (!source) {
-      void vscode.window.showWarningMessage('Codraw could not find a source location for this item.');
+      void vscode.window.showWarningMessage('Repogram could not find a source location for this item.');
       return;
     }
     const uri = this.sourceUris.get(source.file);
     if (!uri) {
-      void vscode.window.showWarningMessage(`Codraw source is no longer available: ${source.file}`);
+      void vscode.window.showWarningMessage(`Repogram source is no longer available: ${source.file}`);
       return;
     }
     try {
@@ -170,7 +170,7 @@ export class AnalysisService implements vscode.Disposable {
       editor.revealRange(new vscode.Range(position, position), vscode.TextEditorRevealType.InCenterIfOutsideViewport);
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      void vscode.window.showErrorMessage(`Codraw could not open ${source.file}: ${message}`);
+      void vscode.window.showErrorMessage(`Repogram could not open ${source.file}: ${message}`);
     }
   }
 

@@ -1,6 +1,6 @@
 # 개발 노트
 
-이 문서는 Codraw를 직접 빌드하고 검증할 때 필요한 내용입니다. 확장을 사용하는 데에는 필요하지 않습니다 — 사용법은 [README](../README.md)를 보십시오.
+이 문서는 Repogram를 직접 빌드하고 검증할 때 필요한 내용입니다. 확장을 사용하는 데에는 필요하지 않습니다 — 사용법은 [README](../README.md)를 보십시오.
 
 ## 로컬 개발 및 F5 실행
 
@@ -16,10 +16,10 @@ npm install
 npm run compile
 ```
 
-그다음 이 저장소를 VS Code에서 열고 Run and Debug 보기에서 **Run Codraw** 구성을 선택한 뒤 `F5`를 누릅니다. 새 Extension Development Host 창에서 분석할 폴더를 연 다음, 활동 표시줄의 **Codraw** 아이콘을 누르면 개요가 표시됩니다. 전체 다이어그램이 필요하면 다음 명령을 실행합니다.
+그다음 이 저장소를 VS Code에서 열고 Run and Debug 보기에서 **Run Repogram** 구성을 선택한 뒤 `F5`를 누릅니다. 새 Extension Development Host 창에서 분석할 폴더를 연 다음, 활동 표시줄의 **Repogram** 아이콘을 누르면 개요가 표시됩니다. 전체 다이어그램이 필요하면 다음 명령을 실행합니다.
 
 ```text
-Codraw: Open Workspace Diagram
+Repogram: Open Workspace Diagram
 ```
 
 개발 중 번들을 계속 갱신하려면 별도 터미널에서 다음 명령을 사용할 수 있습니다.
@@ -42,7 +42,7 @@ npm run vsix
 생성된 `.vsix` 파일은 VS Code의 Extensions 보기에서 **Install from VSIX...**를 선택해 설치할 수 있습니다. CLI를 사용하는 경우 실제 생성된 파일명을 지정합니다.
 
 ```bash
-code --install-extension ./codraw-0.1.0.vsix
+code --install-extension ./repogram-0.1.0.vsix
 ```
 
 버전이 바뀌면 VSIX 파일명도 달라질 수 있습니다. `npm run vsix`는 패키징 도구가 설치되어 있어야 하며, 저장소의 개발 의존성을 설치한 상태에서 실행해야 합니다.

@@ -35,7 +35,7 @@ export class ActiveEditorTracker implements vscode.Disposable {
       this.emitter,
       vscode.window.onDidChangeActiveTextEditor((editor) => this.update(this.contextFor(editor))),
       vscode.workspace.onDidChangeConfiguration((event) => {
-        if (event.affectsConfiguration('codraw.followActiveEditor')) {
+        if (event.affectsConfiguration('repogram.followActiveEditor')) {
           this.update(this.contextFor(vscode.window.activeTextEditor));
         }
       }),
@@ -71,7 +71,7 @@ export class ActiveEditorTracker implements vscode.Disposable {
   }
 
   private contextFor(editor: vscode.TextEditor | undefined): ActiveContext | undefined {
-    if (!editor || !vscode.workspace.getConfiguration('codraw').get<boolean>('followActiveEditor', true)) {
+    if (!editor || !vscode.workspace.getConfiguration('repogram').get<boolean>('followActiveEditor', true)) {
       return undefined;
     }
     const uri = editor.document.uri;

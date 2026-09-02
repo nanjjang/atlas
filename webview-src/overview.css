@@ -1,4 +1,4 @@
-/* Codraw sidebar: a focused relationship tool, not a second Explorer. */
+/* Repogram sidebar: a focused relationship tool, not a second Explorer. */
 
 :root {
   --ov-gap: 8px;
@@ -41,7 +41,7 @@ input:focus-visible,
   outline-offset: -1px;
 }
 
-.codraw-sprite {
+.repogram-sprite {
   position: absolute;
   width: 0;
   height: 0;

@@ -38,7 +38,7 @@ if (watch) {
   const extensionContext = await esbuild.context(extensionOptions);
   const webviewContext = await esbuild.context(webviewOptions);
   await Promise.all([extensionContext.watch(), webviewContext.watch()]);
-  console.log('Codraw is watching for changes.');
+  console.log('Repogram is watching for changes.');
 } else {
   await Promise.all([esbuild.build(extensionOptions), esbuild.build(webviewOptions)]);
 }

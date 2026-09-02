@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import type { CodrawContext } from './codrawContext';
+import type { RepogramContext } from './repogramContext';
 import { buildSchemaDocument } from './schemaDocument';
 
 /**
@@ -11,14 +11,14 @@ import { buildSchemaDocument } from './schemaDocument';
  * confirmation — the extension does not otherwise write anything, and this is
  * the one place it does.
  */
-export async function exportSchemaDocumentation(codraw: CodrawContext): Promise<vscode.Uri | undefined> {
-  const snapshot = await codraw.service.ensure();
+export async function exportSchemaDocumentation(repogram: RepogramContext): Promise<vscode.Uri | undefined> {
+  const snapshot = await repogram.service.ensure();
   if (!snapshot) {
-    void vscode.window.showWarningMessage('Codraw has no analysis to export yet.');
+    void vscode.window.showWarningMessage('Repogram has no analysis to export yet.');
     return undefined;
   }
   if (snapshot.database.nodes.length === 0) {
-    void vscode.window.showInformationMessage(`Codraw: ${snapshot.database.emptyMessage}`);
+    void vscode.window.showInformationMessage(`Repogram: ${snapshot.database.emptyMessage}`);
     return undefined;
   }
 
@@ -37,7 +37,7 @@ export async function exportSchemaDocumentation(codraw: CodrawContext): Promise<
     await vscode.workspace.fs.writeFile(target, new TextEncoder().encode(document));
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    void vscode.window.showErrorMessage(`Codraw could not write the schema document: ${message}`);
+    void vscode.window.showErrorMessage(`Repogram could not write the schema document: ${message}`);
     return undefined;
   }
 

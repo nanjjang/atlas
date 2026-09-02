@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Run Codraw",
+      "name": "Run Repogram",
       "type": "extensionHost",
       "request": "launch",
       "runtimeExecutable": "${execPath}",
@@ -11,7 +11,7 @@
       "preLaunchTask": "npm: compile"
     },
     {
-      "name": "Run Codraw (Web Extension Host)",
+      "name": "Run Repogram (Web Extension Host)",
       "type": "pwa-extensionHost",
       "debugWebWorkerHost": true,
       "request": "launch",

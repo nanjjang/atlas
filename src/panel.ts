@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import type { CodrawContext } from './codrawContext';
+import type { RepogramContext } from './repogramContext';
 import type { ProjectSnapshot } from './model';
 import { iconSprite } from './icons';
 import { bundleUri, contentSecurityPolicy, createNonce, webviewOptionsFor } from './webviewHtml';
@@ -11,15 +11,15 @@ type WebviewMessage =
   | { type: 'rendered'; revision: number }
   | { type: 'openSource'; nodeId: string };
 
-export class CodrawPanel implements vscode.Disposable {
-  private static current: CodrawPanel | undefined;
+export class RepogramPanel implements vscode.Disposable {
+  private static current: RepogramPanel | undefined;
 
   private readonly disposables: vscode.Disposable[] = [];
   private renderedRevision: number | undefined;
   private pendingFocus: string | undefined;
   private disposed = false;
 
-  static readonly viewType = 'codraw.diagram';
+  static readonly viewType = 'repogram.diagram';
 
   static webviewOptions(context: vscode.ExtensionContext): vscode.WebviewOptions & vscode.WebviewPanelOptions {
     return {
@@ -28,8 +28,8 @@ export class CodrawPanel implements vscode.Disposable {
     };
   }
 
-  static createOrShow(codraw: CodrawContext): CodrawPanel {
-    const current = CodrawPanel.current;
+  static createOrShow(repogram: RepogramContext): RepogramPanel {
+    const current = RepogramPanel.current;
     if (current) {
       current.panel.reveal(vscode.ViewColumn.Beside, true);
       void current.refresh();
@@ -37,22 +37,22 @@ export class CodrawPanel implements vscode.Disposable {
     }
 
     const panel = vscode.window.createWebviewPanel(
-      CodrawPanel.viewType,
-      'Codraw',
+      RepogramPanel.viewType,
+      'Repogram',
       // The diagram is meant to sit beside the code, so opening it leaves the
       // cursor where it was rather than pulling focus out of the editor.
       { viewColumn: vscode.ViewColumn.Beside, preserveFocus: true },
-      CodrawPanel.webviewOptions(codraw.extension),
+      RepogramPanel.webviewOptions(repogram.extension),
     );
-    return CodrawPanel.adopt(codraw, panel);
+    return RepogramPanel.adopt(repogram, panel);
   }
 
   /**
    * Opens the panel on a particular node, which is how a row in the sidebar
    * hands off to the full diagram.
    */
-  static revealNode(codraw: CodrawContext, nodeId: string): void {
-    const panel = CodrawPanel.createOrShow(codraw);
+  static revealNode(repogram: RepogramContext, nodeId: string): void {
+    const panel = RepogramPanel.createOrShow(repogram);
     panel.focusNode(nodeId);
   }
 
@@ -61,30 +61,30 @@ export class CodrawPanel implements vscode.Disposable {
    * its own view, selection, and camera in `setState`, so it only needs a fresh
    * snapshot, which its `ready` handshake requests.
    */
-  static revive(codraw: CodrawContext, panel: vscode.WebviewPanel): void {
-    if (CodrawPanel.current) {
+  static revive(repogram: RepogramContext, panel: vscode.WebviewPanel): void {
+    if (RepogramPanel.current) {
       panel.dispose();
       return;
     }
-    panel.webview.options = CodrawPanel.webviewOptions(codraw.extension);
-    CodrawPanel.adopt(codraw, panel);
+    panel.webview.options = RepogramPanel.webviewOptions(repogram.extension);
+    RepogramPanel.adopt(repogram, panel);
   }
 
-  private static adopt(codraw: CodrawContext, panel: vscode.WebviewPanel): CodrawPanel {
-    const codrawPanel = new CodrawPanel(codraw, panel);
-    CodrawPanel.current = codrawPanel;
-    void vscode.commands.executeCommand('setContext', 'codraw.panelOpen', true);
-    return codrawPanel;
+  private static adopt(repogram: RepogramContext, panel: vscode.WebviewPanel): RepogramPanel {
+    const repogramPanel = new RepogramPanel(repogram, panel);
+    RepogramPanel.current = repogramPanel;
+    void vscode.commands.executeCommand('setContext', 'repogram.panelOpen', true);
+    return repogramPanel;
   }
 
-  static async refreshCurrent(codraw: CodrawContext): Promise<void> {
-    const panel = CodrawPanel.current ?? CodrawPanel.createOrShow(codraw);
+  static async refreshCurrent(repogram: RepogramContext): Promise<void> {
+    const panel = RepogramPanel.current ?? RepogramPanel.createOrShow(repogram);
     await panel.refresh();
   }
 
   /** Panel-side half of the status the integration test reads. */
   static getStatus(snapshot: ProjectSnapshot | undefined): { panelOpen: boolean; renderReady: boolean } {
-    const current = CodrawPanel.current;
+    const current = RepogramPanel.current;
     return {
       panelOpen: Boolean(current),
       renderReady: Boolean(snapshot && current?.renderedRevision === snapshot.revision),
@@ -92,7 +92,7 @@ export class CodrawPanel implements vscode.Disposable {
   }
 
   private constructor(
-    private readonly codraw: CodrawContext,
+    private readonly repogram: RepogramContext,
     private readonly panel: vscode.WebviewPanel,
   ) {
     this.panel.webview.html = this.getHtml(this.panel.webview);
@@ -103,7 +103,7 @@ export class CodrawPanel implements vscode.Disposable {
       this.disposables,
     );
 
-    this.codraw.tracker.onDidChange(
+    this.repogram.tracker.onDidChange(
       (active) => {
         void this.panel.webview.postMessage({ type: 'activeContext', active: active ?? null });
       },
@@ -111,7 +111,7 @@ export class CodrawPanel implements vscode.Disposable {
       this.disposables,
     );
 
-    this.codraw.service.onDidChange(
+    this.repogram.service.onDidChange(
       (event) => {
         if (this.disposed) {
           return;
@@ -135,7 +135,7 @@ export class CodrawPanel implements vscode.Disposable {
 
     this.panel.onDidChangeViewState(
       ({ webviewPanel }) => {
-        const snapshot = this.codraw.service.snapshot;
+        const snapshot = this.repogram.service.snapshot;
         if (webviewPanel.visible && snapshot) {
           void this.post(snapshot);
         }
@@ -146,13 +146,13 @@ export class CodrawPanel implements vscode.Disposable {
   }
 
   async refresh(): Promise<void> {
-    await this.codraw.service.refresh();
+    await this.repogram.service.refresh();
   }
 
   /** Queued until the webview has a snapshot to select the node in. */
   focusNode(nodeId: string): void {
     this.pendingFocus = nodeId;
-    const snapshot = this.codraw.service.snapshot;
+    const snapshot = this.repogram.service.snapshot;
     if (snapshot) {
       void this.post(snapshot);
     }
@@ -165,7 +165,7 @@ export class CodrawPanel implements vscode.Disposable {
       type: 'snapshot',
       requestId: snapshot.revision,
       snapshot,
-      active: this.codraw.tracker.current ?? null,
+      active: this.repogram.tracker.current ?? null,
       ...(focusNodeId ? { focusNodeId } : {}),
     });
   }
@@ -175,11 +175,11 @@ export class CodrawPanel implements vscode.Disposable {
       return;
     }
     this.disposed = true;
-    CodrawPanel.current = undefined;
+    RepogramPanel.current = undefined;
     while (this.disposables.length) {
       this.disposables.pop()?.dispose();
     }
-    void vscode.commands.executeCommand('setContext', 'codraw.panelOpen', false);
+    void vscode.commands.executeCommand('setContext', 'repogram.panelOpen', false);
   }
 
   private handleMessage(value: unknown): void {
@@ -188,31 +188,31 @@ export class CodrawPanel implements vscode.Disposable {
       return;
     }
     if (message.type === 'ready') {
-      const snapshot = this.codraw.service.snapshot;
+      const snapshot = this.repogram.service.snapshot;
       if (snapshot) {
         void this.post(snapshot);
       } else {
-        void this.codraw.service.ensure();
+        void this.repogram.service.ensure();
       }
     } else if (message.type === 'refresh') {
       void this.refresh();
     } else if (message.type === 'exportSchema') {
       // The command owns the save dialog and the write, so the toolbar button
       // and the Command Palette end up in exactly the same place.
-      void vscode.commands.executeCommand('codraw.exportSchemaDocs');
+      void vscode.commands.executeCommand('repogram.exportSchemaDocs');
     } else if (message.type === 'rendered') {
-      if (this.codraw.service.snapshot?.revision === message.revision) {
+      if (this.repogram.service.snapshot?.revision === message.revision) {
         this.renderedRevision = message.revision;
       }
     } else if (message.type === 'openSource') {
-      void this.codraw.service.openSource(message.nodeId);
+      void this.repogram.service.openSource(message.nodeId);
     }
   }
 
   private getHtml(webview: vscode.Webview): string {
     const nonce = createNonce();
-    const scriptUri = bundleUri(this.codraw.extension, webview, 'main.js');
-    const styleUri = bundleUri(this.codraw.extension, webview, 'styles.css');
+    const scriptUri = bundleUri(this.repogram.extension, webview, 'main.js');
+    const styleUri = bundleUri(this.repogram.extension, webview, 'styles.css');
     const csp = contentSecurityPolicy(webview, nonce);
 
     return `<!doctype html>
@@ -222,15 +222,15 @@ export class CodrawPanel implements vscode.Disposable {
   <meta http-equiv="Content-Security-Policy" content="${csp}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="${styleUri}">
-  <title>Codraw</title>
+  <title>Repogram</title>
 </head>
 <body>
   ${iconSprite()}
-  <div id="codraw-app" class="codraw-app">
+  <div id="repogram-app" class="repogram-app">
     <header class="app-header">
       <div class="project-heading">
         <div>
-          <h1 id="project-name">Codraw</h1>
+          <h1 id="project-name">Repogram</h1>
           <p id="project-summary">Preparing workspace analysis…</p>
         </div>
         <button id="refresh-button" class="toolbar-button" type="button" title="Read the workspace again">Re-analyze</button>

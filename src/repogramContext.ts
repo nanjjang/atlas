@@ -7,7 +7,7 @@ import type { ActiveEditorTracker } from './activeEditor';
  * share, and where the editor currently is. Passed as one value so adding a
  * collaborator does not mean re-threading every entry point.
  */
-export interface CodrawContext {
+export interface RepogramContext {
   readonly extension: vscode.ExtensionContext;
   readonly service: AnalysisService;
   readonly tracker: ActiveEditorTracker;

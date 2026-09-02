@@ -44,7 +44,7 @@ export function buildSchemaDocument(snapshot: ProjectSnapshot, options: SchemaDo
   lines.push(summaryLine(snapshot, databaseMap), '');
   lines.push(
     '> Read statically from the schema files and ORM declarations in this workspace by',
-    '> [Codraw](https://github.com/nanjjang/codraw). No database was connected and no',
+    '> [Repogram](https://github.com/nanjjang/repogram). No database was connected and no',
     '> project code was run, so this describes what the source declares, not what a',
     '> running database contains. Relationships the analyzer could not resolve are listed',
     '> at the end rather than guessed at.',

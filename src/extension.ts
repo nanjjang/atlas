@@ -1,12 +1,12 @@
 import * as vscode from 'vscode';
 import { ActiveEditorTracker } from './activeEditor';
 import { AnalysisService } from './analysisService';
-import type { CodrawContext } from './codrawContext';
-import { CodrawOverviewProvider } from './overviewView';
-import { CodrawPanel } from './panel';
+import type { RepogramContext } from './repogramContext';
+import { RepogramOverviewProvider } from './overviewView';
+import { RepogramPanel } from './panel';
 import { exportSchemaDocumentation } from './schemaExport';
 
-export interface CodrawApi {
+export interface RepogramApi {
   getStatus(): {
     panelOpen: boolean;
     analysisReady: boolean;
@@ -21,13 +21,13 @@ export interface CodrawApi {
   };
 }
 
-export function activate(context: vscode.ExtensionContext): CodrawApi {
+export function activate(context: vscode.ExtensionContext): RepogramApi {
   const service = new AnalysisService();
   // Which module a file belongs to depends on where its project begins, and
   // only the analysis knows that, so the tracker reads it from the latest one.
   const tracker = new ActiveEditorTracker(() => service.snapshot?.projectRoots ?? []);
-  const codraw: CodrawContext = { extension: context, service, tracker };
-  const overview = new CodrawOverviewProvider(codraw);
+  const repogram: RepogramContext = { extension: context, service, tracker };
+  const overview = new RepogramOverviewProvider(repogram);
 
   context.subscriptions.push(
     service,
@@ -37,23 +37,23 @@ export function activate(context: vscode.ExtensionContext): CodrawApi {
         tracker.refresh();
       }
     }),
-    vscode.window.registerWebviewViewProvider(CodrawOverviewProvider.viewType, overview, {
+    vscode.window.registerWebviewViewProvider(RepogramOverviewProvider.viewType, overview, {
       // The sidebar list is cheap to keep alive and expensive to rebuild, and
       // holding it means switching away and back is instant.
       webviewOptions: { retainContextWhenHidden: true },
     }),
-    vscode.commands.registerCommand('codraw.open', () => {
-      CodrawPanel.createOrShow(codraw);
+    vscode.commands.registerCommand('repogram.open', () => {
+      RepogramPanel.createOrShow(repogram);
     }),
-    vscode.commands.registerCommand('codraw.refresh', async () => {
-      await CodrawPanel.refreshCurrent(codraw);
+    vscode.commands.registerCommand('repogram.refresh', async () => {
+      await RepogramPanel.refreshCurrent(repogram);
     }),
-    vscode.commands.registerCommand('codraw.exportSchemaDocs', async () => {
-      await exportSchemaDocumentation(codraw);
+    vscode.commands.registerCommand('repogram.exportSchemaDocs', async () => {
+      await exportSchemaDocumentation(repogram);
     }),
-    vscode.window.registerWebviewPanelSerializer(CodrawPanel.viewType, {
+    vscode.window.registerWebviewPanelSerializer(RepogramPanel.viewType, {
       deserializeWebviewPanel(panel: vscode.WebviewPanel): Promise<void> {
-        CodrawPanel.revive(codraw, panel);
+        RepogramPanel.revive(repogram, panel);
         return Promise.resolve();
       },
     }),
@@ -62,7 +62,7 @@ export function activate(context: vscode.ExtensionContext): CodrawApi {
   return {
     getStatus: () => {
       const snapshot = service.snapshot;
-      const panel = CodrawPanel.getStatus(snapshot);
+      const panel = RepogramPanel.getStatus(snapshot);
       const active = tracker.current;
       return {
         panelOpen: panel.panelOpen,

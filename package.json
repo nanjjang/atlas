@@ -1,6 +1,6 @@
 {
-  "name": "codraw",
-  "displayName": "Codraw",
+  "name": "repogram",
+  "displayName": "Repogram",
   "description": "Visualize workspace architecture, reading paths, flows, interfaces, and data models without leaving VS Code.",
   "version": "0.1.0",
   "publisher": "nanjjang",
@@ -14,12 +14,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nanjjang/codraw.git"
+    "url": "https://github.com/nanjjang/repogram.git"
   },
   "bugs": {
-    "url": "https://github.com/nanjjang/codraw/issues"
+    "url": "https://github.com/nanjjang/repogram/issues"
   },
-  "homepage": "https://github.com/nanjjang/codraw#readme",
+  "homepage": "https://github.com/nanjjang/repogram#readme",
   "engines": {
     "vscode": "^1.100.0"
   },
@@ -52,86 +52,86 @@
     }
   },
   "activationEvents": [
-    "onView:codraw.overview",
-    "onWebviewPanel:codraw.diagram"
+    "onView:repogram.overview",
+    "onWebviewPanel:repogram.diagram"
   ],
   "contributes": {
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "codraw",
-          "title": "Codraw",
-          "icon": "media/codraw.svg"
+          "id": "repogram",
+          "title": "Repogram",
+          "icon": "media/repogram.svg"
         }
       ]
     },
     "views": {
-      "codraw": [
+      "repogram": [
         {
-          "id": "codraw.overview",
+          "id": "repogram.overview",
           "name": "Overview",
           "type": "webview",
-          "contextualTitle": "Codraw"
+          "contextualTitle": "Repogram"
         }
       ]
     },
     "menus": {
       "view/title": [
         {
-          "command": "codraw.open",
-          "when": "view == codraw.overview",
+          "command": "repogram.open",
+          "when": "view == repogram.overview",
           "group": "navigation"
         }
       ]
     },
     "commands": [
       {
-        "command": "codraw.open",
-        "title": "Codraw: Open Workspace Diagram",
-        "category": "Codraw",
+        "command": "repogram.open",
+        "title": "Repogram: Open Workspace Diagram",
+        "category": "Repogram",
         "icon": "$(graph)"
       },
       {
-        "command": "codraw.refresh",
-        "title": "Codraw: Refresh Workspace Diagram",
-        "category": "Codraw",
-        "enablement": "codraw.panelOpen"
+        "command": "repogram.refresh",
+        "title": "Repogram: Refresh Workspace Diagram",
+        "category": "Repogram",
+        "enablement": "repogram.panelOpen"
       },
       {
-        "command": "codraw.exportSchemaDocs",
-        "title": "Codraw: Export Schema Documentation",
-        "category": "Codraw",
+        "command": "repogram.exportSchemaDocs",
+        "title": "Repogram: Export Schema Documentation",
+        "category": "Repogram",
         "icon": "$(export)"
       }
     ],
     "configuration": {
-      "title": "Codraw",
+      "title": "Repogram",
       "properties": {
-        "codraw.maxFiles": {
+        "repogram.maxFiles": {
           "type": "number",
           "default": 2500,
           "minimum": 100,
           "maximum": 20000,
           "description": "Maximum number of workspace files analyzed in one scan."
         },
-        "codraw.maxFileSizeKb": {
+        "repogram.maxFileSizeKb": {
           "type": "number",
           "default": 1024,
           "minimum": 16,
           "maximum": 10240,
           "description": "Maximum size of an individual text file analyzed, in KiB."
         },
-        "codraw.exclude": {
+        "repogram.exclude": {
           "type": "string",
           "default": "**/{node_modules,.git,.hg,.svn,dist,build,out,coverage,.next,.nuxt,.svelte-kit,target,vendor,.venv,venv,__pycache__,.turbo,.nx,.cache,.parcel-cache,.gradle,.pnpm-store,.yarn,.vercel,.output,.angular,.dart_tool,bin,obj}/**",
           "description": "Glob pattern excluded from workspace analysis. The default skips dependency, build and tool-cache directories, which otherwise outnumber a project's own files and dominate the structure view."
         },
-        "codraw.autoRefresh": {
+        "repogram.autoRefresh": {
           "type": "boolean",
           "default": true,
           "description": "Refresh an open diagram after relevant workspace files change."
         },
-        "codraw.followActiveEditor": {
+        "repogram.followActiveEditor": {
           "type": "boolean",
           "default": true,
           "description": "Mark the module and file of the active editor in the overview and the diagram, so a diagram kept open beside the code follows what you are editing."

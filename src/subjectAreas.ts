@@ -31,9 +31,9 @@ import type { DiagramEdge, DiagramGraph, DiagramNode, SourceRef } from './model'
 export const AREA_ENTITY_TARGET = 30;
 
 /** Prefix of the synthetic node standing for a whole area on the area map. */
-export const AREA_NODE_PREFIX = 'codraw-area:';
+export const AREA_NODE_PREFIX = 'repogram-area:';
 /** Prefix of the synthetic node standing for a *neighbouring* area, inside one. */
-export const AREA_LINK_PREFIX = 'codraw-area-link:';
+export const AREA_LINK_PREFIX = 'repogram-area-link:';
 
 /** Where entities land that declare no schema boundary at all. */
 const UNSCOPED_KEY = 'Unscoped';
@@ -241,7 +241,7 @@ export function areaOverviewGraph(databaseMap: DatabaseMap): DiagramGraph {
       if (drawn.has(`${neighbour.key}\u0000${area.key}`)) continue;
       drawn.add(`${area.key}\u0000${neighbour.key}`);
       edges.push({
-        id: `codraw-area-edge:${area.key}--${neighbour.key}`,
+        id: `repogram-area-edge:${area.key}--${neighbour.key}`,
         from: AREA_NODE_PREFIX + area.key,
         to: AREA_NODE_PREFIX + neighbour.key,
         kind: 'area-relation',
@@ -356,7 +356,7 @@ export function subjectAreaGraph(graph: DiagramGraph, databaseMap: DatabaseMap, 
     const linkId = AREA_LINK_PREFIX + crossing.otherKey;
     const count = crossing.edges.length;
     edges.push({
-      id: `codraw-area-cross:${crossing.localId}--${crossing.otherKey}--${crossing.outgoing ? 'out' : 'in'}`,
+      id: `repogram-area-cross:${crossing.localId}--${crossing.otherKey}--${crossing.outgoing ? 'out' : 'in'}`,
       from: crossing.outgoing ? crossing.localId : linkId,
       to: crossing.outgoing ? linkId : crossing.localId,
       kind: 'area-boundary',

@@ -13,10 +13,10 @@ export interface WorkspaceScanResult {
 export async function scanWorkspace(): Promise<WorkspaceScanResult> {
   const folders = vscode.workspace.workspaceFolders;
   if (!folders?.length) {
-    throw new Error('Open a folder or workspace before running Codraw.');
+    throw new Error('Open a folder or workspace before running Repogram.');
   }
 
-  const configuration = vscode.workspace.getConfiguration('codraw');
+  const configuration = vscode.workspace.getConfiguration('repogram');
   const maxFiles = clamp(configuration.get<number>('maxFiles', 2500), 100, 20000);
   const maxFileSizeKb = clamp(configuration.get<number>('maxFileSizeKb', 1024), 16, 10240);
   const maxFileSize = maxFileSizeKb * 1024;
@@ -77,7 +77,7 @@ export async function scanWorkspace(): Promise<WorkspaceScanResult> {
     diagnostics.push({
       code: 'SCAN_LIMIT_REACHED',
       severity: 'warning',
-      message: `The workspace contains more than ${maxFiles} files. The diagram is based on the first ${maxFiles} matching files. Increase codraw.maxFiles to scan more.`,
+      message: `The workspace contains more than ${maxFiles} files. The diagram is based on the first ${maxFiles} matching files. Increase repogram.maxFiles to scan more.`,
     });
   }
   if (oversizedFiles > 0) {

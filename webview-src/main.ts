@@ -1457,7 +1457,7 @@ function renderStructure(): void {
   stateView.hidden = true;
   setHidden(graphCanvas, true);
   setHidden(structureDashboard, false);
-  structureDashboard.style.setProperty('--codraw-tree-scale', String(treeScale));
+  structureDashboard.style.setProperty('--repogram-tree-scale', String(treeScale));
 
   clearElement(dashGrid);
   // While a search is on, the view is a filter: only the cards that can hold a
@@ -2443,7 +2443,7 @@ function useIcon(name: string): SVGSVGElement {
   svg.setAttribute('aria-hidden', 'true');
   svg.setAttribute('focusable', 'false');
   const use = createSvgElement('use');
-  use.setAttribute('href', `#codraw-${name}`);
+  use.setAttribute('href', `#repogram-${name}`);
   svg.append(use);
   return svg;
 }
@@ -2616,8 +2616,8 @@ function scaleTree(factor: number): void {
     return;
   }
   treeScale = next;
-  structureDashboard.style.setProperty('--codraw-tree-scale', String(treeScale));
-  interfaceDashboard.style.setProperty('--codraw-tree-scale', String(treeScale));
+  structureDashboard.style.setProperty('--repogram-tree-scale', String(treeScale));
+  interfaceDashboard.style.setProperty('--repogram-tree-scale', String(treeScale));
   persistState();
 }
 
@@ -2734,7 +2734,7 @@ function renderInterfaces(): void {
   stateView.hidden = true;
   setHidden(graphCanvas, true);
   setHidden(interfaceDashboard, false);
-  interfaceDashboard.style.setProperty('--codraw-tree-scale', String(treeScale));
+  interfaceDashboard.style.setProperty('--repogram-tree-scale', String(treeScale));
   clearElement(interfaceGrid);
 
   if (!query) {
@@ -4019,7 +4019,7 @@ function round(value: number): number {
 function fitCurrentGraph(): void {
   if (activeView === 'interfaces') {
     treeScale = 1;
-    interfaceDashboard.style.setProperty('--codraw-tree-scale', '1');
+    interfaceDashboard.style.setProperty('--repogram-tree-scale', '1');
     interfaceDashboard.scrollTop = 0;
     persistState();
     return;
@@ -4028,7 +4028,7 @@ function fitCurrentGraph(): void {
   // to the editor's own and returns to whatever the reader was looking at.
   if (activeView === 'structure') {
     treeScale = 1;
-    structureDashboard.style.setProperty('--codraw-tree-scale', '1');
+    structureDashboard.style.setProperty('--repogram-tree-scale', '1');
     if (active) {
       ensureRowVisible(active.structureNodeId);
     } else {
@@ -4209,7 +4209,7 @@ function createSvgElement<K extends keyof SVGElementTagNameMap>(name: K): SVGEle
 
 function findElement<T extends Element>(id: string): T {
   const element = document.getElementById(id);
-  if (!element) throw new Error(`Codraw UI element #${id} is missing.`);
+  if (!element) throw new Error(`Repogram UI element #${id} is missing.`);
   return element as unknown as T;
 }
 

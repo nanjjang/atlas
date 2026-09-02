@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
-import type { CodrawContext } from './codrawContext';
+import type { RepogramContext } from './repogramContext';
 import type { ProjectSnapshot } from './model';
-import { CodrawPanel } from './panel';
+import { RepogramPanel } from './panel';
 import { iconSprite } from './icons';
 import { bundleUri, contentSecurityPolicy, createNonce, webviewOptionsFor } from './webviewHtml';
 
@@ -19,16 +19,16 @@ type OverviewMessage =
  * the container activates the extension and resolves this provider, so the list
  * is on screen without anything being run first.
  */
-export class CodrawOverviewProvider implements vscode.WebviewViewProvider {
-  static readonly viewType = 'codraw.overview';
+export class RepogramOverviewProvider implements vscode.WebviewViewProvider {
+  static readonly viewType = 'repogram.overview';
 
   private view: vscode.WebviewView | undefined;
 
-  constructor(private readonly codraw: CodrawContext) {}
+  constructor(private readonly repogram: RepogramContext) {}
 
   resolveWebviewView(view: vscode.WebviewView): void {
     this.view = view;
-    view.webview.options = webviewOptionsFor(this.codraw.extension);
+    view.webview.options = webviewOptionsFor(this.repogram.extension);
     view.webview.html = this.getHtml(view.webview);
 
     // Moving the view between containers disposes and resolves it again, so the
@@ -41,7 +41,7 @@ export class CodrawOverviewProvider implements vscode.WebviewViewProvider {
       disposables,
     );
 
-    this.codraw.tracker.onDidChange(
+    this.repogram.tracker.onDidChange(
       (active) => {
         void view.webview.postMessage({ type: 'activeContext', active: active ?? null });
       },
@@ -49,7 +49,7 @@ export class CodrawOverviewProvider implements vscode.WebviewViewProvider {
       disposables,
     );
 
-    this.codraw.service.onDidChange(
+    this.repogram.service.onDidChange(
       (event) => {
         if (event.type === 'started') {
           void view.webview.postMessage({ type: 'analysisStarted', requestId: event.requestId });
@@ -58,7 +58,7 @@ export class CodrawOverviewProvider implements vscode.WebviewViewProvider {
         } else if (event.type === 'error') {
           void view.webview.postMessage({ type: 'analysisError', message: event.message });
         } else if (view.visible) {
-          void this.codraw.service.refresh();
+          void this.repogram.service.refresh();
         } else {
           void view.webview.postMessage({ type: 'analysisStale' });
         }
@@ -69,7 +69,7 @@ export class CodrawOverviewProvider implements vscode.WebviewViewProvider {
 
     view.onDidChangeVisibility(
       () => {
-        const snapshot = this.codraw.service.snapshot;
+        const snapshot = this.repogram.service.snapshot;
         if (view.visible && snapshot) {
           void this.post(snapshot);
         }
@@ -88,7 +88,7 @@ export class CodrawOverviewProvider implements vscode.WebviewViewProvider {
     });
 
     // Opening the container is the request; nothing else has to ask for it.
-    void this.codraw.service.ensure();
+    void this.repogram.service.ensure();
   }
 
   private async post(snapshot: ProjectSnapshot): Promise<void> {
@@ -96,7 +96,7 @@ export class CodrawOverviewProvider implements vscode.WebviewViewProvider {
       type: 'snapshot',
       requestId: snapshot.revision,
       snapshot,
-      active: this.codraw.tracker.current ?? null,
+      active: this.repogram.tracker.current ?? null,
     });
   }
 
@@ -106,29 +106,29 @@ export class CodrawOverviewProvider implements vscode.WebviewViewProvider {
       return;
     }
     if (message.type === 'ready') {
-      const snapshot = this.codraw.service.snapshot;
+      const snapshot = this.repogram.service.snapshot;
       if (snapshot) {
         void this.post(snapshot);
       } else {
-        void this.codraw.service.ensure();
+        void this.repogram.service.ensure();
       }
     } else if (message.type === 'refresh') {
-      void this.codraw.service.refresh();
+      void this.repogram.service.refresh();
     } else if (message.type === 'openSource') {
-      void this.codraw.service.openSource(message.nodeId);
+      void this.repogram.service.openSource(message.nodeId);
     } else if (message.type === 'openDiagram') {
       if (message.nodeId) {
-        CodrawPanel.revealNode(this.codraw, message.nodeId);
+        RepogramPanel.revealNode(this.repogram, message.nodeId);
       } else {
-        CodrawPanel.createOrShow(this.codraw);
+        RepogramPanel.createOrShow(this.repogram);
       }
     }
   }
 
   private getHtml(webview: vscode.Webview): string {
     const nonce = createNonce();
-    const scriptUri = bundleUri(this.codraw.extension, webview, 'overview.js');
-    const styleUri = bundleUri(this.codraw.extension, webview, 'overview.css');
+    const scriptUri = bundleUri(this.repogram.extension, webview, 'overview.js');
+    const styleUri = bundleUri(this.repogram.extension, webview, 'overview.css');
     const csp = contentSecurityPolicy(webview, nonce);
 
     return `<!doctype html>
@@ -138,14 +138,14 @@ export class CodrawOverviewProvider implements vscode.WebviewViewProvider {
   <meta http-equiv="Content-Security-Policy" content="${csp}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="${styleUri}">
-  <title>Codraw</title>
+  <title>Repogram</title>
 </head>
 <body>
   ${iconSprite()}
   <div class="overview">
     <header class="ov-header">
       <div class="ov-title">
-        <span id="ov-project" class="ov-project">Codraw</span>
+        <span id="ov-project" class="ov-project">Repogram</span>
         <button id="ov-open" class="ov-header-action" type="button" title="Open the full workspace diagram">Open diagram</button>
         <button id="ov-refresh" class="ov-icon" type="button" aria-label="Re-analyze workspace" title="Re-analyze the workspace">&#8635;</button>
       </div>

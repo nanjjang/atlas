@@ -4,48 +4,48 @@
   color-scheme: light dark;
   font-family: var(--vscode-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
 
-  --codraw-bg: var(--vscode-editor-background, #1e1e1e);
-  --codraw-surface: var(--vscode-sideBar-background, #252526);
-  --codraw-surface-raised: var(--vscode-editorWidget-background, #252526);
-  --codraw-surface-hover: var(--vscode-list-hoverBackground, rgba(255, 255, 255, 0.06));
-  --codraw-surface-active: var(--vscode-list-activeSelectionBackground, #094771);
-  --codraw-foreground: var(--vscode-editor-foreground, #d4d4d4);
-  --codraw-muted: var(--vscode-descriptionForeground, #a0a0a0);
-  --codraw-disabled: var(--vscode-disabledForeground, rgba(212, 212, 212, 0.5));
-  --codraw-border: var(--vscode-panel-border, var(--vscode-widget-border, rgba(127, 127, 127, 0.35)));
-  --codraw-strong-border: var(--vscode-contrastBorder, var(--codraw-border));
-  --codraw-input-bg: var(--vscode-input-background, #3c3c3c);
-  --codraw-input-fg: var(--vscode-input-foreground, #f0f0f0);
-  --codraw-input-border: var(--vscode-input-border, transparent);
-  --codraw-button-bg: var(--vscode-button-background, #0e639c);
-  --codraw-button-fg: var(--vscode-button-foreground, #ffffff);
-  --codraw-button-hover: var(--vscode-button-hoverBackground, #1177bb);
-  --codraw-secondary-button-bg: var(--vscode-button-secondaryBackground, #3a3d41);
-  --codraw-secondary-button-fg: var(--vscode-button-secondaryForeground, #ffffff);
-  --codraw-secondary-button-hover: var(--vscode-button-secondaryHoverBackground, #45494e);
-  --codraw-focus: var(--vscode-focusBorder, #007fd4);
-  --codraw-link: var(--vscode-textLink-foreground, #3794ff);
-  --codraw-link-active: var(--vscode-textLink-activeForeground, #4daafc);
-  --codraw-selection: var(--vscode-editor-selectionBackground, rgba(38, 79, 120, 0.65));
-  --codraw-search: var(--vscode-editor-findMatchHighlightBackground, rgba(234, 92, 0, 0.35));
-  --codraw-search-border: var(--vscode-editor-findMatchBorder, #f38518);
-  --codraw-edge: var(--vscode-editorLineNumber-foreground, #858585);
-  --codraw-edge-active: var(--vscode-textLink-foreground, #3794ff);
-  --codraw-node-bg: var(--vscode-editorWidget-background, #252526);
-  --codraw-node-border: var(--vscode-widget-border, #5a5a5a);
-  --codraw-group-bg: var(--vscode-sideBarSectionHeader-background, rgba(128, 128, 128, 0.08));
-  --codraw-grid-dot: var(--vscode-editorWhitespace-foreground, rgba(127, 127, 127, 0.22));
-  --codraw-info: var(--vscode-editorInfo-foreground, #3794ff);
-  --codraw-success: var(--vscode-testing-iconPassed, #73c991);
-  --codraw-warning: var(--vscode-editorWarning-foreground, #cca700);
-  --codraw-error: var(--vscode-editorError-foreground, #f14c4c);
-  --codraw-shadow: 0 8px 24px var(--vscode-widget-shadow, rgba(0, 0, 0, 0.36));
-  --codraw-radius: 6px;
-  --codraw-control-height: 30px;
-  --codraw-header-height: 44px;
-  --codraw-footer-height: 24px;
-  --codraw-details-width: clamp(280px, 28vw, 380px);
-  --codraw-transition: 140ms ease;
+  --repogram-bg: var(--vscode-editor-background, #1e1e1e);
+  --repogram-surface: var(--vscode-sideBar-background, #252526);
+  --repogram-surface-raised: var(--vscode-editorWidget-background, #252526);
+  --repogram-surface-hover: var(--vscode-list-hoverBackground, rgba(255, 255, 255, 0.06));
+  --repogram-surface-active: var(--vscode-list-activeSelectionBackground, #094771);
+  --repogram-foreground: var(--vscode-editor-foreground, #d4d4d4);
+  --repogram-muted: var(--vscode-descriptionForeground, #a0a0a0);
+  --repogram-disabled: var(--vscode-disabledForeground, rgba(212, 212, 212, 0.5));
+  --repogram-border: var(--vscode-panel-border, var(--vscode-widget-border, rgba(127, 127, 127, 0.35)));
+  --repogram-strong-border: var(--vscode-contrastBorder, var(--repogram-border));
+  --repogram-input-bg: var(--vscode-input-background, #3c3c3c);
+  --repogram-input-fg: var(--vscode-input-foreground, #f0f0f0);
+  --repogram-input-border: var(--vscode-input-border, transparent);
+  --repogram-button-bg: var(--vscode-button-background, #0e639c);
+  --repogram-button-fg: var(--vscode-button-foreground, #ffffff);
+  --repogram-button-hover: var(--vscode-button-hoverBackground, #1177bb);
+  --repogram-secondary-button-bg: var(--vscode-button-secondaryBackground, #3a3d41);
+  --repogram-secondary-button-fg: var(--vscode-button-secondaryForeground, #ffffff);
+  --repogram-secondary-button-hover: var(--vscode-button-secondaryHoverBackground, #45494e);
+  --repogram-focus: var(--vscode-focusBorder, #007fd4);
+  --repogram-link: var(--vscode-textLink-foreground, #3794ff);
+  --repogram-link-active: var(--vscode-textLink-activeForeground, #4daafc);
+  --repogram-selection: var(--vscode-editor-selectionBackground, rgba(38, 79, 120, 0.65));
+  --repogram-search: var(--vscode-editor-findMatchHighlightBackground, rgba(234, 92, 0, 0.35));
+  --repogram-search-border: var(--vscode-editor-findMatchBorder, #f38518);
+  --repogram-edge: var(--vscode-editorLineNumber-foreground, #858585);
+  --repogram-edge-active: var(--vscode-textLink-foreground, #3794ff);
+  --repogram-node-bg: var(--vscode-editorWidget-background, #252526);
+  --repogram-node-border: var(--vscode-widget-border, #5a5a5a);
+  --repogram-group-bg: var(--vscode-sideBarSectionHeader-background, rgba(128, 128, 128, 0.08));
+  --repogram-grid-dot: var(--vscode-editorWhitespace-foreground, rgba(127, 127, 127, 0.22));
+  --repogram-info: var(--vscode-editorInfo-foreground, #3794ff);
+  --repogram-success: var(--vscode-testing-iconPassed, #73c991);
+  --repogram-warning: var(--vscode-editorWarning-foreground, #cca700);
+  --repogram-error: var(--vscode-editorError-foreground, #f14c4c);
+  --repogram-shadow: 0 8px 24px var(--vscode-widget-shadow, rgba(0, 0, 0, 0.36));
+  --repogram-radius: 6px;
+  --repogram-control-height: 30px;
+  --repogram-header-height: 44px;
+  --repogram-footer-height: 24px;
+  --repogram-details-width: clamp(280px, 28vw, 380px);
+  --repogram-transition: 140ms ease;
 }
 
 *,
@@ -64,8 +64,8 @@ body,
 }
 
 body {
-  background: var(--codraw-bg);
-  color: var(--codraw-foreground);
+  background: var(--repogram-bg);
+  color: var(--repogram-foreground);
   font-family: inherit;
   font-size: var(--vscode-font-size, 13px);
   line-height: 1.45;
@@ -92,12 +92,12 @@ button,
 }
 
 a {
-  color: var(--codraw-link);
+  color: var(--repogram-link);
 }
 
 a:hover,
 a:active {
-  color: var(--codraw-link-active);
+  color: var(--repogram-link-active);
 }
 
 .sr-only,
@@ -113,7 +113,7 @@ a:active {
   border: 0 !important;
 }
 
-.codraw-app,
+.repogram-app,
 .app-shell {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
@@ -121,8 +121,8 @@ a:active {
   height: 100%;
   min-width: 0;
   min-height: 0;
-  background: var(--codraw-bg);
-  color: var(--codraw-foreground);
+  background: var(--repogram-bg);
+  color: var(--repogram-foreground);
 }
 
 /* Header, view tabs, and controls */
@@ -132,12 +132,12 @@ a:active {
   z-index: 20;
   display: flex;
   min-width: 0;
-  min-height: var(--codraw-header-height);
+  min-height: var(--repogram-header-height);
   align-items: center;
   gap: 10px;
   padding: 6px 10px;
-  background: var(--codraw-surface);
-  border-bottom: 1px solid var(--codraw-border);
+  background: var(--repogram-surface);
+  border-bottom: 1px solid var(--repogram-border);
 }
 
 /* A compact reading key gives each canvas meaning without covering its nodes. */
@@ -149,8 +149,8 @@ a:active {
   align-items: center;
   gap: 8px 12px;
   padding-top: 5px;
-  color: var(--codraw-muted);
-  border-top: 1px solid color-mix(in srgb, var(--codraw-border) 55%, transparent);
+  color: var(--repogram-muted);
+  border-top: 1px solid color-mix(in srgb, var(--repogram-border) 55%, transparent);
   font-size: 11px;
   line-height: 1.35;
 }
@@ -176,7 +176,7 @@ a:active {
 }
 
 .view-guide strong {
-  color: var(--codraw-foreground);
+  color: var(--repogram-foreground);
   font-size: 11px;
   font-weight: 600;
   white-space: nowrap;
@@ -197,12 +197,12 @@ a:active {
   display: inline-block;
   width: 20px;
   height: 0;
-  border-top: 2px solid var(--codraw-edge);
+  border-top: 2px solid var(--repogram-edge);
 }
 
 .legend-line.is-dashed {
   margin-left: 5px;
-  border-top-color: var(--codraw-warning);
+  border-top-color: var(--repogram-warning);
   border-top-style: dashed;
 }
 
@@ -222,8 +222,8 @@ a:active {
   height: 24px;
   flex: 0 0 24px;
   place-items: center;
-  color: var(--codraw-button-fg);
-  background: var(--codraw-button-bg);
+  color: var(--repogram-button-fg);
+  background: var(--repogram-button-bg);
   border-radius: 5px;
   font-size: 11px;
   font-weight: 700;
@@ -263,7 +263,7 @@ a:active {
   min-width: 0;
   margin: 2px 0 0;
   overflow: hidden;
-  color: var(--codraw-muted);
+  color: var(--repogram-muted);
   font-size: 11px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -272,7 +272,7 @@ a:active {
 .project-subtitle,
 .brand-subtitle {
   overflow: hidden;
-  color: var(--codraw-muted);
+  color: var(--repogram-muted);
   font-size: 11px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -302,7 +302,7 @@ a:active {
 
 .toolbar-group + .toolbar-group {
   padding-left: 6px;
-  border-left: 1px solid var(--codraw-border);
+  border-left: 1px solid var(--repogram-border);
 }
 
 .button,
@@ -313,19 +313,19 @@ a:active {
 .tree-toggle {
   position: relative;
   display: inline-flex;
-  min-width: var(--codraw-control-height);
-  min-height: var(--codraw-control-height);
+  min-width: var(--repogram-control-height);
+  min-height: var(--repogram-control-height);
   align-items: center;
   justify-content: center;
   gap: 6px;
   padding: 4px 9px;
-  color: var(--codraw-secondary-button-fg);
-  background: var(--codraw-secondary-button-bg);
+  color: var(--repogram-secondary-button-fg);
+  background: var(--repogram-secondary-button-bg);
   border: 1px solid transparent;
   border-radius: 4px;
   cursor: pointer;
   line-height: 1;
-  transition: color var(--codraw-transition), background-color var(--codraw-transition), border-color var(--codraw-transition), opacity var(--codraw-transition);
+  transition: color var(--repogram-transition), background-color var(--repogram-transition), border-color var(--repogram-transition), opacity var(--repogram-transition);
 }
 
 .button:hover,
@@ -342,16 +342,16 @@ a:active {
 .zoom-button:hover,
 .details-close:hover,
 .tree-toggle:hover {
-  background: var(--codraw-secondary-button-hover);
+  background: var(--repogram-secondary-button-hover);
 }
 
 .button--primary {
-  color: var(--codraw-button-fg);
-  background: var(--codraw-button-bg);
+  color: var(--repogram-button-fg);
+  background: var(--repogram-button-bg);
 }
 
 .button--primary:hover {
-  background: var(--codraw-button-hover);
+  background: var(--repogram-button-hover);
 }
 
 .button--ghost,
@@ -360,20 +360,20 @@ a:active {
 .zoom-button,
 .details-close,
 .tree-toggle {
-  color: var(--codraw-foreground);
+  color: var(--repogram-foreground);
   background: transparent;
 }
 
 .button[aria-pressed="true"],
 .toolbar-button[aria-pressed="true"],
 .icon-button[aria-pressed="true"] {
-  color: var(--codraw-foreground);
-  background: var(--codraw-selection);
-  border-color: var(--codraw-focus);
+  color: var(--repogram-foreground);
+  background: var(--repogram-selection);
+  border-color: var(--repogram-focus);
 }
 
 .toolbar-button.needs-attention {
-  color: var(--codraw-warning);
+  color: var(--repogram-warning);
   border-color: currentColor;
   box-shadow: inset 0 0 0 1px currentColor;
 }
@@ -383,7 +383,7 @@ a:active {
 .icon-button:disabled,
 .zoom-button:disabled,
 .tree-toggle:disabled {
-  color: var(--codraw-disabled);
+  color: var(--repogram-disabled);
   cursor: default;
   opacity: 0.7;
 }
@@ -414,7 +414,7 @@ input:focus-visible,
 select:focus-visible,
 [role="tab"]:focus-visible,
 [role="treeitem"]:focus-visible {
-  outline: 1px solid var(--codraw-focus);
+  outline: 1px solid var(--repogram-focus);
   outline-offset: 1px;
 }
 
@@ -439,11 +439,11 @@ select:focus-visible,
 .tab-button {
   position: relative;
   display: inline-flex;
-  min-height: var(--codraw-control-height);
+  min-height: var(--repogram-control-height);
   align-items: center;
   gap: 6px;
   padding: 4px 10px;
-  color: var(--codraw-muted);
+  color: var(--repogram-muted);
   background: transparent;
   border: 0;
   border-radius: 4px 4px 0 0;
@@ -464,23 +464,23 @@ select:focus-visible,
 
 .view-tab:hover,
 .tab-button:hover {
-  color: var(--codraw-foreground);
-  background: var(--codraw-surface-hover);
+  color: var(--repogram-foreground);
+  background: var(--repogram-surface-hover);
 }
 
 .view-tab[aria-selected="true"],
 .view-tab.is-active,
 .tab-button[aria-selected="true"],
 .tab-button.is-active {
-  color: var(--codraw-foreground);
-  background: var(--codraw-bg);
+  color: var(--repogram-foreground);
+  background: var(--repogram-bg);
 }
 
 .view-tab[aria-selected="true"]::after,
 .view-tab.is-active::after,
 .tab-button[aria-selected="true"]::after,
 .tab-button.is-active::after {
-  background: var(--codraw-focus);
+  background: var(--repogram-focus);
 }
 
 .tab-count,
@@ -491,7 +491,7 @@ select:focus-visible,
   align-items: center;
   justify-content: center;
   padding: 0 5px;
-  color: var(--codraw-muted);
+  color: var(--repogram-muted);
   background: var(--vscode-badge-background, rgba(127, 127, 127, 0.28));
   border-radius: 9px;
   font-size: 10px;
@@ -499,8 +499,8 @@ select:focus-visible,
 }
 
 .view-tab[aria-selected="true"] .tab-count {
-  color: var(--codraw-foreground);
-  background: color-mix(in srgb, var(--codraw-focus) 24%, transparent);
+  color: var(--repogram-foreground);
+  background: color-mix(in srgb, var(--repogram-focus) 24%, transparent);
 }
 
 @media (max-width: 760px) {
@@ -519,7 +519,7 @@ select:focus-visible,
   display: flex;
   width: clamp(160px, 24vw, 300px);
   min-width: 120px;
-  height: var(--codraw-control-height);
+  height: var(--repogram-control-height);
   align-items: center;
 }
 
@@ -530,9 +530,9 @@ select:focus-visible,
   height: 100%;
   min-width: 0;
   padding: 4px 30px 4px 29px;
-  color: var(--codraw-input-fg);
-  background: var(--codraw-input-bg);
-  border: 1px solid var(--codraw-input-border);
+  color: var(--repogram-input-fg);
+  background: var(--repogram-input-bg);
+  border: 1px solid var(--repogram-input-border);
   border-radius: 4px;
   outline: none;
 }
@@ -540,12 +540,12 @@ select:focus-visible,
 .toolbar > .search-input {
   width: clamp(150px, 22vw, 280px);
   min-width: 120px;
-  height: var(--codraw-control-height);
+  height: var(--repogram-control-height);
   padding: 4px 8px;
 }
 
 .search-label {
-  color: var(--codraw-muted);
+  color: var(--repogram-muted);
   font-size: 11px;
   white-space: nowrap;
 }
@@ -570,7 +570,7 @@ select:focus-visible,
 }
 
 .scope-caption {
-  color: var(--codraw-muted);
+  color: var(--repogram-muted);
   font-size: 11px;
   white-space: nowrap;
 }
@@ -578,20 +578,20 @@ select:focus-visible,
 .scope-select {
   width: 100%;
   min-width: 0;
-  height: var(--codraw-control-height);
+  height: var(--repogram-control-height);
   padding: 3px 24px 3px 7px;
   overflow: hidden;
-  color: var(--codraw-input-fg);
-  background: var(--codraw-input-bg);
-  border: 1px solid var(--codraw-input-border);
+  color: var(--repogram-input-fg);
+  background: var(--repogram-input-bg);
+  border: 1px solid var(--repogram-input-border);
   border-radius: 4px;
   outline: none;
   text-overflow: ellipsis;
 }
 
 .scope-select:focus {
-  border-color: var(--codraw-focus);
-  outline: 1px solid var(--codraw-focus);
+  border-color: var(--repogram-focus);
+  outline: 1px solid var(--repogram-focus);
   outline-offset: -1px;
 }
 
@@ -606,15 +606,15 @@ select:focus-visible,
 .search-input::placeholder,
 .search input[type="search"]::placeholder,
 .search-box input[type="search"]::placeholder {
-  color: var(--vscode-input-placeholderForeground, var(--codraw-muted));
+  color: var(--vscode-input-placeholderForeground, var(--repogram-muted));
   opacity: 1;
 }
 
 .search-input:focus,
 .search input[type="search"]:focus,
 .search-box input[type="search"]:focus {
-  border-color: var(--codraw-focus);
-  outline: 1px solid var(--codraw-focus);
+  border-color: var(--repogram-focus);
+  outline: 1px solid var(--repogram-focus);
   outline-offset: -1px;
 }
 
@@ -627,7 +627,7 @@ select:focus-visible,
   height: 14px;
   align-items: center;
   justify-content: center;
-  color: var(--codraw-muted);
+  color: var(--repogram-muted);
   pointer-events: none;
 }
 
@@ -640,15 +640,15 @@ select:focus-visible,
   height: 24px;
   padding: 0;
   place-items: center;
-  color: var(--codraw-muted);
+  color: var(--repogram-muted);
   background: transparent;
   border-radius: 3px;
   cursor: pointer;
 }
 
 .search-clear:hover {
-  color: var(--codraw-foreground);
-  background: var(--codraw-surface-hover);
+  color: var(--repogram-foreground);
+  background: var(--repogram-surface-hover);
 }
 
 .search-results {
@@ -660,10 +660,10 @@ select:focus-visible,
   max-height: min(360px, 55vh);
   padding: 4px;
   overflow: auto;
-  background: var(--codraw-surface-raised);
-  border: 1px solid var(--codraw-border);
-  border-radius: var(--codraw-radius);
-  box-shadow: var(--codraw-shadow);
+  background: var(--repogram-surface-raised);
+  border: 1px solid var(--repogram-border);
+  border-radius: var(--repogram-radius);
+  box-shadow: var(--repogram-shadow);
 }
 
 .search-results[hidden] {
@@ -676,7 +676,7 @@ select:focus-visible,
   gap: 2px 8px;
   width: 100%;
   padding: 7px 8px;
-  color: var(--codraw-foreground);
+  color: var(--repogram-foreground);
   background: transparent;
   border-radius: 3px;
   cursor: pointer;
@@ -685,8 +685,8 @@ select:focus-visible,
 
 .search-result:hover,
 .search-result[aria-selected="true"] {
-  color: var(--vscode-list-activeSelectionForeground, var(--codraw-foreground));
-  background: var(--vscode-list-activeSelectionBackground, var(--codraw-selection));
+  color: var(--vscode-list-activeSelectionForeground, var(--repogram-foreground));
+  background: var(--vscode-list-activeSelectionBackground, var(--repogram-selection));
 }
 
 .search-result__label,
@@ -699,7 +699,7 @@ select:focus-visible,
 
 .search-result__path {
   grid-column: 1 / -1;
-  color: var(--codraw-muted);
+  color: var(--repogram-muted);
   font-size: 11px;
 }
 
@@ -708,7 +708,7 @@ select:focus-visible,
 .main-content {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) var(--codraw-details-width);
+  grid-template-columns: minmax(0, 1fr) var(--repogram-details-width);
   min-width: 0;
   min-height: 0;
   overflow: hidden;
@@ -727,7 +727,7 @@ select:focus-visible,
   min-height: 0;
   grid-template-rows: auto minmax(0, 1fr);
   overflow: hidden;
-  background: var(--codraw-bg);
+  background: var(--repogram-bg);
 }
 
 /* The current panel mounts the SVG/tree directly, without a canvas header. */
@@ -751,16 +751,16 @@ select:focus-visible,
   justify-content: space-between;
   gap: 8px;
   padding: 4px 9px;
-  color: var(--codraw-muted);
-  background: var(--codraw-bg);
-  border-bottom: 1px solid var(--codraw-border);
+  color: var(--repogram-muted);
+  background: var(--repogram-bg);
+  border-bottom: 1px solid var(--repogram-border);
   font-size: 11px;
 }
 
 .canvas-title,
 .graph-title {
   overflow: hidden;
-  color: var(--codraw-foreground);
+  color: var(--repogram-foreground);
   font-size: 12px;
   font-weight: 600;
   text-overflow: ellipsis;
@@ -773,8 +773,8 @@ select:focus-visible,
   min-width: 0;
   min-height: 0;
   overflow: hidden;
-  background-color: var(--codraw-bg);
-  background-image: radial-gradient(circle at 1px 1px, var(--codraw-grid-dot) 1px, transparent 1.1px);
+  background-color: var(--repogram-bg);
+  background-image: radial-gradient(circle at 1px 1px, var(--repogram-grid-dot) 1px, transparent 1.1px);
   background-size: 20px 20px;
   cursor: grab;
   touch-action: none;
@@ -796,13 +796,13 @@ select:focus-visible,
   min-width: 100%;
   min-height: 100%;
   overflow: visible;
-  color: var(--codraw-foreground);
+  color: var(--repogram-foreground);
   outline: none;
 }
 
 .graph-canvas:focus-visible,
 .canvas-svg:focus-visible {
-  outline: 1px solid var(--codraw-focus);
+  outline: 1px solid var(--repogram-focus);
   outline-offset: -2px;
 }
 
@@ -816,10 +816,10 @@ select:focus-visible,
   align-items: center;
   gap: 2px;
   padding: 3px;
-  background: var(--codraw-surface-raised);
-  border: 1px solid var(--codraw-border);
-  border-radius: var(--codraw-radius);
-  box-shadow: var(--codraw-shadow);
+  background: var(--repogram-surface-raised);
+  border: 1px solid var(--repogram-border);
+  border-radius: var(--repogram-radius);
+  box-shadow: var(--repogram-shadow);
 }
 
 .toolbar > .zoom-controls {
@@ -836,7 +836,7 @@ select:focus-visible,
 .zoom-level {
   min-width: 48px;
   padding: 0 4px;
-  color: var(--codraw-muted);
+  color: var(--repogram-muted);
   font-size: 11px;
   font-variant-numeric: tabular-nums;
   text-align: center;
@@ -853,11 +853,11 @@ select:focus-visible,
   flex-wrap: wrap;
   gap: 6px 12px;
   padding: 6px 8px;
-  color: var(--codraw-muted);
-  background: var(--codraw-surface-raised);
-  border: 1px solid var(--codraw-border);
-  border-radius: var(--codraw-radius);
-  box-shadow: var(--codraw-shadow);
+  color: var(--repogram-muted);
+  background: var(--repogram-surface-raised);
+  border: 1px solid var(--repogram-border);
+  border-radius: var(--repogram-radius);
+  box-shadow: var(--repogram-shadow);
   font-size: 11px;
 }
 
@@ -871,15 +871,15 @@ select:focus-visible,
 .legend-swatch {
   width: 14px;
   height: 10px;
-  background: var(--codraw-node-bg);
-  border: 1px solid var(--codraw-node-border);
+  background: var(--repogram-node-bg);
+  border: 1px solid var(--repogram-node-border);
   border-radius: 2px;
 }
 
 .legend-line {
   width: 18px;
   height: 0;
-  border-top: 2px solid var(--codraw-edge);
+  border-top: 2px solid var(--repogram-edge);
 }
 
 .legend-line--inferred {
@@ -900,9 +900,9 @@ select:focus-visible,
   min-height: 0;
   grid-template-rows: auto minmax(0, 1fr);
   overflow: hidden;
-  background: var(--codraw-surface);
-  border-left: 1px solid var(--codraw-border);
-  transition: transform var(--codraw-transition), visibility var(--codraw-transition);
+  background: var(--repogram-surface);
+  border-left: 1px solid var(--repogram-border);
+  transition: transform var(--repogram-transition), visibility var(--repogram-transition);
 }
 
 .is-details-closed > .details-panel,
@@ -917,7 +917,7 @@ select:focus-visible,
   justify-content: space-between;
   gap: 8px;
   padding: 7px 10px;
-  border-bottom: 1px solid var(--codraw-border);
+  border-bottom: 1px solid var(--repogram-border);
 }
 
 .details-panel > h2,
@@ -927,7 +927,7 @@ select:focus-visible,
   padding: 11px 10px 8px;
   margin: 0;
   overflow: hidden;
-  border-bottom: 1px solid var(--codraw-border);
+  border-bottom: 1px solid var(--repogram-border);
   font-size: 13px;
   font-weight: 600;
   text-overflow: ellipsis;
@@ -971,7 +971,7 @@ select:focus-visible,
 
 .details-content h3 {
   margin: 18px 0 8px;
-  color: var(--codraw-foreground);
+  color: var(--repogram-foreground);
   font-size: 12px;
   font-weight: 600;
 }
@@ -986,7 +986,7 @@ select:focus-visible,
   min-height: 20px;
   align-items: center;
   padding: 2px 7px;
-  color: var(--vscode-badge-foreground, var(--codraw-foreground));
+  color: var(--vscode-badge-foreground, var(--repogram-foreground));
   background: var(--vscode-badge-background, rgba(127, 127, 127, 0.25));
   border-radius: 10px;
   font-size: 10px;
@@ -997,17 +997,17 @@ select:focus-visible,
    where it would be one more thing competing with the tables. */
 .details-content p.detail-note {
   padding: 7px 9px;
-  border-left: 2px solid var(--codraw-warning);
-  background: var(--codraw-group-bg);
-  border-radius: 0 var(--codraw-radius) var(--codraw-radius) 0;
-  color: var(--codraw-muted);
+  border-left: 2px solid var(--repogram-warning);
+  background: var(--repogram-group-bg);
+  border-radius: 0 var(--repogram-radius) var(--repogram-radius) 0;
+  color: var(--repogram-muted);
 }
 
 .primary-button,
 .relation-button {
-  min-height: var(--codraw-control-height);
-  color: var(--codraw-button-fg);
-  background: var(--codraw-button-bg);
+  min-height: var(--repogram-control-height);
+  color: var(--repogram-button-fg);
+  background: var(--repogram-button-bg);
   border: 1px solid transparent;
   border-radius: 4px;
   cursor: pointer;
@@ -1019,12 +1019,12 @@ select:focus-visible,
 }
 
 .primary-button:hover {
-  background: var(--codraw-button-hover);
+  background: var(--repogram-button-hover);
 }
 
 .primary-button:focus-visible,
 .relation-button:focus-visible {
-  outline: 1px solid var(--codraw-focus);
+  outline: 1px solid var(--repogram-focus);
   outline-offset: 2px;
 }
 
@@ -1037,8 +1037,8 @@ select:focus-visible,
   width: 100%;
   padding: 6px 8px;
   overflow: hidden;
-  color: var(--codraw-foreground);
-  background: var(--codraw-bg);
+  color: var(--repogram-foreground);
+  background: var(--repogram-bg);
   border-color: transparent;
   text-align: left;
   text-overflow: ellipsis;
@@ -1046,20 +1046,20 @@ select:focus-visible,
 }
 
 .relation-button:hover {
-  background: var(--codraw-surface-hover);
-  border-color: var(--codraw-border);
+  background: var(--repogram-surface-hover);
+  border-color: var(--repogram-border);
 }
 
 .diagnostic-list > li {
   padding: 6px 7px;
   overflow-wrap: anywhere;
-  background: var(--codraw-bg);
-  border-left: 2px solid var(--codraw-warning);
+  background: var(--repogram-bg);
+  border-left: 2px solid var(--repogram-warning);
   border-radius: 2px;
 }
 
 .diagnostic-list code {
-  color: var(--codraw-warning);
+  color: var(--repogram-warning);
   font-family: var(--vscode-editor-font-family, monospace);
   font-size: 11px;
 }
@@ -1076,7 +1076,7 @@ select:focus-visible,
   min-height: 100%;
   place-content: center;
   padding: 24px;
-  color: var(--codraw-muted);
+  color: var(--repogram-muted);
   text-align: center;
 }
 
@@ -1088,12 +1088,12 @@ select:focus-visible,
 .details-section + .details-section {
   padding-top: 14px;
   margin-top: 14px;
-  border-top: 1px solid var(--codraw-border);
+  border-top: 1px solid var(--repogram-border);
 }
 
 .details-section__title {
   margin: 0 0 8px;
-  color: var(--codraw-muted);
+  color: var(--repogram-muted);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -1122,7 +1122,7 @@ select:focus-visible,
 .details-path,
 .source-location,
 .code-text {
-  color: var(--codraw-muted);
+  color: var(--repogram-muted);
   font-family: var(--vscode-editor-font-family, ui-monospace, SFMono-Regular, Menlo, monospace);
   font-size: var(--vscode-editor-font-size, 12px);
 }
@@ -1137,7 +1137,7 @@ select:focus-visible,
 
 .metadata-list dt,
 .details-list dt {
-  color: var(--codraw-muted);
+  color: var(--repogram-muted);
 }
 
 .metadata-list dd,
@@ -1165,7 +1165,7 @@ select:focus-visible,
   gap: 7px;
   min-width: 0;
   padding: 6px 7px;
-  background: var(--codraw-bg);
+  background: var(--repogram-bg);
   border: 1px solid transparent;
   border-radius: 4px;
 }
@@ -1179,12 +1179,12 @@ button.relation-item {
 
 .relation-item:hover,
 .relation-item:focus-within {
-  background: var(--codraw-surface-hover);
-  border-color: var(--codraw-border);
+  background: var(--repogram-surface-hover);
+  border-color: var(--repogram-border);
 }
 
 .relation-direction {
-  color: var(--codraw-muted);
+  color: var(--repogram-muted);
   font-family: var(--vscode-editor-font-family, monospace);
 }
 
@@ -1204,7 +1204,7 @@ button.relation-item {
   align-items: center;
   justify-content: center;
   padding: 2px 7px;
-  color: var(--vscode-badge-foreground, var(--codraw-foreground));
+  color: var(--vscode-badge-foreground, var(--repogram-foreground));
   background: var(--vscode-badge-background, rgba(127, 127, 127, 0.25));
   border: 1px solid transparent;
   border-radius: 10px;
@@ -1215,14 +1215,14 @@ button.relation-item {
 
 .confidence-badge--exact,
 .badge--success {
-  color: var(--codraw-success);
+  color: var(--repogram-success);
   border-color: currentColor;
   background: transparent;
 }
 
 .confidence-badge--inferred,
 .badge--warning {
-  color: var(--codraw-warning);
+  color: var(--repogram-warning);
   border-color: currentColor;
   background: transparent;
   border-style: dashed;
@@ -1230,7 +1230,7 @@ button.relation-item {
 
 .confidence-badge--unresolved,
 .badge--error {
-  color: var(--codraw-error);
+  color: var(--repogram-error);
   border-color: currentColor;
   background: transparent;
   border-style: dotted;
@@ -1247,13 +1247,13 @@ button.relation-item {
 .details-table td {
   padding: 5px 6px;
   overflow-wrap: anywhere;
-  border-bottom: 1px solid var(--codraw-border);
+  border-bottom: 1px solid var(--repogram-border);
   text-align: left;
   vertical-align: top;
 }
 
 .details-table th {
-  color: var(--codraw-muted);
+  color: var(--repogram-muted);
   font-weight: 600;
 }
 
@@ -1269,14 +1269,14 @@ button.relation-item {
  * anything stronger competes with the nodes standing inside it.
  */
 .group-frame {
-  fill: var(--codraw-group-bg);
-  stroke: var(--codraw-border);
+  fill: var(--repogram-group-bg);
+  stroke: var(--repogram-border);
   stroke-width: 1;
   vector-effect: non-scaling-stroke;
 }
 
 .group-label {
-  fill: var(--codraw-muted);
+  fill: var(--repogram-muted);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -1288,7 +1288,7 @@ button.relation-item {
    scale while member-to-member boundary crossings stay available on demand. */
 .group-edge > path {
   fill: none;
-  stroke: color-mix(in srgb, var(--codraw-edge-active) 58%, var(--codraw-edge));
+  stroke: color-mix(in srgb, var(--repogram-edge-active) 58%, var(--repogram-edge));
   stroke-width: 2.25;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -1297,14 +1297,14 @@ button.relation-item {
 }
 
 .group-edge-badge rect {
-  fill: var(--codraw-surface-raised);
-  stroke: color-mix(in srgb, var(--codraw-edge-active) 58%, var(--codraw-border));
+  fill: var(--repogram-surface-raised);
+  stroke: color-mix(in srgb, var(--repogram-edge-active) 58%, var(--repogram-border));
   stroke-width: 1;
   vector-effect: non-scaling-stroke;
 }
 
 .group-edge-badge text {
-  fill: var(--codraw-foreground);
+  fill: var(--repogram-foreground);
   font-size: 10px;
   font-weight: 700;
   text-anchor: middle;
@@ -1314,8 +1314,8 @@ button.relation-item {
 /* Native SVG graph language */
 .graph-cluster .cluster-surface,
 .graph-group .group-surface {
-  fill: var(--codraw-group-bg);
-  stroke: var(--codraw-border);
+  fill: var(--repogram-group-bg);
+  stroke: var(--repogram-border);
   stroke-width: 1;
   stroke-dasharray: 4 4;
   vector-effect: non-scaling-stroke;
@@ -1323,7 +1323,7 @@ button.relation-item {
 
 .cluster-label,
 .group-label {
-  fill: var(--codraw-muted);
+  fill: var(--repogram-muted);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.03em;
@@ -1334,17 +1334,17 @@ path.graph-edge,
 .graph-edge > path,
 .graph-edge .edge-path {
   fill: none;
-  stroke: var(--codraw-edge);
+  stroke: var(--repogram-edge);
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.5;
   vector-effect: non-scaling-stroke;
-  transition: opacity var(--codraw-transition), stroke var(--codraw-transition), stroke-width var(--codraw-transition);
+  transition: opacity var(--repogram-transition), stroke var(--repogram-transition), stroke-width var(--repogram-transition);
 }
 
 .graph-edge {
   opacity: 0.72;
-  transition: opacity var(--codraw-transition);
+  transition: opacity var(--repogram-transition);
 }
 
 .graph-edge .edge-hit-area,
@@ -1373,7 +1373,7 @@ path.graph-edge.is-selected {
 path.graph-edge:hover,
 path.graph-edge.is-highlighted,
 path.graph-edge.is-selected {
-  stroke: var(--codraw-edge-active);
+  stroke: var(--repogram-edge-active);
   stroke-width: 2.5;
 }
 
@@ -1449,12 +1449,12 @@ path.graph-edge.is-selected {
 
 /* The node the wash leads to, and the count those faded lines stand for. */
 .graph-node.is-ambient .node-background {
-  stroke: var(--codraw-warning);
+  stroke: var(--repogram-warning);
   stroke-dasharray: none;
 }
 
 .node-references {
-  fill: var(--codraw-muted);
+  fill: var(--repogram-muted);
   font-size: 10px;
   font-weight: 600;
   text-anchor: end;
@@ -1486,7 +1486,7 @@ path.graph-edge[data-confidence="inferred"] {
 .graph-edge[data-confidence="unresolved"] > path:not(.edge-hit-area),
 path.graph-edge.confidence-unresolved,
 path.graph-edge[data-confidence="unresolved"] {
-  stroke: var(--codraw-warning);
+  stroke: var(--repogram-warning);
   stroke-dasharray: 2 4;
   opacity: 0.56;
 }
@@ -1502,18 +1502,18 @@ path.graph-edge[data-confidence="unresolved"] {
  * a project is legible before any single name is.
  */
 .structure-tree {
-  --codraw-tree-scale: 1;
-  --codraw-tree-guide: color-mix(in srgb, var(--codraw-foreground) 30%, transparent);
-  --codraw-tree-folder: var(--codraw-link);
+  --repogram-tree-scale: 1;
+  --repogram-tree-guide: color-mix(in srgb, var(--repogram-foreground) 30%, transparent);
+  --repogram-tree-folder: var(--repogram-link);
 
   position: absolute;
   inset: 0;
   padding: 10px 14px 28px;
   overflow: auto;
-  color: var(--codraw-foreground);
-  background: var(--codraw-bg);
+  color: var(--repogram-foreground);
+  background: var(--repogram-bg);
   font-family: var(--vscode-editor-font-family, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
-  font-size: calc(var(--vscode-editor-font-size, 13px) * var(--codraw-tree-scale));
+  font-size: calc(var(--vscode-editor-font-size, 13px) * var(--repogram-tree-scale));
   /*
    * Tight on purpose. The vertical of a branch is a box-drawing glyph that
    * fills its own line box and no more, so any leading between rows shows up
@@ -1526,7 +1526,7 @@ path.graph-edge[data-confidence="unresolved"] {
 }
 
 .structure-tree:focus-visible {
-  outline: 1px solid var(--codraw-focus);
+  outline: 1px solid var(--repogram-focus);
   outline-offset: -2px;
 }
 
@@ -1549,14 +1549,14 @@ path.graph-edge[data-confidence="unresolved"] {
 
 .tree-guides {
   flex: none;
-  color: var(--codraw-tree-guide);
+  color: var(--repogram-tree-guide);
   white-space: pre;
 }
 
 /*
  * The sprite is a definitions block, never drawn where it sits.
  */
-.codraw-sprite {
+.repogram-sprite {
   position: absolute;
   width: 0;
   height: 0;
@@ -1586,12 +1586,12 @@ path.graph-edge[data-confidence="unresolved"] {
 
 /* The one control on the row, so it takes a pointer's attention when hovered. */
 .tree-twisty {
-  color: var(--codraw-muted);
+  color: var(--repogram-muted);
   border-radius: 3px;
 }
 
 .tree-row:hover .tree-twisty {
-  color: var(--codraw-foreground);
+  color: var(--repogram-foreground);
 }
 
 .tree-icon {
@@ -1605,11 +1605,11 @@ path.graph-edge[data-confidence="unresolved"] {
  * skimming a thousand rows wants from it.
  */
 .tree-row.is-file .tree-icon {
-  color: color-mix(in srgb, var(--codraw-lang, var(--codraw-muted)) 82%, var(--codraw-foreground));
+  color: color-mix(in srgb, var(--repogram-lang, var(--repogram-muted)) 82%, var(--repogram-foreground));
 }
 
 .tree-row.is-folder .tree-icon {
-  color: var(--codraw-tree-folder);
+  color: var(--repogram-tree-folder);
 }
 
 .tree-name {
@@ -1617,26 +1617,26 @@ path.graph-edge[data-confidence="unresolved"] {
 }
 
 .tree-row.is-folder .tree-name {
-  color: var(--codraw-tree-folder);
+  color: var(--repogram-tree-folder);
   font-weight: 600;
 }
 
 .tree-row.is-file .tree-name {
-  color: color-mix(in srgb, var(--codraw-foreground) 88%, transparent);
+  color: color-mix(in srgb, var(--repogram-foreground) 88%, transparent);
 }
 
 /* What a folder is holding — the one thing an indented list does not say. */
 .tree-count {
   flex: none;
   margin-left: 1ch;
-  color: var(--codraw-muted);
+  color: var(--repogram-muted);
   font-size: 0.85em;
   font-variant-numeric: tabular-nums;
   opacity: 0.8;
 }
 
 .tree-row:hover {
-  background: var(--codraw-surface-hover);
+  background: var(--repogram-surface-hover);
 }
 
 /*
@@ -1646,8 +1646,8 @@ path.graph-edge[data-confidence="unresolved"] {
  * against — otherwise the row a reader just clicked is the one they cannot read.
  */
 .tree-row.is-selected {
-  color: var(--vscode-list-activeSelectionForeground, var(--codraw-foreground));
-  background: var(--codraw-surface-active);
+  color: var(--vscode-list-activeSelectionForeground, var(--repogram-foreground));
+  background: var(--repogram-surface-active);
 }
 
 .tree-row.is-selected .tree-name,
@@ -1666,7 +1666,7 @@ path.graph-edge[data-confidence="unresolved"] {
 /* The row the open editor is in. Marked rather than selected, because the
    selection is the reader's and this one moves on its own. */
 .tree-row.is-current {
-  box-shadow: inset 2px 0 0 var(--codraw-success);
+  box-shadow: inset 2px 0 0 var(--repogram-success);
 }
 
 .tree-row.is-current .tree-name {
@@ -1676,19 +1676,19 @@ path.graph-edge[data-confidence="unresolved"] {
 /* The entry that answered the search, as against its folders, which are only
    drawn to say where it is. */
 .tree-row.is-match .tree-name {
-  background: var(--codraw-search);
-  box-shadow: 0 0 0 1px var(--codraw-search-border);
+  background: var(--repogram-search);
+  box-shadow: 0 0 0 1px var(--repogram-search-border);
 }
 
 .tree-row:focus-visible {
-  outline: 1px solid var(--codraw-focus);
+  outline: 1px solid var(--repogram-focus);
   outline-offset: -1px;
 }
 
 .tree-note {
   margin: 10px 0 0;
   padding-left: 1ch;
-  color: var(--codraw-muted);
+  color: var(--repogram-muted);
   font-size: 0.9em;
 }
 
@@ -1705,7 +1705,7 @@ path.graph-edge[data-confidence="unresolved"] {
   width: 9px;
   height: 9px;
   border-radius: 2px;
-  background: var(--codraw-lang, var(--codraw-lang-other));
+  background: var(--repogram-lang, var(--repogram-lang-other));
 }
 
 /* Wide enough that the label swapping between `Collapse` and `Expand` does not
@@ -1716,8 +1716,8 @@ path.graph-edge[data-confidence="unresolved"] {
 
 .edge-label,
 .graph-edge text {
-  fill: var(--codraw-muted);
-  stroke: var(--codraw-bg);
+  fill: var(--repogram-muted);
+  stroke: var(--repogram-bg);
   stroke-linejoin: round;
   stroke-width: 3px;
   paint-order: stroke fill;
@@ -1729,7 +1729,7 @@ path.graph-edge[data-confidence="unresolved"] {
 /* Dense graphs keep their edge labels until a node is selected. */
 .edge-layer.labels-on-demand .graph-edge > text {
   opacity: 0;
-  transition: opacity var(--codraw-transition);
+  transition: opacity var(--repogram-transition);
 }
 
 .edge-layer.labels-on-demand .graph-edge.is-connected > text,
@@ -1747,26 +1747,26 @@ path.graph-edge[data-confidence="unresolved"] {
 .graph-node {
   cursor: pointer;
   outline: none;
-  transition: opacity var(--codraw-transition), filter var(--codraw-transition);
+  transition: opacity var(--repogram-transition), filter var(--repogram-transition);
 }
 
 .graph-node .node-surface,
 .graph-node .node-box,
 .graph-node > rect:first-child,
 .graph-node .node-background {
-  fill: var(--codraw-node-bg);
-  stroke: var(--codraw-node-border);
+  fill: var(--repogram-node-bg);
+  stroke: var(--repogram-node-border);
   stroke-width: 1.25;
   vector-effect: non-scaling-stroke;
-  transition: fill var(--codraw-transition), stroke var(--codraw-transition), stroke-width var(--codraw-transition);
+  transition: fill var(--repogram-transition), stroke var(--repogram-transition), stroke-width var(--repogram-transition);
 }
 
 .graph-node:hover .node-surface,
 .graph-node:hover .node-box,
 .graph-node:hover > rect:first-child,
 .graph-node:hover .node-background {
-  fill: var(--codraw-surface-hover);
-  stroke: var(--codraw-edge-active);
+  fill: var(--repogram-surface-hover);
+  stroke: var(--repogram-edge-active);
 }
 
 /* Flowchart semantics use familiar silhouettes without inventing runtime
@@ -1774,33 +1774,33 @@ path.graph-edge[data-confidence="unresolved"] {
    branches are diamonds. A declared route is a step like any other and is drawn
    as a card — it is tinted, because it is where a reader enters the flow. */
 .graph-node[data-kind="start"] .node-background {
-  fill: color-mix(in srgb, var(--codraw-info) 12%, var(--codraw-node-bg));
-  stroke: color-mix(in srgb, var(--codraw-info) 60%, var(--codraw-node-border));
+  fill: color-mix(in srgb, var(--repogram-info) 12%, var(--repogram-node-bg));
+  stroke: color-mix(in srgb, var(--repogram-info) 60%, var(--repogram-node-border));
 }
 
 .graph-node[data-kind="start"] .node-header {
-  fill: color-mix(in srgb, var(--codraw-info) 22%, var(--codraw-surface-active));
+  fill: color-mix(in srgb, var(--repogram-info) 22%, var(--repogram-surface-active));
 }
 
 /* "Start here" and "End" are drawn by the diagram, not read out of the source,
    so the dash every inferred node carries is dropped: there is no claim about
    the code to hedge. */
 .graph-node[data-kind="flow-start"] .node-background {
-  fill: color-mix(in srgb, var(--codraw-info) 20%, var(--codraw-node-bg));
-  stroke: var(--codraw-info);
+  fill: color-mix(in srgb, var(--repogram-info) 20%, var(--repogram-node-bg));
+  stroke: var(--repogram-info);
   stroke-width: 1.75;
   stroke-dasharray: none;
 }
 
 .graph-node[data-kind="flow-end"] .node-background {
-  fill: color-mix(in srgb, var(--codraw-success) 16%, var(--codraw-node-bg));
-  stroke: var(--codraw-success);
+  fill: color-mix(in srgb, var(--repogram-success) 16%, var(--repogram-node-bg));
+  stroke: var(--repogram-success);
   stroke-dasharray: none;
 }
 
 .graph-node[data-kind="decision"] .node-background {
-  fill: color-mix(in srgb, var(--codraw-warning) 16%, var(--codraw-node-bg));
-  stroke: var(--codraw-warning);
+  fill: color-mix(in srgb, var(--repogram-warning) 16%, var(--repogram-node-bg));
+  stroke: var(--repogram-warning);
 }
 
 /* A subject area is a place on a map rather than a table, and a boundary card
@@ -1808,19 +1808,19 @@ path.graph-edge[data-confidence="unresolved"] {
    dashed edge on a boundary card says the same thing the dashed external-action
    card says: what is behind this is not on this canvas. */
 .graph-node[data-kind="subject-area"] .node-background {
-  fill: color-mix(in srgb, var(--codraw-info) 12%, var(--codraw-node-bg));
-  stroke: var(--codraw-info);
+  fill: color-mix(in srgb, var(--repogram-info) 12%, var(--repogram-node-bg));
+  stroke: var(--repogram-info);
   stroke-width: 1.75;
 }
 
 .graph-node[data-kind="area-link"] .node-background {
-  fill: var(--codraw-group-bg);
-  stroke: var(--codraw-info);
+  fill: var(--repogram-group-bg);
+  stroke: var(--repogram-info);
   stroke-dasharray: 5 3;
 }
 
 .graph-node[data-kind="external-action"] .node-background {
-  fill: var(--vscode-textBlockQuote-background, var(--codraw-node-bg));
+  fill: var(--vscode-textBlockQuote-background, var(--repogram-node-bg));
   stroke-dasharray: 5 3;
 }
 
@@ -1828,25 +1828,25 @@ path.graph-edge[data-confidence="unresolved"] {
    the door itself, so it carries the same accent as the route above at half the
    strength — enough to read as the way in, not enough to compete with it. */
 .graph-node[data-kind="entry"] .node-background {
-  fill: color-mix(in srgb, var(--codraw-info) 7%, var(--codraw-node-bg));
-  stroke: color-mix(in srgb, var(--codraw-info) 45%, var(--codraw-node-border));
+  fill: color-mix(in srgb, var(--repogram-info) 7%, var(--repogram-node-bg));
+  stroke: color-mix(in srgb, var(--repogram-info) 45%, var(--repogram-node-border));
 }
 
 .graph-node[data-kind="entry"] .node-header {
-  fill: color-mix(in srgb, var(--codraw-info) 12%, var(--codraw-surface-active));
+  fill: color-mix(in srgb, var(--repogram-info) 12%, var(--repogram-surface-active));
 }
 
 /* A card's name sits inside the filled bar across its top, so it is set in the
-   colour that bar was built to carry. `--codraw-foreground` is a colour for the
+   colour that bar was built to carry. `--repogram-foreground` is a colour for the
    canvas behind the cards, and on a light theme it all but disappears against a
    saturated header. */
 .graph-node.is-headed .node-label,
 .graph-node.is-headed .node-references {
-  fill: var(--vscode-list-activeSelectionForeground, var(--codraw-foreground));
+  fill: var(--vscode-list-activeSelectionForeground, var(--repogram-foreground));
 }
 
 .graph-node.is-headed .node-subtitle {
-  fill: color-mix(in srgb, var(--vscode-list-activeSelectionForeground, var(--codraw-foreground)) 70%, transparent);
+  fill: color-mix(in srgb, var(--vscode-list-activeSelectionForeground, var(--repogram-foreground)) 70%, transparent);
 }
 
 
@@ -1866,8 +1866,8 @@ path.graph-edge[data-confidence="unresolved"] {
    rather than left to be read through whatever line crosses behind them. */
 .flow-flow .graph-edge.is-branch > text,
 .graph-edge.is-branch > text {
-  fill: var(--codraw-foreground);
-  stroke: var(--codraw-bg);
+  fill: var(--repogram-foreground);
+  stroke: var(--repogram-bg);
   stroke-width: 5px;
   font-size: 11px;
   font-weight: 700;
@@ -1898,7 +1898,7 @@ path.graph-edge.is-out-of-focus {
 .graph-node.is-current .node-box,
 .graph-node.is-current > rect:first-child,
 .graph-node.is-current .node-background {
-  stroke: var(--codraw-edge-active);
+  stroke: var(--repogram-edge-active);
   stroke-width: 2.5;
 }
 
@@ -1916,8 +1916,8 @@ path.graph-edge.is-out-of-focus {
 .graph-node.search-match .node-box,
 .graph-node.is-search-match .node-background,
 .graph-node.search-match .node-background {
-  fill: var(--codraw-search);
-  stroke: var(--codraw-search-border);
+  fill: var(--repogram-search);
+  stroke: var(--repogram-search-border);
   stroke-width: 2.5;
 }
 
@@ -1929,7 +1929,7 @@ path.graph-edge.is-out-of-focus {
 .graph-node[aria-selected="true"] > rect:first-child,
 .graph-node.is-selected .node-background,
 .graph-node[aria-selected="true"] .node-background {
-  stroke: var(--codraw-focus);
+  stroke: var(--repogram-focus);
   stroke-width: 3;
 }
 
@@ -1940,7 +1940,7 @@ path.graph-edge.is-out-of-focus {
 .graph-node[tabindex="0"]:focus .node-box,
 .graph-node:focus-visible .node-background,
 .graph-node[tabindex="0"]:focus .node-background {
-  stroke: var(--codraw-focus);
+  stroke: var(--repogram-focus);
   stroke-width: 3;
 }
 
@@ -1952,7 +1952,7 @@ path.graph-edge.is-out-of-focus {
 }
 
 .graph-node:focus-visible .node-focus-ring {
-  stroke: var(--codraw-focus);
+  stroke: var(--repogram-focus);
 }
 
 .graph-node.confidence-inferred .node-surface,
@@ -1970,13 +1970,13 @@ path.graph-edge.is-out-of-focus {
 .graph-node[data-confidence="unresolved"] .node-box,
 .graph-node.confidence-unresolved .node-background,
 .graph-node[data-confidence="unresolved"] .node-background {
-  stroke: var(--codraw-warning);
+  stroke: var(--repogram-warning);
   stroke-dasharray: 2 3;
 }
 
 .node-label,
 .graph-node .label {
-  fill: var(--codraw-foreground);
+  fill: var(--repogram-foreground);
   font-family: var(--vscode-font-family, sans-serif);
   font-size: 12px;
   font-weight: 600;
@@ -1987,7 +1987,7 @@ path.graph-edge.is-out-of-focus {
 .node-subtitle,
 .node-meta,
 .graph-node .subtitle {
-  fill: var(--codraw-muted);
+  fill: var(--repogram-muted);
   font-family: var(--vscode-font-family, sans-serif);
   font-size: 10px;
   pointer-events: none;
@@ -1996,44 +1996,44 @@ path.graph-edge.is-out-of-focus {
 
 .node-icon,
 .node-accent {
-  fill: var(--codraw-edge-active);
-  color: var(--codraw-edge-active);
+  fill: var(--repogram-edge-active);
+  color: var(--repogram-edge-active);
   pointer-events: none;
 }
 
 .graph-node.node--external .node-surface,
 .graph-node[data-kind="external"] .node-surface {
-  fill: var(--vscode-textBlockQuote-background, var(--codraw-node-bg));
+  fill: var(--vscode-textBlockQuote-background, var(--repogram-node-bg));
   stroke-dasharray: 5 3;
 }
 
 .graph-node.node--controller .node-accent,
 .graph-node[data-kind="controller"] .node-accent {
-  fill: var(--codraw-info);
+  fill: var(--repogram-info);
 }
 
 .graph-node.node--service .node-accent,
 .graph-node[data-kind="service"] .node-accent {
-  fill: var(--codraw-success);
+  fill: var(--repogram-success);
 }
 
 .graph-node.node--repository .node-accent,
 .graph-node[data-kind="repository"] .node-accent,
 .graph-node.node--database .node-accent,
 .graph-node[data-kind="database"] .node-accent {
-  fill: var(--codraw-warning);
+  fill: var(--repogram-warning);
 }
 
 .node-port {
-  fill: var(--codraw-bg);
-  stroke: var(--codraw-node-border);
+  fill: var(--repogram-bg);
+  stroke: var(--repogram-node-border);
   stroke-width: 1.5;
   vector-effect: non-scaling-stroke;
 }
 
 .graph-node:hover .node-port,
 .graph-node.is-selected .node-port {
-  stroke: var(--codraw-focus);
+  stroke: var(--repogram-focus);
 }
 
 /* Database table nodes */
@@ -2043,7 +2043,7 @@ path.graph-edge.is-out-of-focus {
 .graph-node[data-kind="collection"] .table-header,
 .graph-node[data-kind="embedded"] .table-header,
 .graph-node .node-header {
-  fill: var(--codraw-surface-active);
+  fill: var(--repogram-surface-active);
   stroke: none;
   pointer-events: none;
 }
@@ -2053,7 +2053,7 @@ path.graph-edge.is-out-of-focus {
 .graph-node[data-kind="entity"] .table-title,
 .graph-node[data-kind="collection"] .table-title,
 .graph-node[data-kind="embedded"] .table-title {
-  fill: var(--vscode-list-activeSelectionForeground, var(--codraw-foreground));
+  fill: var(--vscode-list-activeSelectionForeground, var(--repogram-foreground));
   font-size: 12px;
   font-weight: 700;
   pointer-events: none;
@@ -2072,7 +2072,7 @@ path.graph-edge.is-out-of-focus {
 .graph-node[data-kind="entity"] .column-row:hover,
 .graph-node[data-kind="collection"] .column-row:hover,
 .graph-node[data-kind="embedded"] .column-row:hover {
-  fill: var(--codraw-surface-hover);
+  fill: var(--repogram-surface-hover);
 }
 
 /*
@@ -2089,12 +2089,12 @@ path.graph-edge.is-out-of-focus {
 
 .graph-node[data-kind="embedded"] .node-header,
 .graph-node[data-kind="embedded"] .table-header {
-  fill: var(--codraw-surface-raised);
+  fill: var(--repogram-surface-raised);
 }
 
 .graph-node[data-kind="embedded"] .node-label,
 .graph-node[data-kind="embedded"] .table-title {
-  fill: var(--codraw-foreground);
+  fill: var(--repogram-foreground);
 }
 
 /*
@@ -2109,19 +2109,19 @@ path.graph-edge.is-out-of-focus {
 .column-separator,
 .table-separator,
 .field-separator {
-  stroke: var(--codraw-border);
+  stroke: var(--repogram-border);
   stroke-width: 1;
   vector-effect: non-scaling-stroke;
 }
 
 .column-name {
-  fill: var(--codraw-foreground);
+  fill: var(--repogram-foreground);
   font-family: var(--vscode-editor-font-family, monospace);
   font-size: 10px;
 }
 
 .field-label {
-  fill: var(--codraw-foreground);
+  fill: var(--repogram-foreground);
   font-family: var(--vscode-editor-font-family, monospace);
   font-size: 10px;
   pointer-events: none;
@@ -2129,13 +2129,13 @@ path.graph-edge.is-out-of-focus {
 }
 
 .field-more {
-  fill: var(--codraw-muted);
+  fill: var(--repogram-muted);
   font-style: italic;
 }
 
 .column-type,
 .column-constraint {
-  fill: var(--codraw-muted);
+  fill: var(--repogram-muted);
   font-family: var(--vscode-editor-font-family, monospace);
   font-size: 9px;
   text-anchor: end;
@@ -2143,7 +2143,7 @@ path.graph-edge.is-out-of-focus {
 
 .column-key,
 .key-badge {
-  fill: var(--codraw-warning);
+  fill: var(--repogram-warning);
   font-size: 8px;
   font-weight: 700;
   text-anchor: middle;
@@ -2151,7 +2151,7 @@ path.graph-edge.is-out-of-focus {
 
 .foreign-key .column-key,
 .key-badge--foreign {
-  fill: var(--codraw-info);
+  fill: var(--repogram-info);
 }
 
 /* Loading, empty, and error surfaces */
@@ -2166,8 +2166,8 @@ path.graph-edge.is-out-of-focus {
   place-content: center;
   justify-items: center;
   padding: 28px;
-  color: var(--codraw-muted);
-  background: var(--codraw-bg);
+  color: var(--repogram-muted);
+  background: var(--repogram-bg);
   text-align: center;
 }
 
@@ -2180,7 +2180,7 @@ path.graph-edge.is-out-of-focus {
 
 .state-title {
   margin: 12px 0 0;
-  color: var(--codraw-foreground);
+  color: var(--repogram-foreground);
   font-size: 14px;
   font-weight: 600;
 }
@@ -2204,31 +2204,31 @@ path.graph-edge.is-out-of-focus {
   width: 44px;
   height: 44px;
   place-items: center;
-  color: var(--codraw-muted);
-  border: 1px solid var(--codraw-border);
+  color: var(--repogram-muted);
+  border: 1px solid var(--repogram-border);
   border-radius: 50%;
   font-size: 20px;
 }
 
 .error-state .state-icon,
 .state-view--error .state-icon {
-  color: var(--codraw-error);
+  color: var(--repogram-error);
   border-color: currentColor;
 }
 
 .empty-state .state-icon,
 .state-view--empty .state-icon {
-  color: var(--codraw-info);
+  color: var(--repogram-info);
 }
 
 .loading-spinner,
 .loading-indicator {
   width: 28px;
   height: 28px;
-  border: 3px solid var(--codraw-border);
-  border-top-color: var(--codraw-focus);
+  border: 3px solid var(--repogram-border);
+  border-top-color: var(--repogram-focus);
   border-radius: 50%;
-  animation: codraw-spin 800ms linear infinite;
+  animation: repogram-spin 800ms linear infinite;
 }
 
 .state-view p,
@@ -2251,13 +2251,13 @@ path.graph-edge.is-out-of-focus {
 .state-view.is-error,
 .state-view[data-state="error"],
 .state-view[data-kind="error"] {
-  color: var(--codraw-error);
+  color: var(--repogram-error);
 }
 
 .state-view.is-error p,
 .state-view[data-state="error"] p,
 .state-view[data-kind="error"] p {
-  color: var(--codraw-foreground);
+  color: var(--repogram-foreground);
 }
 
 .progress-track {
@@ -2265,29 +2265,29 @@ path.graph-edge.is-out-of-focus {
   height: 3px;
   margin-top: 14px;
   overflow: hidden;
-  background: var(--vscode-progressBar-background, var(--codraw-border));
+  background: var(--vscode-progressBar-background, var(--repogram-border));
   border-radius: 2px;
 }
 
 .progress-value {
   width: var(--progress, 0%);
   height: 100%;
-  background: var(--codraw-focus);
+  background: var(--repogram-focus);
   transition: width 180ms ease;
 }
 
 .progress-track.is-indeterminate .progress-value {
   width: 35%;
-  animation: codraw-progress 1.2s ease-in-out infinite;
+  animation: repogram-progress 1.2s ease-in-out infinite;
 }
 
-@keyframes codraw-spin {
+@keyframes repogram-spin {
   to {
     transform: rotate(360deg);
   }
 }
 
-@keyframes codraw-progress {
+@keyframes repogram-progress {
   0% {
     transform: translateX(-120%);
   }
@@ -2304,13 +2304,13 @@ path.graph-edge.is-out-of-focus {
   z-index: 20;
   display: flex;
   min-width: 0;
-  min-height: var(--codraw-footer-height);
+  min-height: var(--repogram-footer-height);
   align-items: center;
   gap: 12px;
   padding: 2px 9px;
-  color: var(--vscode-statusBar-foreground, var(--codraw-foreground));
-  background: var(--vscode-statusBar-background, var(--codraw-surface));
-  border-top: 1px solid var(--codraw-border);
+  color: var(--vscode-statusBar-foreground, var(--repogram-foreground));
+  background: var(--vscode-statusBar-background, var(--repogram-surface));
+  border-top: 1px solid var(--repogram-border);
   font-size: 11px;
 }
 
@@ -2349,7 +2349,7 @@ path.graph-edge.is-out-of-focus {
 #technology-list {
   margin-left: auto;
   overflow: hidden;
-  color: var(--codraw-muted);
+  color: var(--repogram-muted);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -2358,32 +2358,32 @@ path.graph-edge.is-out-of-focus {
   width: 7px;
   height: 7px;
   flex: 0 0 7px;
-  background: var(--codraw-muted);
+  background: var(--repogram-muted);
   border-radius: 50%;
 }
 
 .status-item.is-ready .status-dot,
 .status-dot--success {
-  background: var(--codraw-success);
+  background: var(--repogram-success);
 }
 
 .status-item.is-loading .status-dot,
 .status-dot--loading {
-  background: var(--codraw-info);
-  animation: codraw-pulse 1.2s ease-in-out infinite;
+  background: var(--repogram-info);
+  animation: repogram-pulse 1.2s ease-in-out infinite;
 }
 
 .status-item.is-warning .status-dot,
 .status-dot--warning {
-  background: var(--codraw-warning);
+  background: var(--repogram-warning);
 }
 
 .status-item.is-error .status-dot,
 .status-dot--error {
-  background: var(--codraw-error);
+  background: var(--repogram-error);
 }
 
-@keyframes codraw-pulse {
+@keyframes repogram-pulse {
   50% {
     opacity: 0.35;
   }
@@ -2392,7 +2392,7 @@ path.graph-edge.is-out-of-focus {
 /* Explicit stacked mode for narrow panels or user preference. */
 .workspace.is-stacked,
 .main-content.is-stacked,
-.codraw-app.layout-stacked .workspace {
+.repogram-app.layout-stacked .workspace {
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: minmax(240px, 1fr) minmax(170px, 38vh);
 }
@@ -2401,8 +2401,8 @@ path.graph-edge.is-out-of-focus {
 .workspace.is-stacked .details,
 .main-content.is-stacked .details-panel,
 .main-content.is-stacked .details,
-.codraw-app.layout-stacked .details-panel {
-  border-top: 1px solid var(--codraw-border);
+.repogram-app.layout-stacked .details-panel {
+  border-top: 1px solid var(--repogram-border);
   border-left: 0;
 }
 
@@ -2456,7 +2456,7 @@ path.graph-edge.is-out-of-focus {
     position: absolute;
     inset: 0 0 0 auto;
     width: min(88vw, 370px);
-    box-shadow: var(--codraw-shadow);
+    box-shadow: var(--repogram-shadow);
     transform: translateX(100%);
     visibility: hidden;
   }
@@ -2485,7 +2485,7 @@ path.graph-edge.is-out-of-focus {
     background: rgba(0, 0, 0, 0.35);
     opacity: 0;
     pointer-events: none;
-    transition: opacity var(--codraw-transition);
+    transition: opacity var(--repogram-transition);
   }
 
   .details-backdrop.is-visible,
@@ -2499,7 +2499,7 @@ path.graph-edge.is-out-of-focus {
 /* On very small panels, the details drawer becomes a bottom sheet. */
 @media (max-width: 560px) {
   :root {
-    --codraw-control-height: 32px;
+    --repogram-control-height: 32px;
   }
 
   .app-header,
@@ -2543,7 +2543,7 @@ path.graph-edge.is-out-of-focus {
     inset: auto 0 0;
     width: 100%;
     height: min(48vh, 420px);
-    border-top: 1px solid var(--codraw-border);
+    border-top: 1px solid var(--repogram-border);
     border-left: 0;
     transform: translateY(100%);
   }
@@ -2596,7 +2596,7 @@ path.graph-edge.is-out-of-focus {
     inset: auto;
     width: auto;
     height: auto;
-    border-top: 1px solid var(--codraw-border);
+    border-top: 1px solid var(--repogram-border);
     border-left: 0;
     box-shadow: none;
     transform: none;
@@ -2618,10 +2618,10 @@ path.graph-edge.is-out-of-focus {
 /* VS Code high-contrast themes */
 body.vscode-high-contrast,
 body.vscode-high-contrast-light {
-  --codraw-border: var(--vscode-contrastBorder, currentColor);
-  --codraw-node-border: var(--vscode-contrastBorder, currentColor);
-  --codraw-grid-dot: transparent;
-  --codraw-shadow: none;
+  --repogram-border: var(--vscode-contrastBorder, currentColor);
+  --repogram-node-border: var(--vscode-contrastBorder, currentColor);
+  --repogram-grid-dot: transparent;
+  --repogram-shadow: none;
 }
 
 body.vscode-high-contrast .button,
@@ -2649,7 +2649,7 @@ body.vscode-high-contrast .tree-row.is-file .tree-name,
 body.vscode-high-contrast-light .tree-row.is-file .tree-name,
 body.vscode-high-contrast .tree-row.is-file .tree-icon,
 body.vscode-high-contrast-light .tree-row.is-file .tree-icon {
-  color: var(--codraw-foreground);
+  color: var(--repogram-foreground);
 }
 
 body.vscode-high-contrast .tree-row.is-folder .tree-name,
@@ -2716,7 +2716,7 @@ body.vscode-high-contrast-light .graph-node.is-search-match .node-surface {
 
   .loading-spinner,
   .loading-indicator {
-    border-color: var(--codraw-focus);
+    border-color: var(--repogram-focus);
     border-right-color: transparent;
   }
 }
@@ -2734,19 +2734,19 @@ body.vscode-high-contrast-light .graph-node.is-search-match .node-surface {
  * in. Flat on purpose — every surface is a theme variable, no depth cues.
  */
 .board-view {
-  --codraw-tree-scale: 1;
+  --repogram-tree-scale: 1;
 
   position: absolute;
   inset: 0;
   padding: 16px;
   overflow: auto;
-  color: var(--codraw-foreground);
-  background: var(--codraw-bg);
-  font-size: calc(var(--vscode-font-size, 13px) * var(--codraw-tree-scale));
+  color: var(--repogram-foreground);
+  background: var(--repogram-bg);
+  font-size: calc(var(--vscode-font-size, 13px) * var(--repogram-tree-scale));
 }
 
 .board-view:focus-visible {
-  outline: 1px solid var(--codraw-focus);
+  outline: 1px solid var(--repogram-focus);
   outline-offset: -2px;
 }
 
@@ -2760,7 +2760,7 @@ body.vscode-high-contrast-light .graph-node.is-search-match .node-surface {
 .dash-card {
   border: 1px solid var(--vscode-panel-border, rgba(127, 127, 127, 0.35));
   border-radius: 4px;
-  background: var(--vscode-editor-background, var(--codraw-bg));
+  background: var(--vscode-editor-background, var(--repogram-bg));
   padding: 12px;
 }
 
@@ -2774,7 +2774,7 @@ body.vscode-high-contrast-light .graph-node.is-search-match .node-surface {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--vscode-descriptionForeground, var(--codraw-muted));
+  color: var(--vscode-descriptionForeground, var(--repogram-muted));
 }
 
 .dash-card__head {
@@ -2791,7 +2791,7 @@ body.vscode-high-contrast-light .graph-node.is-search-match .node-surface {
 .dash-card__count {
   margin-left: auto;
   font-size: 11px;
-  color: var(--vscode-descriptionForeground, var(--codraw-muted));
+  color: var(--vscode-descriptionForeground, var(--repogram-muted));
   font-variant-numeric: tabular-nums;
 }
 
@@ -2803,7 +2803,7 @@ body.vscode-high-contrast-light .graph-node.is-search-match .node-surface {
 
 .dash-kind {
   margin: 0 0 12px;
-  color: var(--vscode-descriptionForeground, var(--codraw-muted));
+  color: var(--vscode-descriptionForeground, var(--repogram-muted));
 }
 
 .dash-metrics {
@@ -2821,7 +2821,7 @@ body.vscode-high-contrast-light .graph-node.is-search-match .node-surface {
 .dash-metric span {
   display: block;
   font-size: 11px;
-  color: var(--vscode-descriptionForeground, var(--codraw-muted));
+  color: var(--vscode-descriptionForeground, var(--repogram-muted));
 }
 
 .dash-tech {
@@ -2849,12 +2849,12 @@ body.vscode-high-contrast-light .graph-node.is-search-match .node-surface {
 }
 
 .dash-row.is-selected {
-  background: var(--vscode-list-activeSelectionBackground, var(--codraw-focus));
+  background: var(--vscode-list-activeSelectionBackground, var(--repogram-focus));
   color: var(--vscode-list-activeSelectionForeground, #fff);
 }
 
 .dash-row.is-current {
-  outline: 1px solid var(--vscode-focusBorder, var(--codraw-focus));
+  outline: 1px solid var(--vscode-focusBorder, var(--repogram-focus));
   outline-offset: -1px;
 }
 
@@ -2863,7 +2863,7 @@ body.vscode-high-contrast-light .graph-node.is-search-match .node-surface {
   width: 8px;
   height: 8px;
   border-radius: 2px;
-  background: var(--codraw-lang, currentColor);
+  background: var(--repogram-lang, currentColor);
 }
 
 .dash-row .label {
@@ -2890,7 +2890,7 @@ body.vscode-high-contrast-light .graph-node.is-search-match .node-surface {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: var(--vscode-descriptionForeground, var(--codraw-muted));
+  color: var(--vscode-descriptionForeground, var(--repogram-muted));
 }
 
 .dash-row .label .name {
@@ -2905,7 +2905,7 @@ body.vscode-high-contrast-light .graph-node.is-search-match .node-surface {
 
 .dash-row .count {
   margin-left: auto;
-  color: var(--vscode-descriptionForeground, var(--codraw-muted));
+  color: var(--vscode-descriptionForeground, var(--repogram-muted));
   font-variant-numeric: tabular-nums;
 }
 
@@ -2917,7 +2917,7 @@ body.vscode-high-contrast-light .graph-node.is-search-match .node-surface {
   margin-left: auto;
   padding-left: 8px;
   font-size: 11px;
-  color: var(--vscode-descriptionForeground, var(--codraw-muted));
+  color: var(--vscode-descriptionForeground, var(--repogram-muted));
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
@@ -2947,7 +2947,7 @@ body.vscode-high-contrast-light .graph-node.is-search-match .node-surface {
 
 .dash-empty {
   margin: 0;
-  color: var(--vscode-descriptionForeground, var(--codraw-muted));
+  color: var(--vscode-descriptionForeground, var(--repogram-muted));
 }
 
 /* What the repository is made of, drawn as one length split by language. */
@@ -2967,7 +2967,7 @@ body.vscode-high-contrast-light .graph-node.is-search-match .node-surface {
 .dash-bar__part {
   display: block;
   min-width: 2px;
-  background: var(--codraw-lang, currentColor);
+  background: var(--repogram-lang, currentColor);
   flex-basis: 0;
 }
 
@@ -2977,7 +2977,7 @@ body.vscode-high-contrast-light .graph-node.is-search-match .node-surface {
   gap: 4px 14px;
   margin-top: 6px;
   font-size: 11px;
-  color: var(--vscode-descriptionForeground, var(--codraw-muted));
+  color: var(--vscode-descriptionForeground, var(--repogram-muted));
 }
 
 .dash-bar__key {
@@ -2990,7 +2990,7 @@ body.vscode-high-contrast-light .graph-node.is-search-match .node-surface {
   width: 8px;
   height: 8px;
   border-radius: 2px;
-  background: var(--codraw-lang, currentColor);
+  background: var(--repogram-lang, currentColor);
 }
 
 .dash-card-note {
@@ -3015,13 +3015,13 @@ body.vscode-high-contrast-light .graph-node.is-search-match .node-surface {
 .flow-arrow {
   text-align: center;
   line-height: 1;
-  color: var(--vscode-descriptionForeground, var(--codraw-muted));
+  color: var(--vscode-descriptionForeground, var(--repogram-muted));
 }
 
 .flow-more {
   text-align: center;
   font-size: 11px;
-  color: var(--vscode-descriptionForeground, var(--codraw-muted));
+  color: var(--vscode-descriptionForeground, var(--repogram-muted));
 }
 
 .dash-card--files {
@@ -3035,7 +3035,7 @@ body.vscode-high-contrast-light .graph-node.is-search-match .node-surface {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--vscode-descriptionForeground, var(--codraw-muted));
+  color: var(--vscode-descriptionForeground, var(--repogram-muted));
 }
 
 /*
@@ -3073,7 +3073,7 @@ body.vscode-high-contrast-light .graph-node.is-search-match .node-surface {
   letter-spacing: 0.04em;
   text-align: center;
   text-transform: uppercase;
-  color: var(--vscode-descriptionForeground, var(--codraw-muted));
+  color: var(--vscode-descriptionForeground, var(--repogram-muted));
   white-space: nowrap;
 }
 
@@ -3141,7 +3141,7 @@ body.vscode-high-contrast-light .graph-node.is-search-match .node-surface {
 
 .if-chip .if-chip__count {
   margin-left: 6px;
-  color: var(--vscode-descriptionForeground, var(--codraw-muted));
+  color: var(--vscode-descriptionForeground, var(--repogram-muted));
   font-variant-numeric: tabular-nums;
 }
 

@@ -2,8 +2,8 @@ import type { DiagramEdge, DiagramGraph, DiagramNode, SourceRef } from './model'
 
 /** A whole architecture canvas stops reading well around this many modules. */
 export const ARCHITECTURE_MODULE_TARGET = 24;
-export const ARCHITECTURE_AREA_PREFIX = 'codraw-architecture-area:';
-export const ARCHITECTURE_LINK_PREFIX = 'codraw-architecture-link:';
+export const ARCHITECTURE_AREA_PREFIX = 'repogram-architecture-area:';
+export const ARCHITECTURE_LINK_PREFIX = 'repogram-architecture-link:';
 const EXTERNAL_AREA = '__external_packages__';
 
 export interface ArchitectureNeighbour {
@@ -149,7 +149,7 @@ export function architectureOverviewGraph(graph: DiagramGraph, map: Architecture
   const edges = [...aggregate.values()]
     .sort((left, right) => `${left.from}/${left.to}`.localeCompare(`${right.from}/${right.to}`))
     .map((edge): DiagramEdge => ({
-      id: `codraw-architecture-area-edge:${edge.from}--${edge.to}`,
+      id: `repogram-architecture-area-edge:${edge.from}--${edge.to}`,
       from: ARCHITECTURE_AREA_PREFIX + edge.from,
       to: ARCHITECTURE_AREA_PREFIX + edge.to,
       kind: 'area-imports',
@@ -221,7 +221,7 @@ export function architectureAreaGraph(graph: DiagramGraph, map: ArchitectureMap,
     if (!first) continue;
     const count = crossing.edges.length;
     edges.push({
-      id: `codraw-architecture-cross:${crossing.local}--${crossing.other}--${crossing.outgoing ? 'out' : 'in'}`,
+      id: `repogram-architecture-cross:${crossing.local}--${crossing.other}--${crossing.outgoing ? 'out' : 'in'}`,
       from: crossing.outgoing ? crossing.local : ARCHITECTURE_LINK_PREFIX + crossing.other,
       to: crossing.outgoing ? ARCHITECTURE_LINK_PREFIX + crossing.other : crossing.local,
       kind: 'area-boundary',

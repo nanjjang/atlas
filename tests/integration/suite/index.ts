@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import * as vscode from 'vscode';
 
-interface CodrawTestApi {
+interface RepogramTestApi {
   getStatus(): {
     panelOpen: boolean;
     analysisReady: boolean;
@@ -23,25 +23,25 @@ export async function run(): Promise<void> {
 
   // Found by package name rather than by full id, so changing the publisher —
   // which the Marketplace listing decides — does not break the test.
-  const extension = vscode.extensions.all.find((candidate) => candidate.id.endsWith('.codraw'));
-  assert.ok(extension, 'The Codraw development extension must be discoverable.');
+  const extension = vscode.extensions.all.find((candidate) => candidate.id.endsWith('.repogram'));
+  assert.ok(extension, 'The Repogram development extension must be discoverable.');
   await extension.activate();
-  assert.equal(extension.isActive, true, 'The Codraw extension must activate.');
-  const api = extension.exports as CodrawTestApi;
+  assert.equal(extension.isActive, true, 'The Repogram extension must activate.');
+  const api = extension.exports as RepogramTestApi;
   assert.equal(typeof api.getStatus, 'function', 'The extension must expose its read-only status API.');
 
   const commands = await vscode.commands.getCommands(true);
-  assert.ok(commands.includes('codraw.open'), 'codraw.open must be registered.');
-  assert.ok(commands.includes('codraw.refresh'), 'codraw.refresh must be registered.');
+  assert.ok(commands.includes('repogram.open'), 'repogram.open must be registered.');
+  assert.ok(commands.includes('repogram.refresh'), 'repogram.refresh must be registered.');
   assert.ok(
-    commands.includes('codraw.exportSchemaDocs'),
-    'codraw.exportSchemaDocs must be registered.',
+    commands.includes('repogram.exportSchemaDocs'),
+    'repogram.exportSchemaDocs must be registered.',
   );
 
   // The sidebar has to stand on its own: opening the view container is the
   // whole interaction, with no command run first and no diagram panel involved.
   assert.equal(api.getStatus().panelOpen, false, 'No panel may be open before the overview is revealed.');
-  await vscode.commands.executeCommand('codraw.overview.focus');
+  await vscode.commands.executeCommand('repogram.overview.focus');
   await waitFor(
     () => api.getStatus().analysisReady,
     10000,
@@ -50,8 +50,8 @@ export async function run(): Promise<void> {
   assert.equal(api.getStatus().panelOpen, false, 'The sidebar must render without opening the diagram panel.');
   assert.equal(api.getStatus().projectName, 'polyglot-workspace');
 
-  await vscode.commands.executeCommand('codraw.open');
-  await waitFor(() => allTabLabels().includes('Codraw'), 5000, 'Codraw webview tab did not open.');
+  await vscode.commands.executeCommand('repogram.open');
+  await waitFor(() => allTabLabels().includes('Repogram'), 5000, 'Repogram webview tab did not open.');
   await waitFor(
     () => api.getStatus().analysisReady && api.getStatus().renderReady,
     5000,
@@ -82,10 +82,10 @@ export async function run(): Promise<void> {
     'The active file must resolve to the module node id the diagram uses.',
   );
 
-  await vscode.commands.executeCommand('codraw.refresh');
+  await vscode.commands.executeCommand('repogram.refresh');
   await new Promise((resolve) => setTimeout(resolve, 500));
 
-  assert.ok(allTabLabels().includes('Codraw'), 'Codraw webview tab closed unexpectedly after refresh.');
+  assert.ok(allTabLabels().includes('Repogram'), 'Repogram webview tab closed unexpectedly after refresh.');
   await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
 }
 

@@ -87,8 +87,8 @@ export function iconSprite(): string {
     + 'stroke-linecap="round" stroke-linejoin="round"';
   const symbols = ICONS.map((icon) => {
     const solid = icon.solid ? `<path d="${icon.solid}" fill="currentColor" stroke="none"/>` : '';
-    return `<symbol id="codraw-${icon.id}" viewBox="0 0 16 16" ${stroke}>`
+    return `<symbol id="repogram-${icon.id}" viewBox="0 0 16 16" ${stroke}>`
       + `<path d="${icon.path}"/>${solid}</symbol>`;
   }).join('');
-  return `<svg class="codraw-sprite" aria-hidden="true" focusable="false">${symbols}</svg>`;
+  return `<svg class="repogram-sprite" aria-hidden="true" focusable="false">${symbols}</svg>`;
 }

@@ -1,13 +1,13 @@
 /**
  * A small matcher for the glob subset VS Code accepts in `files.exclude`-style
- * settings. `vscode.workspace.findFiles` applies `codraw.exclude` for us,
+ * settings. `vscode.workspace.findFiles` applies `repogram.exclude` for us,
  * but `createFileSystemWatcher` cannot take an exclude pattern, so the watcher
  * has to answer "is this path excluded?" on its own.
  *
  * Supported: `**`, `*`, `?`, `{a,b}` (nestable), and `[abc]` / `[!abc]` classes.
  */
 
-/** Kept in sync with the `codraw.exclude` default in package.json. */
+/** Kept in sync with the `repogram.exclude` default in package.json. */
 export const DEFAULT_EXCLUDE =
   '**/{node_modules,.git,.hg,.svn,dist,build,out,coverage,.next,.nuxt,.svelte-kit,target,vendor,.venv,venv,__pycache__,.turbo,.nx,.cache,.parcel-cache,.gradle,.pnpm-store,.yarn,.vercel,.output,.angular,.dart_tool,bin,obj}/**';
 
