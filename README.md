@@ -11,7 +11,6 @@
 <p align="center">
   <img src="https://img.shields.io/badge/status-preview-F59E0B" alt="Preview status">
   <img src="https://img.shields.io/badge/VS%20Code-1.100%2B-007ACC" alt="VS Code 1.100 or later">
-  <img src="https://img.shields.io/badge/license-MIT-2EA44F" alt="MIT license">
 </p>
 
 Repogram reads the workspace you already have open and turns its static structure into practical maps: how modules depend on one another, where to start reading, how calls and branches flow, which interfaces the project exposes, and how its relational or document data models fit together.
@@ -279,6 +278,8 @@ For development and verification details, see the [development notes](docs/devel
 
 For security-sensitive reports, do not include credentials, private source code, or production data in a public issue.
 
-## License
+## Copyright
 
-Repogram is available under the [MIT License](LICENSE).
+Copyright © 2026 nanjjang. All rights reserved.
+
+No license is granted to copy, modify, distribute, sublicense, or use this project except with prior written permission from the copyright holder.
