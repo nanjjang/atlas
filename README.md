@@ -237,7 +237,7 @@ Open diagrams restore their view, selection, and zoom state when the window is r
 
 | Setting | Default | Description |
 | --- | --- | --- |
-| `repogram.maxFiles` | `2500` | Maximum files analyzed in one scan. Allowed range: 100–20,000. |
+| `repogram.maxFiles` | `10000` | Maximum supported source and configuration files indexed in one scan. Allowed range: 100–20,000. |
 | `repogram.maxFileSizeKb` | `1024` | Maximum size of an analyzed text file in KiB. Allowed range: 16–10,240. |
 | `repogram.exclude` | Dependency, build, and tool-cache glob | Paths excluded from analysis. |
 | `repogram.autoRefresh` | `true` | Reanalyze after relevant file changes. |

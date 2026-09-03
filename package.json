@@ -108,10 +108,10 @@
       "properties": {
         "repogram.maxFiles": {
           "type": "number",
-          "default": 2500,
+          "default": 10000,
           "minimum": 100,
           "maximum": 20000,
-          "description": "Maximum number of workspace files analyzed in one scan."
+          "description": "Maximum number of supported source and configuration files indexed in one scan."
         },
         "repogram.maxFileSizeKb": {
           "type": "number",
@@ -122,7 +122,7 @@
         },
         "repogram.exclude": {
           "type": "string",
-          "default": "**/{node_modules,.git,.hg,.svn,dist,build,out,coverage,.next,.nuxt,.svelte-kit,target,vendor,.venv,venv,__pycache__,.turbo,.nx,.cache,.parcel-cache,.gradle,.pnpm-store,.yarn,.vercel,.output,.angular,.dart_tool,bin,obj}/**",
+          "default": "**/{node_modules,.git,.hg,.svn,dist,dist-test,build,out,coverage,.next,.nuxt,.svelte-kit,target,vendor,.venv,venv,__pycache__,.turbo,.nx,.cache,.parcel-cache,.gradle,.pnpm-store,.yarn,.vercel,.output,.angular,.dart_tool,.vscode-test,.vscode-test-web,bin,obj}/**",
           "description": "Glob pattern excluded from workspace analysis. The default skips dependency, build and tool-cache directories, which otherwise outnumber a project's own files and dominate the structure view."
         },
         "repogram.autoRefresh": {

@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { analyzeWorkspace, isRelevantChange } from './analyzer';
-import { DEFAULT_EXCLUDE, matchesGlob } from './glob';
+import { DEFAULT_EXCLUDE, matchesGlob, withRequiredExclude } from './glob';
 import type { ProjectSnapshot, SourceRef, StructureNode } from './model';
 import { scanWorkspace } from './workspaceScanner';
 
@@ -146,7 +146,10 @@ export class AnalysisService implements vscode.Disposable {
     if (!isRelevantChange(relative)) {
       return false;
     }
-    return !matchesGlob(configuration.get<string>('exclude', DEFAULT_EXCLUDE), relative);
+    return !matchesGlob(
+      withRequiredExclude(configuration.get<string>('exclude', DEFAULT_EXCLUDE)),
+      relative,
+    );
   }
 
   /** Reveals the declaration a diagram node was built from. */
