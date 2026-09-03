@@ -95,13 +95,15 @@ export class RepogramPanel implements vscode.Disposable {
     private readonly repogram: RepogramContext,
     private readonly panel: vscode.WebviewPanel,
   ) {
-    this.panel.webview.html = this.getHtml(this.panel.webview);
     this.panel.onDidDispose(() => this.dispose(), undefined, this.disposables);
     this.panel.webview.onDidReceiveMessage(
       (value: unknown) => this.handleMessage(value),
       undefined,
       this.disposables,
     );
+    // Attach the host listener before loading the script. A fast webview can
+    // post its initial `ready` message as soon as `html` is assigned.
+    this.panel.webview.html = this.getHtml(this.panel.webview);
 
     this.repogram.tracker.onDidChange(
       (active) => {
