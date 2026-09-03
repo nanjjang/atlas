@@ -9,7 +9,19 @@
 
 /** Kept in sync with the `repogram.exclude` default in package.json. */
 export const DEFAULT_EXCLUDE =
-  '**/{node_modules,.git,.hg,.svn,dist,build,out,coverage,.next,.nuxt,.svelte-kit,target,vendor,.venv,venv,__pycache__,.turbo,.nx,.cache,.parcel-cache,.gradle,.pnpm-store,.yarn,.vercel,.output,.angular,.dart_tool,bin,obj}/**';
+  '**/{node_modules,.git,.hg,.svn,dist,dist-test,build,out,coverage,.next,.nuxt,.svelte-kit,target,vendor,.venv,venv,__pycache__,.turbo,.nx,.cache,.parcel-cache,.gradle,.pnpm-store,.yarn,.vercel,.output,.angular,.dart_tool,.vscode-test,.vscode-test-web,bin,obj}/**';
+
+/** Installed dependencies and VCS internals are never authored project code. */
+export const REQUIRED_EXCLUDE =
+  '**/{node_modules,.git,.hg,.svn,.venv,venv,__pycache__,.gradle,.pnpm-store,.yarn,.dart_tool}/**';
+
+/** Keeps required dependency exclusions even when a workspace overrides the setting. */
+export function withRequiredExclude(configured: string): string {
+  if (!configured || configured === REQUIRED_EXCLUDE) {
+    return REQUIRED_EXCLUDE;
+  }
+  return `{${REQUIRED_EXCLUDE},${configured}}`;
+}
 
 const compiled = new Map<string, RegExp | undefined>();
 

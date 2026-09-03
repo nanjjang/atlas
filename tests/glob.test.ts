@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { DEFAULT_EXCLUDE, matchesGlob } from '../src/glob';
+import { DEFAULT_EXCLUDE, matchesGlob, withRequiredExclude } from '../src/glob';
 
 test('the default exclude pattern hides build output from the file watcher', () => {
   for (const excluded of [
@@ -10,6 +10,9 @@ test('the default exclude pattern hides build output from the file watcher', () 
     'build/classes/Main.java',
     'out/app.js',
     'coverage/lcov-report/index.html',
+    '.vscode-test/user-data/Cache/Cache_Data/index',
+    '.vscode-test-web/extensions/extensions.json',
+    'dist-test/src/analyzer.js',
     'target/debug/app.rs',
     '.venv/lib/python3.12/site-packages/x.py',
     'packages/ui/node_modules/left-pad/index.js',
@@ -60,4 +63,11 @@ test('normalizes separators and leading path noise', () => {
 test('a malformed pattern excludes nothing instead of everything', () => {
   assert.equal(matchesGlob('**/[unclosed/**', 'src/index.ts'), false);
   assert.equal(matchesGlob('', 'src/index.ts'), false);
+});
+
+test('a workspace override cannot re-enable installed dependencies', () => {
+  const exclude = withRequiredExclude('**/generated/**');
+  assert.equal(matchesGlob(exclude, 'packages/ui/node_modules/react/index.js'), true);
+  assert.equal(matchesGlob(exclude, 'generated/client.ts'), true);
+  assert.equal(matchesGlob(exclude, 'src/index.ts'), false);
 });
