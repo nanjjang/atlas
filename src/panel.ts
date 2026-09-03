@@ -274,7 +274,7 @@ export class RepogramPanel implements vscode.Disposable {
         <span id="view-guide-legend" class="view-guide-legend"><i class="legend-line"></i> detected directly <i class="legend-line is-dashed"></i> inferred</span>
       </div>
     </header>
-    <div class="workspace">
+    <div id="workspace" class="workspace">
       <main id="canvas-panel" class="canvas-panel" aria-live="polite">
         <svg id="graph-canvas" class="graph-canvas" role="img" aria-labelledby="graph-title graph-description">
           <title id="graph-title">Project diagram</title>

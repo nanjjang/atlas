@@ -45,6 +45,7 @@
   --repogram-header-height: 44px;
   --repogram-footer-height: 24px;
   --repogram-details-width: clamp(280px, 28vw, 380px);
+  --repogram-details-collapsed-size: 34px;
   --repogram-transition: 140ms ease;
 }
 
@@ -716,7 +717,7 @@ select:focus-visible,
 
 .workspace.is-details-closed,
 .main-content.is-details-closed {
-  grid-template-columns: minmax(0, 1fr) 34px;
+  grid-template-columns: minmax(0, 1fr) var(--repogram-details-collapsed-size);
 }
 
 .canvas-panel,
@@ -2643,6 +2644,33 @@ path.graph-edge.is-out-of-focus {
     box-shadow: none;
     transform: none;
     visibility: visible;
+  }
+
+  /* A collapsed stacked panel is an edge handle, not a mostly empty second
+     pane. Keep the canvas and leave one compact bar along the bottom. */
+  .workspace:not(.is-drawer):not(.is-stacked).is-details-closed,
+  .main-content:not(.is-drawer):not(.is-stacked).is-details-closed {
+    grid-template-rows: minmax(0, 1fr) var(--repogram-details-collapsed-size);
+  }
+
+  .workspace:not(.is-drawer):not(.is-stacked).is-details-closed > .details-panel.is-collapsed,
+  .main-content:not(.is-drawer):not(.is-stacked).is-details-closed > .details-panel.is-collapsed {
+    width: 100%;
+    height: var(--repogram-details-collapsed-size);
+    min-height: 0;
+  }
+
+  .workspace.is-details-closed > .details-panel.is-collapsed .details-header,
+  .main-content.is-details-closed > .details-panel.is-collapsed .details-header {
+    height: 100%;
+    min-height: 0;
+    padding: 3px;
+    border-bottom: 0;
+  }
+
+  .workspace:not(.is-drawer):not(.is-stacked) > .details-panel .details-toggle,
+  .main-content:not(.is-drawer):not(.is-stacked) > .details-panel .details-toggle {
+    transform: rotate(-90deg);
   }
 }
 
