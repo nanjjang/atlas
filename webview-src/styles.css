@@ -716,7 +716,7 @@ select:focus-visible,
 
 .workspace.is-details-closed,
 .main-content.is-details-closed {
-  grid-template-columns: minmax(0, 1fr) 0;
+  grid-template-columns: minmax(0, 1fr) 34px;
 }
 
 .canvas-panel,
@@ -907,7 +907,7 @@ select:focus-visible,
 
 .is-details-closed > .details-panel,
 .is-details-closed > .details {
-  visibility: hidden;
+  visibility: visible;
 }
 
 .details-header {
@@ -921,7 +921,8 @@ select:focus-visible,
 }
 
 .details-panel > h2,
-.details > h2 {
+.details > h2,
+.details-header > h2 {
   min-width: 0;
   min-height: 43px;
   padding: 11px 10px 8px;
@@ -942,6 +943,47 @@ select:focus-visible,
   font-weight: 600;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.details-toggle {
+  display: inline-grid;
+  width: 26px;
+  height: 26px;
+  flex: 0 0 26px;
+  place-items: center;
+  padding: 0;
+  color: var(--repogram-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.details-toggle:hover {
+  color: var(--repogram-foreground);
+  background: var(--repogram-surface-hover);
+}
+
+.details-toggle:focus-visible {
+  outline: 1px solid var(--repogram-focus);
+  outline-offset: 1px;
+}
+
+.details-panel.is-collapsed {
+  grid-template-rows: minmax(0, 1fr);
+  border-left: 1px solid var(--repogram-border);
+}
+
+.details-panel.is-collapsed .details-header {
+  justify-content: center;
+  padding: 7px 3px;
+}
+
+.details-panel.is-collapsed .details-header > h2,
+.details-panel.is-collapsed .details-content {
+  display: none;
 }
 
 .details-close {

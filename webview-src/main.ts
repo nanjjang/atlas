@@ -74,6 +74,8 @@ interface PersistedState {
   collapsed?: string[];
   /** The structure view's text size, as a multiple of the default. */
   treeScale?: number;
+  /** Whether the selection-details pane is collapsed into its edge tab. */
+  detailsCollapsed?: boolean;
 }
 
 /** Where the editor is, in this diagram's identifiers. */
@@ -143,6 +145,9 @@ const interfaceGrid = findElement<HTMLElement>('interface-grid');
 const dashGrid = findElement<HTMLElement>('dash-grid');
 const structureTree = findElement<HTMLElement>('structure-tree');
 const stateView = findElement<HTMLElement>('state-view');
+const workspace = findElement<HTMLElement>('workspace');
+const detailsPanel = findElement<HTMLElement>('details-panel');
+const detailsToggle = findElement<HTMLButtonElement>('details-toggle');
 const stateMessage = findElement<HTMLElement>('state-message');
 const detailsContent = findElement<HTMLElement>('details-content');
 const statusText = findElement<HTMLElement>('status-text');
@@ -207,6 +212,7 @@ let contentBounds: { minX: number; minY: number; maxX: number; maxY: number } | 
  */
 const collapsedPaths = new Set<string>(saved.collapsed ?? []);
 let treeScale = clamp(saved.treeScale ?? 1, MIN_TREE_SCALE, MAX_TREE_SCALE);
+let detailsCollapsed = saved.detailsCollapsed ?? false;
 /** The file the tree last opened itself for; see `applyActiveStyles`. */
 let revealedPath: string | undefined;
 /**
@@ -253,6 +259,7 @@ const ARRANGEMENT_BY_KIND: Record<DiagramGraph['kind'], LayoutFlow> = {
 
 searchInput.value = searchQuery;
 focusButton.setAttribute('aria-pressed', String(focusMode));
+renderDetailsToggle();
 renderFoldButton();
 wireEvents();
 renderTabs();
@@ -261,6 +268,12 @@ vscode.postMessage({ type: 'ready' });
 
 function wireEvents(): void {
   refreshButton.addEventListener('click', () => vscode.postMessage({ type: 'refresh' }));
+  detailsToggle.addEventListener('click', () => {
+    detailsCollapsed = !detailsCollapsed;
+    renderDetailsToggle();
+    persistState();
+    announce(detailsCollapsed ? 'Selection details collapsed.' : 'Selection details expanded.');
+  });
   architectureScopeSelect.addEventListener('change', () => setArchitectureScope(architectureScopeSelect.value));
   flowScopeSelect.addEventListener('change', () => {
     flowUnitId = flowScopeSelect.value || undefined;
@@ -4165,7 +4178,17 @@ function persistState(): void {
     focusMode,
     collapsed: [...collapsedPaths],
     treeScale,
+    detailsCollapsed,
   });
+}
+
+function renderDetailsToggle(): void {
+  workspace.classList.toggle('is-details-closed', detailsCollapsed);
+  detailsPanel.classList.toggle('is-collapsed', detailsCollapsed);
+  detailsToggle.setAttribute('aria-expanded', String(!detailsCollapsed));
+  detailsToggle.setAttribute('aria-label', detailsCollapsed ? 'Expand selection details' : 'Collapse selection details');
+  detailsToggle.title = detailsCollapsed ? 'Expand selection details' : 'Collapse selection details';
+  detailsToggle.textContent = detailsCollapsed ? '›' : '‹';
 }
 
 function parseHostMessage(value: unknown): HostMessage | undefined {

@@ -300,7 +300,10 @@ export class RepogramPanel implements vscode.Disposable {
         </div>
       </main>
       <aside id="details-panel" class="details-panel" aria-labelledby="details-title">
-        <h2 id="details-title">Selection details</h2>
+        <div class="details-header">
+          <h2 id="details-title">Selection details</h2>
+          <button id="details-toggle" class="details-toggle" type="button" aria-controls="details-content" aria-expanded="true" title="Collapse selection details">‹</button>
+        </div>
         <div id="details-content" class="details-content">
           <p>Select an item to see why it appears here and open the source behind it.</p>
         </div>
